@@ -6,11 +6,6 @@ function App() {
     <div className="App">
 
       <Header />
-
-      ----
-      <br />
-
-      <p class="h1">h1. Bootstrap heading</p>
     </div>
   );
 }
