@@ -7,7 +7,7 @@ import "./UserTypePage.css";
 function UserTypePage(){
     return (
         <div className="main-area">
-            <div className="section-header">Great Choice!</div>
+            <div className="section-header ">Great Choice!</div>
             <div className="usertype-disclaimer">
                 <p>A recap text of product description and highlight, make the client be more confident in their decision. </p>
                 <p>Applying for an Advantage Account can take between 5-15 minutes. You’ll want to have these things ready:</p>

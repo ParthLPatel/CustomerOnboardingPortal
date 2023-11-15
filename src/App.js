@@ -1,13 +1,14 @@
 import './App.css';
 import Header from './components/Header/Header';
-import UserTypePage from './components/UserTypePage/UserTypePage';
+import CreateProfilePage from './components/CreateProfilePage/CreateProfilePage'; //import UserTypePage from './components/UserTypePage/UserTypePage';
 function App() {
   return (
     <div className="App">
 
       <Header />
 
-      <UserTypePage />
+      <CreateProfilePage />
+      {/* <UserTypePage /> */}
     </div>
   );
 }
