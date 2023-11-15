@@ -1,13 +1,20 @@
 import './App.css';
-import Header from './components/Header/Header';
-import UserTypePage from './components/UserTypePage/UserTypePage';
+
+// importing the common components in here, to reflect the css 
+import Header from './components/CommonComponents/Header/Header';
+import Button from './components/CommonComponents/Button/Button';
+
+import ParentContainer from './components/ParentContainer/ParentContainer';
+
 function App() {
   return (
     <div className="App">
 
       <Header />
 
-      <UserTypePage />
+      {/* <Button />  */}
+      
+      <ParentContainer />
     </div>
   );
 }
