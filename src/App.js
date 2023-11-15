@@ -8,16 +8,7 @@ function App() {
 
       <Header />
 
-<<<<<<< Updated upstream
-      <UserTypePage />
-=======
-      ----
-      <br />
-
-     
-
       <PhotoidVerification />
->>>>>>> Stashed changes
     </div>
   );
 }
