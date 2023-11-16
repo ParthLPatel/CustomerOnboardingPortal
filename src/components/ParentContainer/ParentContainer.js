@@ -9,6 +9,10 @@ import CreateProfile from '../CreateProfile/CreateProfile';
 
 //page 2: Verify Identity
 
+//page 3: Finantial Information
+import FinancialInformation from '../FinancialInformation/FinancialInformation';
+
+
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
         firstName: "",
@@ -38,15 +42,16 @@ const ParentContainer = () => {
                     path="create-profile"
                     element={<CreateProfile formData={formData} updateFormData={updateFormData} />}
                 />
-                {/* <Route
-                    path="/page2"
-                    render={(props) => <Page2 {...props} formData={formData} updateFormData={updateFormData} />}
-                />
                 <Route
+                    path="/financial-info"
+                    element={<FinancialInformation formData={formData} updateFormData={updateFormData} />}
+                />
+                {/* <Route
                     path="/page3"
                     render={(props) => <Page3 {...props} formData={formData} updateFormData={updateFormData} />}
                 /> */}
-                {/* Add routes for other pages */}
+                {/* /* Add routes for other pages*/}
+                
             </Routes>
         </Router>
     );
