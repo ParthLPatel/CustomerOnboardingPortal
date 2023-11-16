@@ -1,0 +1,50 @@
+.container{
+    /* border: 5px solid black; */
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.subContainer{
+    width: 70%;
+    /* border: 5px solid #ffa500; */
+    background-color: white; 
+    /* padding: 1em; */
+    margin: auto;
+    text-align: left;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header_label{
+    /* border: 1px solid black; */
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding:0;
+}
+
+.form-control{
+    margin-bottom: 1.1em;
+    border-bottom: 2px solid #03bf66;
+    border-radius: 0;
+    padding: 0.4em;
+}
+
+/* desktop version */
+@media only screen and (min-width: 525px) {
+    .subContainer{
+        padding: 2em;
+    }
+    .btn-white {
+        order: 1;
+    }
+
+    .btn-orange {
+        order:2;
+    }
+}
