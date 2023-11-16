@@ -11,7 +11,7 @@ import CreateProfile from '../CreateProfile/CreateProfile';
 
 //page 3: Finantial Information
 import FinancialInformation from '../FinancialInformation/FinancialInformation';
-
+import FinancialInfo from '../../models/FinancialInfoModel';
 
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
@@ -24,12 +24,25 @@ const ParentContainer = () => {
         // Add other fields as needed
     });
 
+    
+
+
+    const [financialInfoData,setFinancialInfoData] = useState(null);
+
     const updateFormData = (data) => {
         setFormData((prevData) => ({
             ...prevData,
             ...data,
         }));
     };
+
+    const updateFinancialInfoData = data =>{
+        setFinancialInfoData((prevData) => ({
+            ...prevData,
+            ...data,
+        }));
+
+    }
 
     return (
         <Router>
@@ -44,7 +57,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/financial-info"
-                    element={<FinancialInformation formData={formData} updateFormData={updateFormData} />}
+                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} />}
                 />
                 {/* <Route
                     path="/page3"

@@ -58,6 +58,11 @@
     color: #03bf66;
 }
 
+label{
+    font-size: small;
+    color: #03bf66;
+}
+
 /* desktop version */
 @media only screen and (min-width: 525px) {
     .subContainer{

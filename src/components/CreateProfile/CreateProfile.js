@@ -92,9 +92,9 @@ function CreateProfile({ formData, updateFormData }) {
                         )}
 
                         <div className="btn-wrapper">
-                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                            <Link to="/financial-info" type="submit" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
-                            </button>
+                            </Link>
                             <Link to="/" className="manulife-btn btn-white text-decoration-none">
                                 Back
                             </Link>
