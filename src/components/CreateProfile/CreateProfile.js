@@ -3,8 +3,10 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form"
 
 import { getAddress } from "../../utils/RetrieveAddress";
+import './CreateProfile.css'
+import { Link } from 'react-router-dom';
 
-function CreateProfile() {
+function CreateProfile({ formData, updateFormData }) {
     const {
         register,
         handleSubmit,
@@ -12,21 +14,32 @@ function CreateProfile() {
         formState: { errors },
     } = useForm()
 
-    const onSubmit = (data) => console.log(data)
+    const onSubmit = () => console.log(formData)
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
 
+
+    const handleInputChange = (e, fieldName) => {
+        updateFormData({ ...formData, [fieldName]: e.target.value });
+    };
+
     const handleAddressSearch = async (query) => {
         setInputValue(query);
         const data = await getAddress(query);
+        console.log(data.Items);
         setHomeAddressList(data.Items);
-        setShowDropdown(true);
+        if(data.Items?.length > 0) {
+            setShowDropdown(true);
+        }else{
+            setShowDropdown(false);
+        }
     };
 
     const handleOptionClick = (option) => {
         setInputValue(`${option.Text}, ${option.Description}`);
         setShowDropdown(false);
+        updateFormData({ ...formData, homeAddress: option.Text +", "+ option.Description });
     };
 
 
@@ -34,24 +47,38 @@ function CreateProfile() {
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container">
-                    <div className="row gx-5">
-                        <input className="col-sm-6 col-12 form-control green-bottom-border" placeholder="First Name" {...register("FirstName", { required: true })} />
+                    <div className="row subContainer">
+                        <p className="header_label">First, let's create your profile.</p>
 
-                        {errors.FirstName && <span>This field is required</span>}
+                        <input className="form-control" placeholder="First Name" {...register("firstName", { required: true })} value={formData.firstName} 
+                        onChange={(e) => handleInputChange(e, "firstName")}/>
 
-                        <input className="col-sm-6 col-12 form-control green-bottom-border" placeholder="Last Name" {...register("LastName", { required: true })} />
+                        {errors.firstName && <span>This field is required</span>}
 
-                        {errors.LastName && <span>This field is required</span>}
+                        <input className="form-control" placeholder="Last Name" {...register("lastName", { required: true })} value={formData.lastName}
+                            onChange={(e) => handleInputChange(e, "lastName")}/>
 
-                        <input className="col-sm-6 col-12 form-control green-bottom-border" placeholder="Date of birth" type="date" {...register("DateOfBirth", { required: true })} />
+                        {errors.lastName && <span>This field is required</span>}
 
-                        {errors.DateOfBirth && <span>This field is required</span>}
+                        <input className="form-control" placeholder="Date of birth" type="date" {...register("birthDate", { required: true })} value={formData.birthDate}
+                            onChange={(e) => handleInputChange(e, "birthDate")}/>
 
-                        <input className="col-sm-6 col-12 form-control green-bottom-border" placeholder="Phone Number" {...register("PhoneNumber", { required: true })} />
+                        {errors.birthDate && <span>This field is required</span>}
 
-                        {errors.PhoneNumber && <span>This field is required</span>}
+                        <input className="form-control" placeholder="Phone Number" {...register("phoneNumber", { required: true })} value={formData.phoneNumber}
+                            onChange={(e) => handleInputChange(e, "phoneNumber")}/>
 
-                        <input className="col-sm-6 col-12 form-control green-bottom-border" placeholder="Home Address" onChange={e => handleAddressSearch(e.target.value)} value={inputValue} />
+                        {errors.phoneNumber && <span>This field is required</span>}
+
+                        <input className="form-control" placeholder="Email Address" {...register("emailAddress", { required: true })} value={formData.emailAddress}
+                            onChange={(e) => handleInputChange(e, "emailAddress")}/>
+
+                        {errors.emailAddress && <span>This field is required</span>}
+
+                        <input className="form-control" placeholder="Home Address" value={inputValue} onChange={(e) => {
+                            handleAddressSearch(e.target.value); 
+                            handleInputChange(e, "homeAddress");
+                            }}/>
 
                         {showDropdown && (
                             <ul className="dropdown-list">
@@ -64,10 +91,16 @@ function CreateProfile() {
                             </ul>
                         )}
 
+                        <div className="btn-wrapper">
+                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                Submit
+                            </button>
+                            <Link to="/" className="manulife-btn btn-white text-decoration-none">
+                                Back
+                            </Link>
+                        </div>
                     </div>
                 </div>
-                <button class="btn btn-primary">Back</button>
-                <button type="submit" class="btn btn-danger">Submit</button>
             </form>
         </div>
 
