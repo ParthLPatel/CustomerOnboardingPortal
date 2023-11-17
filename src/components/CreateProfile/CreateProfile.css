@@ -20,12 +20,12 @@
 .header_label{
     /* border: 1px solid black; */
     font-family: sans-serif;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 500;
     line-height: 27px;
     letter-spacing: 0em;
     text-align: left;
-    padding:0;
+    padding:0.6em;
 }
 
 .form-control{
@@ -33,6 +33,19 @@
     border-bottom: 2px solid #03bf66;
     border-radius: 0;
     padding: 0.4em;
+    margin-left: 0.4em;
+    margin-right: 0.4em;
+}
+
+.progressBarContainer1{
+    /* border: 1px solid black; */
+}
+
+.progressBarLabel1{
+    /* border: 1px solid black; */
+    font-size: 12px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 500;
 }
 
 /* desktop version */

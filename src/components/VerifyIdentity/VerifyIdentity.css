@@ -1,0 +1,132 @@
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    font-family: 'Roboto', sans-serif;
+}
+
+.sub-container{
+    width: 70%;
+    /* border: 5px solid #ffa500; */
+    background-color: white; 
+    margin: auto;
+    text-align: left;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+    padding: 1em;
+}
+
+.section-header{
+    /* border: 1px solid black; */
+    font-family: sans-serif;
+    font-size: 20px;
+    padding-top:0.6em; 
+    padding-bottom: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+    margin-top: 0.4em;
+}
+
+.subHeader{
+    font-size: 12px;
+    font-weight: 400;
+    
+}
+
+.progressBarContainer1{
+    /* border: 1px solid black; */
+}
+
+.progressBarLabel1{
+    /* border: 1px solid black; */
+    font-size: 14px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 500;
+    color: #09874E;
+    /* padding: 0; */
+    margin: 0.4em 0;
+}
+
+.verification-options {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+.verification-button {
+    border: none;
+    width: 100%;
+    margin-right: 1em;
+    text-align: center;
+    border-radius: 4px;
+    color: white;
+    box-shadow: 0px 1px 2px 0px #0000001A;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0em;
+
+}
+
+.verification-button.selected {
+    background: #09874E;
+    color: white;
+    border: none;
+}
+
+.verification-button:not(.selected) {
+    background: white;
+    color: #09874E;
+    border: 2px solid #09874E;
+}
+
+
+.btnStep{
+    width: 20px;
+    height:20px;
+    color: white;
+    background-color: #09874E;
+    border-radius: 12px;
+    text-align: center;
+    margin-right: 0.6em;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.stepContainer{
+    display: flex;
+    flex-direction: row;
+    /* border: 1px solid black; */
+    margin: 1.6em 0.4em;
+    /* padding: 0.2em; */
+}
+
+.dropdown{
+    /* font-family: Open Sans; */
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+
+
+.labelUpload{
+    display: inline-block;
+    border: none;
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 4px;
+    background: white;
+    color: #09874E;
+    border: 2px solid #09874E;
+    padding: 0.1em 0.4em;
+    margin: 0 0.4em;
+    font-weight: 600;
+    box-shadow: 0px 1px 2px 0px #0000001A;
+}

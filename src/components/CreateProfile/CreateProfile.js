@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 import { useForm } from "react-hook-form"
 
 import { getAddress } from "../../utils/RetrieveAddress";
 import './CreateProfile.css'
 import { Link } from 'react-router-dom';
+
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 function CreateProfile({ formData, updateFormData }) {
     const {
@@ -13,6 +15,8 @@ function CreateProfile({ formData, updateFormData }) {
         watch,
         formState: { errors },
     } = useForm()
+
+    const formRef = useRef(null);  // Create a ref for the form
 
     const onSubmit = () => console.log(formData)
     const [inputValue, setInputValue] = useState('');
@@ -45,9 +49,15 @@ function CreateProfile({ formData, updateFormData }) {
 
     return (
         <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
                 <div className="container">
                     <div className="row subContainer">
+
+                        <div className="progressBarContainer1">
+                            <p className="progressBarLabel1">Step 1 - Create a profile</p>
+                            <ProgressBar progress={1} /> {/* Pass the progress for this page */}
+                        </div>
+
                         <p className="header_label">First, let's create your profile.</p>
 
                         <input className="form-control" placeholder="First Name" {...register("firstName", { required: true })} value={formData.firstName} 
@@ -92,9 +102,10 @@ function CreateProfile({ formData, updateFormData }) {
                         )}
 
                         <div className="btn-wrapper">
-                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                            <Link to="/verify-identity" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
-                            </button>
+                            </Link>
+
                             <Link to="/" className="manulife-btn btn-white text-decoration-none">
                                 Back
                             </Link>
