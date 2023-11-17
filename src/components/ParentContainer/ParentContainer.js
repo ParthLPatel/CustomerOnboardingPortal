@@ -13,6 +13,9 @@ import CreateProfile from '../CreateProfile/CreateProfile';
 import FinancialInformation from '../FinancialInformation/FinancialInformation';
 import FinancialInfo from '../../models/FinancialInfoModel';
 
+//page 4: Review and Submit
+import ReviewInfo from '../ReviewPage/ReviewInfo';
+
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
         firstName: "",
@@ -58,6 +61,10 @@ const ParentContainer = () => {
                 <Route
                     path="/financial-info"
                     element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} />}
+                />
+                                <Route
+                    path="/review-info"
+                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} />}
                 />
                 {/* <Route
                     path="/page3"
