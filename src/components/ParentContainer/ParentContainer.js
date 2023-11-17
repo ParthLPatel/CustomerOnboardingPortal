@@ -8,11 +8,6 @@ import UserTypePage from '../UserTypePage/UserTypePage';
 import CreateProfile from '../CreateProfile/CreateProfile';
 
 //page 2: Verify Identity
-import VerifyIdentity from '../VerifyIdentity/VerifyIdentity';
-
-//Page 3: confirm identity
-import VerifyIdentity2 from '../VerifyIdentity2/VerifyIdentity2';
-
 
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
@@ -23,18 +18,9 @@ const ParentContainer = () => {
         birthDate: "",
         homeAddress:"",
         emailAddress:"",
-        phoneNumber: "",
-        
-        //page 2: verify identity fields
-        IDtype: "",
-        selectedIDFile: "",
-        selectedSelfieFile: "",
-        verificationOption: "",
-
-
+        phoneNumber: ""
+        // Add other fields as needed
     });
-
-    const [progress, setProgress] = useState(0); // Track the progress
 
     const updateFormData = (data) => {
         setFormData((prevData) => ({
@@ -43,6 +29,14 @@ const ParentContainer = () => {
         }));
         setProgress((prevProgress) => prevProgress + 1); // Update progress on each page change
     };
+
+    const updateFinancialInfoData = data =>{
+        setFinancialInfoData((prevData) => ({
+            ...prevData,
+            ...data,
+        }));
+
+    }
 
     return (
         <Router>
@@ -56,14 +50,14 @@ const ParentContainer = () => {
                     path="create-profile"
                     element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress}/>}
                 />
-                <Route
-                    path="verify-identity"
-                    element={<VerifyIdentity formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                {/* <Route
+                    path="/page2"
+                    render={(props) => <Page2 {...props} formData={formData} updateFormData={updateFormData} />}
                 />
                 <Route
-                    path="/confirm-identity"
-                    element={<VerifyIdentity2 formData={formData} updateFormData={updateFormData} progress={progress}/>}
-                />
+                    path="/page3"
+                    render={(props) => <Page3 {...props} formData={formData} updateFormData={updateFormData} />}
+                /> */}
                 {/* Add routes for other pages */}
             </Routes>
         </Router>
