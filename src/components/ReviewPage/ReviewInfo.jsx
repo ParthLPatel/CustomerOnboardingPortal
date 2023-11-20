@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
 
-import ProgressBar from "../ProgressBar/what.Js";
+import ProgressBar from "../ProgressBar/ProgressBar.js";
 
 const ReviewInfo = ({ formData, financialInfoData }) => {
 

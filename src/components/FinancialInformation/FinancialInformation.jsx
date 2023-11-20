@@ -4,7 +4,7 @@ import "./FinancialInformation.css"
 import { Link, useNavigate } from 'react-router-dom';
 
 
-import ProgressBar from "../ProgressBar/what.Js";
+import ProgressBar from "../ProgressBar/ProgressBar.js";
 
 
 const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) => {
