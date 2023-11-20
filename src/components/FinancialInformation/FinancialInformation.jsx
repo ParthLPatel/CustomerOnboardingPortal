@@ -122,24 +122,24 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                 employmentStatus == "Full Time Employment" ?
                                     (<div className="employment-wrapper">
                                         <div className="input-div">
-                                            <label>Employer Name</label>
+                                            <label className="labeldef">Employer Name</label>
                                             <input className="col-12 form-control green-bottom-border" placeholder="Employer Name" key="employerName" {...register("employerName", { required: true })} />
                                             {formState.errors.employerName && <span className="error-message">This field is required</span>}
                                         </div>
                                         <div className="input-div">
-                                            <label>Employer Industry</label>
+                                            <label className="labeldef">Employer Industry</label>
                                             <input className="col-12 form-control green-bottom-border" placeholder="Employer Industry" key="employerIndustry" {...register("employerIndustry", { required: true })} />
                                             {formState.errors.employerIndustry && <span className="error-message">This field is required</span>}
                                         </div>
                                     </div>) :
                                     (employmentStatus == "Student" ? (<div className="employment-wrapper">
                                         <div className="input-div">
-                                            <label>Institution Name</label>
+                                            <label className="labeldef">Institution Name</label>
                                             <input className="col-12 form-control green-bottom-border" placeholder="Institution Name" key="institutionName"  {...register("institutionName", { required: true })} />
                                             {formState.errors.institutionName && <span className="error-message">This field is required</span>}
                                         </div>
                                         <div className="input-div">
-                                            <label>Graduation Date</label>
+                                            <label className="labeldef">Graduation Date</label>
                                             <input className="col-12 form-control green-bottom-border" type="date" placeholder="Graduation Date" key="graduationDate"  {...register("graduationDate", { required: true })} />
                                             {formState.errors.graduationDate && <span className="error-message">This field is required</span>}
                                         </div>

@@ -8,8 +8,8 @@ import { Link } from 'react-router-dom';
 
 function UserTypePage(){
     return (
-        <div className='main-area-wrapper'>
-            <div className="main-area">
+        <div className='container'>
+            <div className="subContainer">
                 <div className="section-header">Great Choice!</div>
                 <div className="usertype-disclaimer">
                     <p>A recap text of product description and highlight, make the client be more confident in their decision. </p>

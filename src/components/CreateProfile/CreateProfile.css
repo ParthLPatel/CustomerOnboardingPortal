@@ -7,7 +7,7 @@
 }
 
 .subContainer{
-    width: 70%;
+    width: 65%;
     /* border: 5px solid #ffa500; */
     background-color: white; 
     /* padding: 1em; */
@@ -21,7 +21,7 @@
     /* border: 1px solid black; */
     font-family: sans-serif;
     font-size: 20px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 27px;
     letter-spacing: 0em;
     text-align: left;
