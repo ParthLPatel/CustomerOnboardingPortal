@@ -7,10 +7,13 @@ import UserTypePage from '../UserTypePage/UserTypePage';
 //page 1: Create Profile
 import CreateProfile from '../CreateProfile/CreateProfile';
 
-//page 2: Verify Identity
+//Page 2: Verify Phone number
+import PhoneVerification from '../PhoneVerification/PhoneVerification';
+
+//page 3: Verify Identity
 import VerifyIdentity from '../VerifyIdentity/VerifyIdentity';
 
-//Page 3: confirm identity
+//Page 4: confirm identity
 import VerifyIdentity2 from '../VerifyIdentity2/VerifyIdentity2';
 
 //page 4: financial information
@@ -73,6 +76,10 @@ const ParentContainer = () => {
                 <Route
                     path="create-profile"
                     element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                />
+                 <Route
+                    path="/verify-phone-number"
+                    element={<PhoneVerification formData={formData} updateFormData={updateFormData} progress={progress}/>}
                 />
                 <Route
                     path="verify-identity"

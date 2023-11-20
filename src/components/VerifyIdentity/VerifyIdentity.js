@@ -70,11 +70,6 @@ function VerifyIdentity({ formData, updateFormData }) {
     <div className='main-container'>
         <div className='sub-container'>
 
-          <div className="progressBarContainer1">
-              <p className="progressBarLabel1">Step 2 - Verify your identity</p>
-              <ProgressBar progress={2} /> {/* Pass the progress for this page */}
-          </div>
-
           <form onSubmit={handleSubmit(onSubmit)}> 
             <div className="section-header">We need to verify your photo ID</div>
             <p className='subHeader'>You can share your ID with us online or in person </p>
@@ -144,7 +139,7 @@ function VerifyIdentity({ formData, updateFormData }) {
             </div>
     
             <div className="btn-wrapper my-4">
-                <Link to="/" className="manulife-btn btn-white text-decoration-none">
+                <Link to="/verify-phone-number" className="manulife-btn btn-white text-decoration-none">
                     Back
                 </Link>
                 <Link to="/confirm-identity" className="manulife-btn btn-orange text-decoration-none">

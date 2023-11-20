@@ -10,10 +10,6 @@ function VerifyIdentity2({ formData, updateFormData }) {
     <div className='main-container'>
 
         <div className='sub-container'>
-            <div className="progressBarContainer1">
-                <p className="progressBarLabel1">Step 2 - Verify your identity</p>
-                <ProgressBar progress={3} /> {/* Pass the progress for this page */}
-            </div>
 
             <div className="section-header">Your ID looks good!</div>
             <p className='subHeader'>Please check the details of your ID we captured</p>
