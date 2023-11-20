@@ -13,6 +13,13 @@ import VerifyIdentity from '../VerifyIdentity/VerifyIdentity';
 //Page 3: confirm identity
 import VerifyIdentity2 from '../VerifyIdentity2/VerifyIdentity2';
 
+//page 4: financial information
+import FinancialInformation from '../FinancialInformation/FinancialInformation';
+import FinancialInfo from '../../models/FinancialInfoModel';
+
+//page 5: Review and Submit
+import ReviewInfo from '../ReviewPage/ReviewInfo';
+
 
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
@@ -36,6 +43,8 @@ const ParentContainer = () => {
 
     const [progress, setProgress] = useState(0); // Track the progress
 
+    const [financialInfoData,setFinancialInfoData] = useState(null);
+
     const updateFormData = (data) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -43,6 +52,15 @@ const ParentContainer = () => {
         }));
         setProgress((prevProgress) => prevProgress + 1); // Update progress on each page change
     };
+
+
+    const updateFinancialInfoData = data =>{
+        setFinancialInfoData((prevData) => ({
+            ...prevData,
+            ...data,
+        }));
+
+    }
 
     return (
         <Router>
@@ -63,6 +81,14 @@ const ParentContainer = () => {
                 <Route
                     path="/confirm-identity"
                     element={<VerifyIdentity2 formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                />
+                <Route
+                    path="/financial-info"
+                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} progress={progress}/>}
+                />
+                <Route
+                    path="/review-info"
+                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} progress={progress}/>}
                 />
                 {/* Add routes for other pages */}
             </Routes>

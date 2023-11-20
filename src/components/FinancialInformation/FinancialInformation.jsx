@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form"
 import "./FinancialInformation.css"
 import { Link, useNavigate } from 'react-router-dom';
+
+
+import ProgressBar from "../ProgressBar/ProgressBar";
+
+
 const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) => {
     const {
         register,
@@ -78,10 +83,13 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="container">
                         <div className="row subContainer">
-                            <div className="progress-step">Step 3 - Financial information</div>
+                            <div className="progressBarContainer1">
+                                <p className="progressBarLabel1">Step 4 - Financial information</p>
+                                <ProgressBar progress={4} /> {/* Pass the progress for this page */}
+                            </div>
                             <p className="header_label">We need to know some of your financial information</p>
                             <div className="input-div ">
-                                <label>Annual Income</label>
+                                <label className="labeldef">Annual Income</label>
                                 <div className="input-group">
                                     <span className="input-group-text">$</span><input className="col-12 form-control green-bottom-border" placeholder="Annual Income" {...register("annualIncome", { required: true })} />
 
@@ -89,8 +97,8 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                 {(formState.errors.annualIncome) && <div className="error-message">This field is required</div>}
 
                             </div>
-                            <div className="input-div ">
-                                <label>Other Household Annual Income</label>
+                            <div className="input-div">
+                                <label className="labeldef">Other Household Annual Income</label>
                                 <div className="input-group">
                                     <span className="input-group-text">$</span>
                                     <input className="col-12 form-control green-bottom-border" placeholder="Other household income (Optional)" {...register("otherHouseholdIncome")} />
@@ -98,7 +106,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                 </div>
                             </div>
                             <div className="input-div ">
-                            <label>Employment Status</label>
+                            <label className="labeldef">Employment Status</label>
                             <select className="form-select" defaultValue="" aria-label="Select the employment status" {...register("employmentStatus", { required: true })}>
                                 <option value="" disabled>Select Employment type</option>
                                 {
@@ -141,8 +149,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
                             <div className="btn-wrapper">
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
-                                    Submit</button>
-
+                                    Continue</button>
                                 <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
                                     Back
                                 </Link>

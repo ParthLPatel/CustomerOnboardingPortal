@@ -42,7 +42,7 @@ function VerifyIdentity2({ formData, updateFormData }) {
                 <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none">
                     Back
                 </Link>
-                <Link to="####" className="manulife-btn btn-orange text-decoration-none">
+                <Link to="/financial-info" className="manulife-btn btn-orange text-decoration-none">
                 Continue
                 </Link>
             </div>   

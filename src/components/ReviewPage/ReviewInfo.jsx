@@ -3,6 +3,8 @@ import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
 
+import ProgressBar from "../ProgressBar/ProgressBar";
+
 const ReviewInfo = ({ formData, financialInfoData }) => {
 
 
@@ -27,7 +29,11 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
         <div>
             <div className="container">
                 <div className="row subContainer">
-                    <div className="progress-step">Step 4 - Review and submit</div>
+                    <div className="progress-step"></div>
+                    <div className="progressBarContainer1">
+                        <p className="progressBarLabel1">Step 5 - Review and submit</p>
+                        <ProgressBar progress={5} /> {/* Pass the progress for this page */}
+                    </div>
                     <p className="header_label">Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-md-6">
@@ -108,7 +114,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-check ">
+                    <div className="form-check">
                         <Controller
                             name="agreement"
                             control={control}
