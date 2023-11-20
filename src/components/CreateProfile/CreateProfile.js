@@ -53,6 +53,11 @@ function CreateProfile({ formData, updateFormData }) {
                 <div className="container">
                     <div className="row subContainer">
 
+                        <div className="progressBarContainer1">
+                            <p className="progressBarLabel1">Step 1 - Create a profile</p>
+                            <ProgressBar progress={1} /> {/* Pass the progress for this page */}
+                        </div>
+
                         <p className="header_label">First, let's create your profile.</p>
 
                         <input className="form-control" placeholder="First Name" {...register("firstName", { required: true })} value={formData.firstName} 

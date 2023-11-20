@@ -69,6 +69,11 @@ function VerifyIdentity({ formData, updateFormData }) {
   return (
     <div className='main-container'>
         <div className='sub-container'>
+          
+          <div className="progressBarContainer1">
+              <p className="progressBarLabel1">Step 3.1 - Verify your identity</p>
+              <ProgressBar progress={3} /> {/* Pass the progress for this page */}
+          </div>
 
           <form onSubmit={handleSubmit(onSubmit)}> 
             <div className="section-header">We need to verify your photo ID</div>

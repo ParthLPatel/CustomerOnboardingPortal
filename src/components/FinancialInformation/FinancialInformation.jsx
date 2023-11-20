@@ -85,7 +85,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                         <div className="row subContainer">
                             <div className="progressBarContainer1">
                                 <p className="progressBarLabel1">Step 4 - Financial information</p>
-                                <ProgressBar progress={4} /> {/* Pass the progress for this page */}
+                                <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                             </div>
                             <p className="header_label">We need to know some of your financial information</p>
                             <div className="input-div ">

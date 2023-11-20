@@ -3,7 +3,7 @@ import './ProgressBar.css'
 
 const ProgressBar = ({ progress }) => {
     const progressBarStyle = {
-        width: `${(progress / 5) * 100}%`, // Assuming you have 3 pages in total
+        width: `${(progress / 6) * 100}%`, // Assuming you have 3 pages in total
     };
 
     return (
@@ -15,7 +15,7 @@ const ProgressBar = ({ progress }) => {
                     style={progressBarStyle}
                     aria-valuenow={progress}
                     aria-valuemin="0"
-                    aria-valuemax="5" // Adjust based on the total number of pages
+                    aria-valuemax="6" // Adjust based on the total number of pages
                 />
             </div>
         </div>

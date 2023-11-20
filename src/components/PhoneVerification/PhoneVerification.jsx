@@ -3,6 +3,7 @@ import "./PhoneVerification.css";
 import {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
+import ProgressBar from "../ProgressBar/ProgressBar";
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -17,9 +18,9 @@ function PhoneVerification(props){
 
 
     useEffect(() => {
-        console.log("this is executed : ")
+     
         if (props.formData.phoneNumber && !apiCallExecutedRef.current) {
-            console.log("this is executed too: ")
+       
           // Set the phone number and send verification code
           setPhoneNumber(props.formData.phoneNumber);
           sendVerificationCode(props.formData.phoneNumber);
@@ -75,6 +76,7 @@ function PhoneVerification(props){
         navigate("/verify-identity");
       } else {
         // Handle other verification statuses if needed
+        alert('Verification unsuccessful, please try again!');
         console.log('Verification not successful:', response.data);
       }
     } catch (error) {
@@ -85,6 +87,11 @@ function PhoneVerification(props){
 
     return (        
         <div className="main-area">
+
+                <div className="progressBarContainer1">
+                    <p className="progressBarLabel1">Step 2 - Verify your phone number</p>
+                    <ProgressBar progress={2} /> {/* Pass the progress for this page */}
+                </div>
 
                 <div className="section-header">We just texted you.</div>
                 <p>A passcode was sent to phone number : {phoneNumber} </p>
