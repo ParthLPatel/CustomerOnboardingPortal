@@ -12,10 +12,10 @@ import './ProgressBar.css';
 const ProgressBar = ({ progress }) => {
   const steps = [
     { label: 'Create Profile', icon: <PersonIcon /> },
-    { label: 'Verify Phone Number', icon: <PhoneIcon /> },
+    { label: 'Verify Phone', icon: <PhoneIcon /> },
     { label: 'Verify Identity', icon: <HowToRegIcon /> },
-    { label: 'Enter Financial Info', icon: <AccountBoxIcon /> },
-    { label: 'Verify Information', icon: <CreditCardIcon /> },
+    { label: 'Financial Information', icon: <AccountBoxIcon /> },
+    { label: 'Review and Submit', icon: <CreditCardIcon /> },
   ];
 
   return (
@@ -32,7 +32,7 @@ const ProgressBar = ({ progress }) => {
         <div
           className="progress-bar"
           role="progressbar"
-          style={{ width: `${((progress - 1) / steps.length) * 100}%` }}
+          style={{ width: `${((progress ) / steps.length) * 100}%` }}
           aria-valuenow={progress}
           aria-valuemin="1"
           aria-valuemax={steps.length}

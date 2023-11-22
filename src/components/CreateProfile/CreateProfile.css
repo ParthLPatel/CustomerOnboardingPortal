@@ -2,13 +2,14 @@
     /* border: 5px solid black; */
     padding: 1em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center; 
 }
 
 .subContainer{
     width: 66%;
-    border: 5px solid #ffa500;
+    /* border: 5px solid #ffa500; */
     background-color: white; 
     /* padding: 1em; */
     margin: auto;
@@ -30,7 +31,7 @@
 
 .form-control{
     margin-bottom: 1.1em;
-    border-bottom: 2px solid #09874E;
+    /* border-bottom: 2px solid #09874E; */
     border-radius: 0;
     padding: 0.5em;
     margin-left: 0.4em;
@@ -39,6 +40,7 @@
 
 .progressBarContainer1{
     /* border: 1px solid black; */
+    /* padding: 1em; */
 }
 
 .progressBarLabel1{

@@ -4,14 +4,16 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0em 0;
+    width: 100%;
+    margin: auto;
+    /* border: 1px solid orange; */
   }
   
   .iconsContainer {
     display: flex;
     justify-content: space-between;
-    width: 80%; /* Adjust width as needed */
-    margin-bottom: 0px; /* Adjust spacing as needed */
+    /* border: 1px solid red; */
+    /* margin: 1em; */
   }
   
   .icon {
@@ -20,21 +22,31 @@
     align-items: center;
     color: #ccc; /* Default color for inactive icons */
     transition: transform 1s ease; /* Add transition for smooth scaling */
+    margin-top: 1em;
+    margin-left: 1em;
+    margin-right: 1em;
+    padding: 1em;
+    /* border: 1px solid green; */
+
   }
   
   .icon.active {
     color: green; /* Color for active icon */
     transform: scale(1.2); /* Scale up the active icon */
+    /* margin: 1em; */
   }
   
   .icon-label {
-    margin-top: 5px; /* Adjust spacing between icon and label as needed */
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
   }
   
   .progress {
-    width: 80%; /* Adjust width as needed */
+    width: 100%; /* Adjust width as needed */
     height: 3px; /* Adjust height as needed */
     background-color: #e0e0e0; /* Default background color for progress bar */
+    /* border: 1px solid black; */
   }
   
   .progress-bar {

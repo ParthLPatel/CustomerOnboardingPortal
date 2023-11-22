@@ -87,12 +87,15 @@ function PhoneVerification(props){
 
     return (        
         <div className="container">
+
+          <div className="progressBarContainer1">
+              {/* <p className="progressBarLabel1">Step 2 - Verify your phone number</p> */}
+              <ProgressBar progress={2} /> {/* Pass the progress for this page */}
+          </div>
+
           <div className='subContainer'>
 
-                <div className="progressBarContainer1">
-                    <p className="progressBarLabel1">Step 2 - Verify your phone number</p>
-                    <ProgressBar progress={2} /> {/* Pass the progress for this page */}
-                </div>
+                
 
                 <div className="header_label hlbl">We just texted you.</div>
                 <p className="subHeader my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>

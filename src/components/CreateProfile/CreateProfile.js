@@ -62,12 +62,15 @@ function CreateProfile({ formData, updateFormData }) {
         <div>
             <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
                 <div className="container">
+
+                    <div className="progressBarContainer1">
+                        {/* <p className="progressBarLabel1">Step 1 - Create a profile</p> */}
+                        <ProgressBar progress={1} /> {/* Pass the progress for this page */}
+                    </div>
+
                     <div className="row subContainer">
 
-                        <div className="progressBarContainer1">
-                            <p className="progressBarLabel1">Step 1 - Create a profile</p>
-                            <ProgressBar progress={1} /> {/* Pass the progress for this page */}
-                        </div>
+                        
 
                         <p className="header_label">First, let's create your profile.</p>
 

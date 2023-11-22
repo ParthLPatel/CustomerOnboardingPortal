@@ -12,7 +12,7 @@ function VerifyIdentity2({ formData, updateFormData }) {
         <div className='subContainer'>
 
             <div className="progressBarContainer1">
-              <p className="progressBarLabel1">Step 3.2 - Verify your identity</p>
+              {/* <p className="progressBarLabel1">Step 3.2 - Verify your identity</p> */}
               <ProgressBar progress={4} /> {/* Pass the progress for this page */}
             </div>
 
