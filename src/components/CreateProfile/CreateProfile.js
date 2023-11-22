@@ -11,6 +11,8 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
+import plantImg from './plantImg.png'
+
 
 function CreateProfile({ formData, updateFormData }) {
     const {
@@ -70,9 +72,11 @@ function CreateProfile({ formData, updateFormData }) {
 
                     <div className="row subContainer">
 
-                        
 
-                        <p className="header_label">First, let's create your profile.</p>
+                        <div className="headerContainer">
+                            <img src={plantImg} alt="Your SVG" className="plantLogo"/>
+                            <p className="header_label">First, let's create your profile.</p>
+                        </div>
 
                         <div className="insideContainer">
 

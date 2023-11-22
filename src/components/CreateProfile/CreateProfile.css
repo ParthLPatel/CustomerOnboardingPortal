@@ -1,17 +1,17 @@
 .container{
     /* border: 5px solid black; */
-    padding: 1em;
+    /* padding: 1em; */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center; 
+    width: 75%;
 }
 
 .subContainer{
-    width: 66%;
+    width: 70%;
     /* border: 5px solid #ffa500; */
     background-color: white; 
-    /* padding: 1em; */
     margin: auto;
     text-align: left;
     color: #000000;
@@ -59,6 +59,16 @@
     display: flex;
     flex-direction: column;
     /* border: 2px solid orange */
+}
+.headerContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.plantLogo{
+    height: 107px;
+    width: 107px;
 }
   
 /* desktop version */

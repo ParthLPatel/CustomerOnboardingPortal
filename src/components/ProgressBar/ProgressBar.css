@@ -13,7 +13,7 @@
     display: flex;
     justify-content: space-between;
     /* border: 1px solid red; */
-    /* margin: 1em; */
+    padding: 0.4em;
   }
   
   .icon {
@@ -25,14 +25,13 @@
     margin-top: 1em;
     margin-left: 1em;
     margin-right: 1em;
-    padding: 1em;
     /* border: 1px solid green; */
 
   }
   
   .icon.active {
     color: green; /* Color for active icon */
-    transform: scale(1.2); /* Scale up the active icon */
+    transform: scale(1.1); /* Scale up the active icon */
     /* margin: 1em; */
   }
   
