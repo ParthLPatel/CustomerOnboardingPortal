@@ -82,11 +82,12 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="container">
-                        <div className="row subContainer">
-                            <div className="progressBarContainer1">
-                                <p className="progressBarLabel1">Step 4 - Financial information</p>
+                        <div className="progressBarContainer1">
+                                {/* <p className="progressBarLabel1">Step 4 - Financial information</p> */}
                                 <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                             </div>
+                        <div className="row subContainer">
+                            
                             <p className="header_label">We need to know some of your financial information</p>
                             <div className="input-div ">
                                 <label className="labeldef">Annual Income</label>

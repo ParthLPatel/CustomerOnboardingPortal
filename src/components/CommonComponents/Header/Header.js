@@ -1,11 +1,13 @@
 import React from 'react'
 import './Header.css'
 
+import manulife_logo from './manulife_logo.svg'
+
 function Header() {
   return (
             <div className='row'>
                 <div className='col-3 box1'>
-                    {/* placeholder - green box */}
+                    <img src={manulife_logo} alt="Your SVG" className="manulifeLogo"/>
                 </div>
                 <div className='col-9 box2'>
                     {/* text and fr language */}

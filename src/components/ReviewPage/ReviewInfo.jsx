@@ -28,12 +28,12 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
     return (
         <div>
             <div className="container">
-                <div className="row subContainer">
-                    <div className="progress-step"></div>
-                    <div className="progressBarContainer1">
-                        <p className="progressBarLabel1">Step 6 - Review and submit</p>
+                <div className="progressBarContainer1">
+                        {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                         <ProgressBar progress={6} /> {/* Pass the progress for this page */}
                     </div>
+                <div className="row subContainer">
+                    
                     <p className="header_label">Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-md-6">
