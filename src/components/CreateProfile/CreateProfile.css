@@ -7,8 +7,8 @@
 }
 
 .subContainer{
-    width: 65%;
-    /* border: 5px solid #ffa500; */
+    width: 66%;
+    border: 5px solid #ffa500;
     background-color: white; 
     /* padding: 1em; */
     margin: auto;
@@ -32,7 +32,7 @@
     margin-bottom: 1.1em;
     border-bottom: 2px solid #09874E;
     border-radius: 0;
-    padding: 0.4em;
+    padding: 0.5em;
     margin-left: 0.4em;
     margin-right: 0.4em;
 }
@@ -48,6 +48,17 @@
     font-weight: 500;
 }
 
+.insideContainer{
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+}
+.grpContainer{
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid orange */
+}
+  
 /* desktop version */
 @media only screen and (min-width: 525px) {
     .subContainer{
@@ -59,5 +70,8 @@
 
     .btn-orange {
         order:2;
+    }
+    .grpContainer{
+        flex-direction: row;
     }
 }
