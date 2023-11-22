@@ -3,7 +3,7 @@ import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
 
-import ProgressBar from "../ProgressBar/ProgressBar";
+import ProgressBar from "../ProgressBar/ProgressBar.js";
 
 const ReviewInfo = ({ formData, financialInfoData }) => {
 
@@ -65,37 +65,37 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                     {
                         (employmentStatus === "Full Time Employment") ?
                             (<div className="row  ">
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
                                     <div>{`${annualIncome}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employment Status</div>
                                     <div>{`${employmentStatus}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employer Name</div>
                                     <div>{`${employerName}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employer Industry</div>
                                     <div>{`${employerIndustry}`}</div>
                                 </div>
                             </div>) :
                             (<div className="row  ">
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
                                     <div>{`${annualIncome}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employment Status</div>
                                     <div>{`${employmentStatus}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Institution Name</div>
                                     <div>{`${institutionName}`}</div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Graduation Date</div>
                                     <div>{`${graduationDate}`}</div>
                                 </div>

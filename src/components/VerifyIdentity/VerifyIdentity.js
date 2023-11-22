@@ -67,8 +67,8 @@ function VerifyIdentity({ formData, updateFormData }) {
   }
 
   return (
-    <div className='main-container'>
-        <div className='sub-container'>
+    <div className='container'>
+        <div className='subContainer'>
           
           <div className="progressBarContainer1">
               <p className="progressBarLabel1">Step 3.1 - Verify your identity</p>

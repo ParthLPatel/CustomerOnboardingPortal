@@ -7,9 +7,9 @@ function VerifyIdentity2({ formData, updateFormData }) {
 
     console.log(formData.IDtype)
   return (
-    <div className='main-container'>
+    <div className='container'>
 
-        <div className='sub-container'>
+        <div className='subContainer'>
 
             <div className="progressBarContainer1">
               <p className="progressBarLabel1">Step 3.2 - Verify your identity</p>
@@ -36,7 +36,7 @@ function VerifyIdentity2({ formData, updateFormData }) {
             </div>
 
             <div className="verification-checkbox">
-                <input type="checkbox" id="detailsVerified" name="detailsVerified" />
+                <input type="checkbox" id="detailsVerified" name="detailsVerified"/>
                 <label for='detailsVerified' className='checkboxLabel'>Details have been captured correctly</label>
             </div>
             <div className="btn-wrapper my-4 px-0">

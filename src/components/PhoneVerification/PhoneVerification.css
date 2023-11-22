@@ -25,7 +25,12 @@
     line-height: 27px;
     letter-spacing: 0em;
     text-align: left;
-    padding:0.6em;
+    /* padding: 0 0.6em; */
+    /* border: 1px solid black; */
+}
+
+.hlbl{
+    padding-left: 0 !important;
 }
 
 .form-control{
@@ -48,6 +53,10 @@
     font-weight: 500;
 }
 
+.subHeaderBold{
+    font-weight: 600;
+}
+
 /* desktop version */
 @media only screen and (min-width: 525px) {
     .subContainer{
@@ -60,4 +69,5 @@
     .btn-orange {
         order:2;
     }
+    
 }

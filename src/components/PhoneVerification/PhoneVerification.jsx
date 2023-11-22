@@ -86,21 +86,22 @@ function PhoneVerification(props){
   };
 
     return (        
-        <div className="main-area">
+        <div className="container">
+          <div className='subContainer'>
 
                 <div className="progressBarContainer1">
                     <p className="progressBarLabel1">Step 2 - Verify your phone number</p>
                     <ProgressBar progress={2} /> {/* Pass the progress for this page */}
                 </div>
 
-                <div className="section-header">We just texted you.</div>
-                <p>A passcode was sent to phone number : {phoneNumber} </p>
+                <div className="header_label hlbl">We just texted you.</div>
+                <p className="subHeader my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>
 
                 {/* Resend OTP button */}
-                <button onClick={resendOTP}>
-                    Resend Passcode
+                <button onClick={resendOTP} className="labelUpload mt-1">
+                    Resend passcode
                 </button>
-                <p>Please enter the six digit passcode :  </p>
+                <p className="subHeader my-4">Please enter the six digit passcode :  </p>
                 {/* Input field for verification code */}
                 <input className="form-control" placeholder="Passcode" value={verificationCode} 
                         onChange={(e) => setVerificationCode(e.target.value)}/>
@@ -113,7 +114,9 @@ function PhoneVerification(props){
                         <button onClick={checkVerificationCode} className="manulife-btn btn-orange text-decoration-none">
                             Verify
                         </button>
-                </div>    
+                </div>  
+
+                </div>  
              
         </div>
     )
