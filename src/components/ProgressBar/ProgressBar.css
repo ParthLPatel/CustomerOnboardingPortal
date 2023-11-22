@@ -19,12 +19,14 @@
     flex-direction: column;
     align-items: center;
     color: #ccc; /* Default color for inactive icons */
-    transition: transform 1s ease; /* Add transition for smooth scaling */
+    transition: transform 0.3s ease; /* Add transition for smooth scaling */
   }
-  
+  .icon:hover {
+    transform: scale(1.1); /* Adjust the scale factor for the hover effect */
+  }
   .icon.active {
     color: green; /* Color for active icon */
-    transform: scale(1.2); /* Scale up the active icon */
+    transform: scale(1.05); /* Scale up the active icon */
   }
   
   .icon-label {
@@ -42,3 +44,28 @@
     background-color: green; /* Color for the active portion of the progress bar */
   }
   
+/* Media Query for Mobile View */
+@media (max-width: 768px) {
+    .progressContainer {
+      height: auto;
+    }
+  
+    .iconsContainer {
+      width: 100%;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+  
+    .icon {
+      margin-bottom: 10px;
+      font-size: 8px; /* Adjust font size for icons on smaller screens */
+    }
+  
+    .icon-label {
+      font-size: 7px; /* Adjust font size for labels on smaller screens */
+    }
+  
+    .progress, .progress-bar {
+      width: 100%;
+    }
+  }
