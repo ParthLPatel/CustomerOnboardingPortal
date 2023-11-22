@@ -1,4 +1,10 @@
+import React from 'react';
+import './ProgressBar.css'
 
+const ProgressBar = ({ progress }) => {
+    const progressBarStyle = {
+        width: `${(progress / 6) * 100}%`, // Assuming you have 3 pages in total
+    };
 
     return (
         <div className="progressContainer">
