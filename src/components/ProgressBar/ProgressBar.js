@@ -1,26 +1,45 @@
+// ProgressBar.js
 import React from 'react';
-import './ProgressBar.css'
+import CheckIcon from '@mui/icons-material/Check';
+import PersonIcon from '@mui/icons-material/Person';
+import PhoneIcon from '@mui/icons-material/Phone';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+
+import './ProgressBar.css';
 
 const ProgressBar = ({ progress }) => {
-    const progressBarStyle = {
-        width: `${(progress / 6) * 100}%`, // Assuming you have 3 pages in total
-    };
+  const steps = [
+    { label: 'Create Profile', icon: <PersonIcon /> },
+    { label: 'Verify Phone Number', icon: <PhoneIcon /> },
+    { label: 'Verify Identity', icon: <HowToRegIcon /> },
+    { label: 'Enter Financial Info', icon: <AccountBoxIcon /> },
+    { label: 'Verify Information', icon: <CreditCardIcon /> },
+  ];
 
-    return (
-        <div className="progressContainer">
-            <div className="progress">
-                <div
-                    className="progress-bar"
-                    role="progressbar"
-                    style={progressBarStyle}
-                    aria-valuenow={progress}
-                    aria-valuemin="0"
-                    aria-valuemax="6" // Adjust based on the total number of pages
-                />
-            </div>
-        </div>
-    );
+  return (
+    <div className="progressContainer">
+      <div className="iconsContainer">
+        {steps.map((step, index) => (
+          <div key={index} className={`icon ${progress === index + 1 ? 'active' : ''}`}>
+            {progress > index + 1 ? <CheckIcon /> : step.icon}
+            <span className="icon-label">{step.label}</span>
+          </div>
+        ))}
+      </div>
+      <div className="progress">
+        <div
+          className="progress-bar"
+          role="progressbar"
+          style={{ width: `${((progress - 1) / steps.length) * 100}%` }}
+          aria-valuenow={progress}
+          aria-valuemin="1"
+          aria-valuemax={steps.length}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default ProgressBar;
-
