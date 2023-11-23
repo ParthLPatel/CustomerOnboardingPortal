@@ -17,6 +17,10 @@
     font-family: 'Roboto', sans-serif;
     padding: 1em;
 }
+.docLogo{
+    width: 148px;
+    height: 107px;
+}
 
 .section-header{
     /* border: 1px solid black; */
@@ -55,36 +59,18 @@
 
 .verification-options {
     display: flex;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     flex-direction: row;
 }
 
-.verification-button {
-    border: none;
-    width: 100%;
-    margin-right: 1em;
-    text-align: center;
-    border-radius: 4px;
-    color: white;
-    box-shadow: 0px 1px 2px 0px #0000001A;
+.dropdown{
+    color: #000000;
     font-size: 14px;
-    font-weight: 700;
+    font-weight: 600;
+    line-height: 19px;
     letter-spacing: 0em;
-
+    text-align: left;
 }
-
-.verification-button.selected {
-    background: #09874E;
-    color: white;
-    border: none;
-}
-
-.verification-button:not(.selected) {
-    background: white;
-    color: #09874E;
-    border: 2px solid #09874E;
-}
-
 
 .btnStep{
     width: 20px;
@@ -115,6 +101,10 @@
     text-align: left;
 }
 
+.btnLogosStyle{
+    height: 16px;
+    width: 16px;
+}
 
 .labelUpload{
     display: inline-block;

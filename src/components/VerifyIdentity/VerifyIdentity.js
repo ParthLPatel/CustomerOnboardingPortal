@@ -5,6 +5,14 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { Link } from 'react-router-dom';
 
 import './VerifyIdentity.css'
+import documetLogo from './documentLogo.png'
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import Button from '@mui/material/Button';
+import btnLogoleft from './btnLogo01.png'
+import btnLogoright from './btnLogo02.png'
+
+
 
 function VerifyIdentity({ formData, updateFormData }) {
 
@@ -19,8 +27,9 @@ function VerifyIdentity({ formData, updateFormData }) {
     "Health Card"
   ];
 
-  const [verificationOption, setVerificationOption] = useState(''); // Add the missing state
+  const [verificationOption, setVerificationOption] = useState('online'); // Add the missing state
   const [IDtype, setIDType] = useState(''); // Add the missing state
+
 
 
 //         IDtype: "",
@@ -75,75 +84,137 @@ function VerifyIdentity({ formData, updateFormData }) {
           
         <div className='subContainer'>
           
-          
+          <div className="headerContainer">
+              <img src={documetLogo} alt="Your SVG" className="docLogo"/>
+              <p className="header_label">We need to verify your photo ID</p>
+          </div>
 
-          <form onSubmit={handleSubmit(onSubmit)}> 
-            <div className="section-header">We need to verify your photo ID</div>
-            <p className='subHeader'>You can share your ID with us online or in person </p>
+          <form onSubmit={handleSubmit(onSubmit)}>
         
-            <div className="verification-options">
-                    <button
-                        className={`verification-button verificationBtnGreen ${verificationOption === 'online' ? 'selected' : ''}`}
-                        type="button"
-                        onClick={() => handleVerificationOptionClick('online')}
-                    >
-                        Online
-                    </button>
+          <div className="verification-options">
+            <Button
+              style={{
+                borderTopLeftRadius: "100px",
+                borderBottomLeftRadius: "100px",
+                fontSize: "14px",
+                lineHeight: "20px",
+                letterSpacing: "0.1px",
+                textTransform: "none",
+                color: "black",
+                fontWeight: "600",
+                backgroundColor: verificationOption === 'online' ? '#BBDBC5' : 'white',
+                borderColor: verificationOption === 'online' ? '#09874E' : 'gray',
 
-                    <button
-                        className={`verification-button verificationBtnWhite ${verificationOption === 'inPerson' ? 'selected' : ''}`}
-                        type="button"
-                        onClick={() => handleVerificationOptionClick('inPerson')}
-                    >
-                        In Person
-                    </button>
-            </div>
+              }}
+              startIcon={<img src={btnLogoleft} className='btnLogosStyle'/>}
+              variant="outlined"
+              onClick={() => handleVerificationOptionClick('online')}
+            >
+              Online
+            </Button>
+
+            <Button
+              style={{
+                borderTopRightRadius: "100px",
+                borderBottomRightRadius: "100px",
+                fontSize: "14px",
+                lineHeight: "20px",
+                letterSpacing: "0.1px",
+                textTransform: "none",
+                color: "black",
+                fontWeight: "600",
+                backgroundColor: verificationOption === 'inPerson' ? '#BBDBC5' : 'white',
+                borderColor: verificationOption === 'inPerson' ? '#09874E' : 'gray',
+              }}
+              startIcon={<img src={btnLogoright} className='btnLogosStyle'/>}
+              variant="outlined"
+              onClick={() => handleVerificationOptionClick('inPerson')}
+            >
+              In Person
+            </Button>
+          </div>
+
 
             
             <div className='stepContainer'>
               <div className='btnStep'>1</div>
               <label htmlFor="dropdown" className='dropdown'>A photo of your ID</label>
             </div>
-            <select id="dropdown" value={IDtype} onChange={handleIDtype} className="form-control">
-                <option value="">Select ID type</option>
-                {IDtypeoptions.map((option) => (
-                    <option key={option} value={option}>
-                        {option}
-                    </option>
-                ))}
-            </select>
+            <Select
+              id="dropdown"
+              value={IDtype}
+              onChange={handleIDtype}
+              displayEmpty
+              inputProps={{ 'aria-label': 'Select ID type' }}
+              style={{minWidth: "50%", fontSize: "16px", color: "#09874E", fontWeight: "400", lineHeight: "24px",
+              letterSpacing: "0.5px",}}
+            >
+              <MenuItem value="" disabled>
+                Select ID type
+              </MenuItem>
+              {IDtypeoptions.map((option) => (
+                <MenuItem key={option} value={option}>
+                  {option}
+                </MenuItem>
+              ))}
+            </Select>
+
             {/* Button to upload ID photo */}            
-            <div className="form-group">
-                <label htmlFor="fileUpload" className='labelUpload'>+ Upload ID photo</label>
-                <input
-                    type="file"
-                    id="fileUpload"
-                    accept=".pdf, .doc, .docx, .png, .jpeg, .jpg"
-                    onChange={handleIDFileChange}
-                    hidden 
-                />
-                {/* Display the uploaded file name */}
-                {formData.selectedIDFile && <p className='dropdown m-2'>File uploaded: {formData.selectedIDFile.name}</p>}
-            </div>
+            <div className="form-group my-4">
+            <input
+              type="file"
+              id="fileUpload"
+              accept=".pdf, .doc, .docx, .png, .jpeg, .jpg"
+              onChange={handleIDFileChange}
+              hidden
+            />
+            {/* Display the uploaded file name */}
+            {formData.selectedIDFile && <p className='dropdown m-2'>File uploaded: {formData.selectedIDFile.name}</p>}
+            <Button variant="outlined" component="label" htmlFor="fileUpload" style={
+                      { backgroundColor: 'white', 
+                        color: 'green',
+                        fontWeight: 500,
+                        fontSize: "14px",
+                        border: "1px solid gray",
+                        lineHeight: "20px",
+                        letterSpacing: "0.1px",
+                        borderRadius: "100px",
+                        textTransform: 'none',
+                        textAlign: "center" }}>
+              + Upload ID photo
+            </Button>
+          </div>
 
-            {/* Button to upload selfie file */}            
-            <div className="form-group">
-                <div className='stepContainer'>
-                  <div className='btnStep'>2</div>
-                  <label htmlFor="fileUpload1" className='dropdown'>A selfie of yourself</label>
-                </div>
-                <label htmlFor="fileUpload1" className='labelUpload'>+ Upload selfie</label>
-                <input
-                    type="file"
-                    id="fileUpload1"
-                    accept=".pdf, .doc, .docx, .png, .jpeg, .jpg"
-                    onChange={handleSelfieFileChange}
-                    hidden
-                />
-
-                {/* Display the uploaded file name */}
-                {formData.selectedSelfieFile && <p className='dropdown m-2'>File uploaded: {formData.selectedSelfieFile.name}</p>}
+                      
+            {/* Button to upload selfie file */}
+          <div className="form-group">
+            <div className='stepContainer'>
+              <div className='btnStep'>2</div>
+              <label htmlFor="fileUpload1" className='dropdown'>A selfie of yourself</label>
             </div>
+            <input
+              type="file"
+              id="fileUpload1"
+              accept=".pdf, .doc, .docx, .png, .jpeg, .jpg"
+              onChange={handleSelfieFileChange}
+              hidden
+            />
+            {/* Display the uploaded file name */}
+            {formData.selectedSelfieFile && <p className='dropdown m-2'>File uploaded: {formData.selectedSelfieFile.name}</p>}
+            <Button variant="outlined" component="label" htmlFor="fileUpload1" style={
+                      { backgroundColor: 'white', 
+                      color: 'green',
+                      fontWeight: 500,
+                      fontSize: "14px",
+                      border: "1px solid gray",
+                      lineHeight: "20px",
+                      letterSpacing: "0.1px",
+                      borderRadius: "100px",
+                      textTransform: 'none',
+                      textAlign: "center" }}>
+              + Upload selfie
+            </Button>
+          </div>
     
             <div className="btn-wrapper my-4">
                 <Link to="/verify-phone-number" className="manulife-btn btn-white text-decoration-none">
