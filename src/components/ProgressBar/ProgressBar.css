@@ -68,11 +68,12 @@
   
     .icon {
       margin-bottom: 10px;
-      font-size: 8px; /* Adjust font size for icons on smaller screens */
+      font-size: 0.4em; 
     }
   
     .icon-label {
-      font-size: 7px; /* Adjust font size for labels on smaller screens */
+      font-size: 1.6em;
+      /* font-size: 7px; Adjust font size for labels on smaller screens */
     }
   
     .progress, .progress-bar {

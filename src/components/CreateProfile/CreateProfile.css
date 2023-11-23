@@ -9,7 +9,7 @@
 }
 
 .subContainer{
-    width: 70%;
+    width: fit-content;
     /* border: 5px solid #ffa500; */
     background-color: white; 
     margin: auto;
@@ -25,8 +25,8 @@
     font-weight: 600;
     line-height: 27px;
     letter-spacing: 0em;
-    text-align: left;
-    padding:0.6em;
+    text-align: center;
+    padding-top:1em;
 }
 
 .form-control{
@@ -65,6 +65,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0.8em 0;
 }
 .plantLogo{
     height: 107px;
@@ -75,6 +76,7 @@
 @media only screen and (min-width: 525px) {
     .subContainer{
         padding: 2em;
+        width: 70%;
     }
     .btn-white {
         order: 1;
