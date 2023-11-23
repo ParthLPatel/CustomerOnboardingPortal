@@ -54,7 +54,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
 
     const employmentStatusList = ["Full Time Employment", "Student", "Retired", "unemployment"];
-
+    const lessIncome = watch("annualIncome");
 
     const onSubmit = (data) => {
         // Check if the default option is selected
@@ -102,6 +102,57 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         setEmpStatus(e.target.value);
     }
 
+    const marks = [
+        {
+            value: 0,
+            label: '$0',
+        },
+                {
+            value: 100000,
+            label: '$100,000',
+        },
+        // {
+        //   value: 20000,
+        //   label: '$20,000',
+        // },
+        // {
+        //   value: 40000,
+        //   label: '$40,000',
+        // },
+        // {
+        //   value: 60000,
+        //   label: '$60,000',
+        // },
+        // {
+        //     value: 80000,
+        //     label: '$80,000',
+        // },
+        // {
+        //     value: 100000,
+        //     label: '$100,000',
+        // },
+        // {
+        //     value: 120000,
+        //     label: '$120,000',
+        // },
+        // {
+        //     value: 140000,
+        //     label: '$140,000',
+        // },
+        // {
+        //     value: 160000,
+        //     label: '$160,000',
+        // },
+        // {
+        //     value: 180000,
+        //     label: '$180,000',
+        // },
+        {
+            value: 200000,
+            label: '>$200,000',
+        },
+    ];
+
     return (
         <div>
             <div>
@@ -140,15 +191,19 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                         aria-labelledby="input-slider"
                                                         valueLabelDisplay="auto"
                                                         step={1000}
-                                                        min={50000}
-                                                        max={300000}
+                                                        min={0}
+                                                        max={200000}
+                                                        marks={marks}
                                                         sx={{
                                                             color: '#09874E'
                                                         }}
                                                     />
-                                                    <div className="less-income">
-                                                        <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
-                                                    </div>
+                                                    {
+                                                        lessIncome < 50000 ? (<div className="less-income">
+                                                            <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
+                                                        </div>) : (<></>)
+                                                    }
+
                                                 </div>
 
 
@@ -184,8 +239,9 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     aria-labelledby="input-slider"
                                                     valueLabelDisplay="auto"
                                                     step={1000}
-                                                    min={0}
-                                                    max={100000}
+                                                        min={0}
+                                                        max={200000}
+                                                        marks={marks}
                                                     sx={{
                                                         color: '#09874E'
                                                     }}
@@ -258,7 +314,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                             <FormControl fullWidth sx={{ m: 1 }} >
                                                 <InputLabel htmlFor="occupation" color="success">Select Occupation:</InputLabel>
                                                 <Controller
-                                                    
+
                                                     name="occupation"
                                                     control={control}
                                                     defaultValue=""
