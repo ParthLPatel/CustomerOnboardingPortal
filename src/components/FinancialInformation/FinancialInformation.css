@@ -17,17 +17,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-.header_label{
-    /* border: 1px solid black; */
-    font-family: sans-serif;
-    font-size: 24px;
-    font-weight: 600;
-    line-height: 27px;
-    letter-spacing: 0em;
-    text-align: left;
-    padding:0;
-}
-
 .form-control{
     margin-bottom: 0.4em;
     border-bottom: 2px solid #03bf66;
