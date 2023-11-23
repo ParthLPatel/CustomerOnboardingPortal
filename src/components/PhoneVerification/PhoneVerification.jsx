@@ -4,6 +4,10 @@ import {useState, useEffect, useRef} from "react";
 import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import ProgressBar from "../ProgressBar/ProgressBar";
+import TextField from '@mui/material/TextField';
+
+import phoneLogo from './phoneLogo.png'
+import Button from '@mui/material/Button';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -93,30 +97,46 @@ function PhoneVerification(props){
               <ProgressBar progress={2} /> {/* Pass the progress for this page */}
           </div>
 
-          <div className='subContainer'>
+          <div className=' subOTPContainer'>
 
-                
-
-                <div className="header_label hlbl">We just texted you.</div>
-                <p className="subHeader my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>
+                <div className="headerContainer">
+                    <img src={phoneLogo} alt="Your SVG" className="phoneLogo"/>
+                    <p className="header_label headerlbl my-2">We just texted you.</p>
+                </div>
+                <p className="subHeaderOTP my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>
 
                 {/* Resend OTP button */}
-                <button onClick={resendOTP} className="labelUpload mt-1">
-                    Resend passcode
-                </button>
-                <p className="subHeader my-4">Please enter the six digit passcode :  </p>
+                <Button variant="contained" 
+                    onClick={resendOTP} 
+                    className="labelUpload mt-1"
+                    style={
+                      { backgroundColor: 'white', 
+                        color: 'green',
+                        fontWeight: 600,
+                        fontSize: "14px",
+                        border: "2px solid green",
+                        borderRadius: "100px" }}>
+                  Resend passcode
+                </Button>
+                <p className="subHeaderOTP my-4">Please enter the six digit passcode :  </p>
                 {/* Input field for verification code */}
-                <input className="form-control" placeholder="Passcode" value={verificationCode} 
-                        onChange={(e) => setVerificationCode(e.target.value)}/>
+                <TextField
+                  className="form-control"
+                  placeholder="Passcode"
+                  label="Passcode"
+                  variant="outlined"
+                  value={verificationCode}
+                  onChange={(e) => setVerificationCode(e.target.value)}
+                />
                 
-                <div className="btn-wrapper">
-                        <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none">
-                            Back
-                        </Link>
+                <div className="btn-wrapper my-4">
+                    <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none">
+                        Back
+                    </Link>
 
-                        <button onClick={checkVerificationCode} className="manulife-btn btn-orange text-decoration-none">
-                            Verify
-                        </button>
+                    <button onClick={checkVerificationCode} className="manulife-btn btn-orange text-decoration-none">
+                        Verify
+                    </button>
                 </div>  
 
                 </div>  
