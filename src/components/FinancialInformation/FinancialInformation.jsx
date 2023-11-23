@@ -34,8 +34,10 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
     // const employmentStatus = watch("employmentStatus");
     const navigate = useNavigate();
     const [empStatus, setEmpStatus] = useState("");
+    const [selectedIndustry, setSelectedIndustry] = useState('');
 
     useEffect(() => {
+        console.log(financialInfoData);
         if (financialInfoData) {
             setValue('annualIncome', financialInfoData.annualIncome || '');
             setValue('otherHouseholdIncome', financialInfoData.otherHouseholdIncome || '');
@@ -44,12 +46,15 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
             setValue('employerIndustry', financialInfoData.employerIndustry || '');
             setValue('institutionName', financialInfoData.institutionName || '');
             setValue('graduationDate', financialInfoData.graduationDate || '');
+            setValue('occupation', financialInfoData.occupation || '');
+            setSelectedIndustry(financialInfoData.employerIndustry || '');
+            setEmpStatus(financialInfoData.employmentStatus || '');
         }
     }, [financialInfoData, setValue]);
 
 
     const employmentStatusList = ["Full Time Employment", "Student", "Retired", "unemployment"];
-    
+    const lessIncome = watch("annualIncome");
 
     const onSubmit = (data) => {
         // Check if the default option is selected
@@ -75,11 +80,13 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         } else if (empStatus === "Student") {
             data.employerName = "";
             data.employerIndustry = "";
+            data.occupation = "";
         } else {
             data.institutionName = "";
             data.graduationDate = "";
             data.employerName = "";
             data.employerIndustry = "";
+            data.occupation = "";
         }
     }
 
@@ -94,6 +101,57 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         clearErrors("employmentStatus");
         setEmpStatus(e.target.value);
     }
+
+    const marks = [
+        {
+            value: 0,
+            label: '$0',
+        },
+                {
+            value: 100000,
+            label: '$100,000',
+        },
+        // {
+        //   value: 20000,
+        //   label: '$20,000',
+        // },
+        // {
+        //   value: 40000,
+        //   label: '$40,000',
+        // },
+        // {
+        //   value: 60000,
+        //   label: '$60,000',
+        // },
+        // {
+        //     value: 80000,
+        //     label: '$80,000',
+        // },
+        // {
+        //     value: 100000,
+        //     label: '$100,000',
+        // },
+        // {
+        //     value: 120000,
+        //     label: '$120,000',
+        // },
+        // {
+        //     value: 140000,
+        //     label: '$140,000',
+        // },
+        // {
+        //     value: 160000,
+        //     label: '$160,000',
+        // },
+        // {
+        //     value: 180000,
+        //     label: '$180,000',
+        // },
+        {
+            value: 200000,
+            label: '>$200,000',
+        },
+    ];
 
     return (
         <div>
@@ -133,15 +191,19 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                         aria-labelledby="input-slider"
                                                         valueLabelDisplay="auto"
                                                         step={1000}
-                                                        min={50000}
-                                                        max={300000}
+                                                        min={0}
+                                                        max={200000}
+                                                        marks={marks}
                                                         sx={{
                                                             color: '#09874E'
                                                         }}
                                                     />
-                                                    <div className="less-income">
-                                                        <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
-                                                    </div>
+                                                    {
+                                                        lessIncome < 50000 ? (<div className="less-income">
+                                                            <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
+                                                        </div>) : (<></>)
+                                                    }
+
                                                 </div>
 
 
@@ -158,7 +220,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                 <FormControl fullWidth sx={{ m: 1 }}>
                                     <InputLabel htmlFor="household-annual-income" color="success">Other household annual income</InputLabel>
                                     <Controller
-                                        name="householdIncome"
+                                        name="otherHouseholdIncome"
                                         control={control}
                                         defaultValue={0}
                                         render={({ field }) => (
@@ -168,17 +230,18 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
                                                     label="Other household annual income"
                                                     {...field}
-                                                    {...register("householdIncome")}
+                                                    {...register("otherHouseholdIncome")}
                                                     color="success"
                                                 />
                                                 <Slider
                                                     value={field.value}
-                                                    onChange={(event, newValue) => setValue("householdIncome", newValue)}
+                                                    onChange={(event, newValue) => setValue("otherHouseholdIncome", newValue)}
                                                     aria-labelledby="input-slider"
                                                     valueLabelDisplay="auto"
                                                     step={1000}
-                                                    min={0}
-                                                    max={100000}
+                                                        min={0}
+                                                        max={200000}
+                                                        marks={marks}
                                                     sx={{
                                                         color: '#09874E'
                                                     }}
@@ -218,11 +281,62 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             {
                                 empStatus == "Full Time Employment" ?
                                     (<div className="employment-wrapper">
+
+                                        <div className="input-div">
+                                            <FormControl fullWidth sx={{ m: 1 }}>
+                                                <InputLabel htmlFor="industry" color="success">Select Industry:</InputLabel>
+                                                <Controller
+                                                    color="success"
+                                                    name="industry"
+                                                    control={control}
+                                                    defaultValue=""
+                                                    {...register("employerIndustry", { required: true })}
+                                                    render={({ field }) => (
+                                                        <Select {...field}
+                                                            onChange={(e) => {
+                                                                field.onChange(e);
+                                                                setSelectedIndustry(e.target.value);
+                                                            }}
+                                                            color="success"
+                                                        >
+
+                                                            <MenuItem value="" disabled>Select an industry</MenuItem>
+                                                            {getIndustries().map((industry) => (
+                                                                <MenuItem key={industry} value={industry}>{industry}</MenuItem>
+                                                            ))}
+                                                        </Select>
+                                                    )}
+                                                />
+                                                <FormHelperText sx={{ color: "crimson" }}>{formState.errors.employerIndustry && "This field is required"}</FormHelperText>
+                                            </FormControl>
+                                        </div>
+                                        <div className="input-div">
+                                            <FormControl fullWidth sx={{ m: 1 }} >
+                                                <InputLabel htmlFor="occupation" color="success">Select Occupation:</InputLabel>
+                                                <Controller
+
+                                                    name="occupation"
+                                                    control={control}
+                                                    defaultValue=""
+                                                    {...register("occupation", { required: true })}
+                                                    render={({ field }) => (
+                                                        <Select {...field} color="success">
+
+                                                            <MenuItem value="" disabled>Select an occupation</MenuItem>
+                                                            {getOccupations(selectedIndustry)?.map((occupation) => (
+                                                                <MenuItem key={occupation} value={occupation}>{occupation}</MenuItem>
+                                                            ))}
+                                                        </Select>
+                                                    )}
+                                                />
+                                                <FormHelperText sx={{ color: "crimson" }}>{formState.errors.occupation && "This field is required"}</FormHelperText>
+                                            </FormControl>
+                                        </div>
                                         <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }}>
                                                 <InputLabel htmlFor="employer-name" color="success">Employer name</InputLabel>
                                                 <OutlinedInput
-                                                color="success"
+                                                    color="success"
                                                     id="employer-name"
                                                     label="Employer name"
                                                     {...register("employerName", { required: true })}
@@ -230,25 +344,25 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                 <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.employerName) && "This field is required"}</FormHelperText>
                                             </FormControl>
                                         </div>
-                                        <div className="input-div">
+                                        {/* <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }}>
                                                 <InputLabel htmlFor="employer-industry" color="success">Employer industry</InputLabel>
                                                 <OutlinedInput
-                                                color="success"
+                                                    color="success"
                                                     id="employer-industry"
                                                     label="Employer industry"
                                                     {...register("employerIndustry", { required: true })}
                                                 />
                                                 <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.employerIndustry) && "This field is required"}</FormHelperText>
                                             </FormControl>
-                                        </div>
+                                        </div> */}
                                     </div>) :
                                     (empStatus == "Student" ? (<div className="employment-wrapper">
                                         <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }}>
                                                 <InputLabel htmlFor="institution-name" color="success">Institution name</InputLabel>
                                                 <OutlinedInput
-                                                color="success"
+                                                    color="success"
                                                     id="institution-name"
                                                     label="Institution name"
                                                     {...register("institutionName", { required: true })}
@@ -258,14 +372,14 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                         </div>
                                         <div className="input-div">
                                             <TextField
-                                            color="success"
+                                                color="success"
                                                 id="graduation-date"
                                                 label="Date of Birth"
                                                 type="date"
                                                 variant="outlined"
                                                 InputLabelProps={{
                                                     shrink: true,
-                                                    color:"success"
+                                                    color: "success"
                                                 }}
                                                 fullWidth
                                                 sx={{ m: 1 }}
