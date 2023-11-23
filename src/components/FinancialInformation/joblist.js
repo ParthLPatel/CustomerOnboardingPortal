@@ -49,8 +49,8 @@ const getIndustries = ()=>{
     return Object.keys(occupationMapping);
 }
 
-const getOccupation = industry=>{
+const getOccupations = industry=>{
     return occupationMapping[industry];
 }
 
-module.exports = {getIndustries,getOccupation}
+module.exports = {getIndustries,getOccupations}

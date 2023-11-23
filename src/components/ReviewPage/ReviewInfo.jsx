@@ -2,9 +2,9 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
-
+import FormHelperText from '@mui/material/FormHelperText';
 import ProgressBar from "../ProgressBar/ProgressBar.js";
-
+import InputLabel from '@mui/material/InputLabel';
 const ReviewInfo = ({ formData, financialInfoData }) => {
 
 
@@ -115,43 +115,35 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-check">
+                    <InputLabel htmlFor="agreement" color="success">I have read and agree to the Account Agreement and Terms and Conditions</InputLabel>
                         <Controller
                             name="agreement"
                             control={control}
                             defaultValue={false}
-                            rules={{ required: true }}
+                            
                             render={({ field }) => (
-                                <input
+                                <>
+                                    <input
                                     className="form-check-input custom-checkbox "
                                     type="checkbox"
                                     {...field}
+                                    {...register("agreement", { required: true })}
                                 />
+                                <FormHelperText sx={{ color: "crimson" }}>{errors.agreement && "This field is required"}</FormHelperText>
+                                                
+                                </>
+
                             )}
+                            
                         />
                         <label className="form-check-label">I have read and agree to the Account Agreement and Terms and Conditions</label>
-                    </div>
+                        </div>
 
-                    <div className="form-check">
-                        <Controller
-                            name="credit"
-                            control={control}
-                            defaultValue={false}
-                            rules={{ required: true }}
-                            render={({ field }) => (
-                                <input
-                                    className="form-check-input custom-checkbox"
-                                    type="checkbox"
-                                    {...field}
-                                />
-                            )}
-                        />
-                        <label className="form-check-label">Credit Bureau Authorization</label>
-                    </div>
                     <div className="btn-wrapper">
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Submit</button>
 
-                                <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none" >
+                                <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
                                     Back
                                 </Link>
                             </div>

@@ -7,7 +7,8 @@ class FinancialInfo {
         employeeName,
         employerIndustry,
         institutionName,
-        graduationDate
+        graduationDate,
+        occupation
       ) {
         this.annualIncome = annualIncome;
         this.otherHouseholdIncome = otherHouseholdIncome;
@@ -16,6 +17,7 @@ class FinancialInfo {
         this.employerIndustry = employerIndustry;
         this.institutionName = institutionName;
         this.graduationDate = graduationDate;
+        this.occupation = occupation
       }
   }
 
