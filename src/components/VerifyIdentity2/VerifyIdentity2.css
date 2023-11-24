@@ -14,8 +14,14 @@
     padding: 0 0.6em;
     font-size: 12px;
     letter-spacing: 0.4px;
+    color: black;
     /* font-weight: 600; */
 }
+
+.btn-orange-lighter {
+    background-color: #f1bf96;
+    color: white
+  }
 
 /* desktop version */
 @media only screen and (min-width: 500px) {
