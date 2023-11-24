@@ -74,7 +74,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
 
     const clearData = (data) => {
-        if (empStatus === "Full Time Employment") {
+        if (empStatus === "Full-time employee") {
             data.institutionName = "";
             data.graduationDate = "";
         } else if (empStatus === "Student") {
@@ -243,7 +243,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             </div>
 
                             {
-                                empStatus == "Full Time Employment" ?
+                                empStatus == "Full-time employee" ?
                                     (<div className="employment-wrapper">
 
                                         <div className="input-div">

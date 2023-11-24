@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
@@ -19,7 +19,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
         control
     } = useForm()
 
-    const onSubmit=data=>{
+    const onSubmit = data => {
         console.log(data);
     }
 
@@ -33,11 +33,11 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
         <div>
             <div className="container">
                 <div className="progressBarContainer1">
-                        {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
-                        <ProgressBar progress={6} /> {/* Pass the progress for this page */}
-                    </div>
+                    {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
+                    <ProgressBar progress={6} /> {/* Pass the progress for this page */}
+                </div>
                 <div className="row subContainer">
-                    
+
                     <p className="header_label">Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-md-6">
@@ -67,7 +67,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                     </div>
 
                     {
-                        (employmentStatus === "Full Time Employment") ?
+                        (employmentStatus === "Full-time employee") ?
                             (<div className="row  ">
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
@@ -86,7 +86,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                                     <div>{`${employerIndustry}`}</div>
                                 </div>
                             </div>) :
-                            (<div className="row  ">
+                            (employmentStatus === "Student" ? (<div className="row  ">
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
                                     <div>{`${annualIncome}`}</div>
@@ -103,7 +103,15 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                                     <div className="info-label">Graduation Date</div>
                                     <div>{`${graduationDate}`}</div>
                                 </div>
-                            </div>)
+                            </div>) : (<div className="row  ">
+                                <div className="col-md-6 col-xl-3">
+                                    <div className="info-label">Annual Income</div>
+                                    <div>{`${annualIncome}`}</div>
+                                </div>
+                                <div className="col-md-6 col-xl-3">
+                                    <div className="info-label">Employment Status</div>
+                                    <div>{`${employmentStatus}`}</div>
+                                </div></div>))
                     }
 
                     <div className="please-review px-md-2">
