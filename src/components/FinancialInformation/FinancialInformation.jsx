@@ -53,7 +53,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
     }, [financialInfoData, setValue]);
 
 
-    const employmentStatusList = ["Full Time Employment", "Student", "Retired", "unemployment"];
+    const employmentStatusList = ["Full-time employee", "Student", "Retired", "Unemployed"];
     const lessIncome = watch("annualIncome");
 
     const onSubmit = (data) => {
@@ -111,42 +111,6 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
             value: 100000,
             label: '$100,000',
         },
-        // {
-        //   value: 20000,
-        //   label: '$20,000',
-        // },
-        // {
-        //   value: 40000,
-        //   label: '$40,000',
-        // },
-        // {
-        //   value: 60000,
-        //   label: '$60,000',
-        // },
-        // {
-        //     value: 80000,
-        //     label: '$80,000',
-        // },
-        // {
-        //     value: 100000,
-        //     label: '$100,000',
-        // },
-        // {
-        //     value: 120000,
-        //     label: '$120,000',
-        // },
-        // {
-        //     value: 140000,
-        //     label: '$140,000',
-        // },
-        // {
-        //     value: 160000,
-        //     label: '$160,000',
-        // },
-        // {
-        //     value: 180000,
-        //     label: '$180,000',
-        // },
         {
             value: 200000,
             label: '>$200,000',

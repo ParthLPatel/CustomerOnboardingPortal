@@ -77,8 +77,8 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                 <div className="progressBarContainer1">
                     <ProgressBar progress={4} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="cross-sell-subContainer">
-                    <p className="header_label">Please review your information and the terms and conditions</p>
+                <div className="subContainer">
+                    <p className="header_label">Congratulations! Your credit card has been approved!</p>
                     <div>
                         <p className="other-options">Did you know there are other options to help you?</p>
                         <p className="do-not-miss">Right now, you can add them to your application bundle. If you want these products later, you have to re-apply</p>
@@ -89,7 +89,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                                 control={
                                     <Checkbox name="newChecking" color="success" onChange={changeNewChanging} checked={newChecking}/>
                                 }
-                                label="Chequing Account"
+                                label={<span style={{fontWeight: "600", fontSize:"16px", lineHeight:"21.79px"}}>Chequing Account</span>}
                             />
                             <div>Description of the chequing account</div>
 
@@ -99,7 +99,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                                 control={
                                     <Checkbox name="newSaving" color="success" onChange={changeNewSaving} checked={newSaving}/>
                                 }
-                                label="Saving Account"
+                                label={<span style={{fontWeight: "600", fontSize:"16px", lineHeight:"21.79px"}}>Savings Account</span>}
                             />
                             <div>Description of the savings account</div>
                         </div>
@@ -113,7 +113,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                                         We just need a bit more input from you.
                                     </div>
                                     <div className="input-div">
-                                        <FormControl fullWidth sx={{ m: 1 }}>
+                                        <FormControl fullWidth>
                                             <InputLabel htmlFor="SIN" color="success">Social insurance number</InputLabel>
                                             <OutlinedInput
                                                 color="success"
@@ -138,7 +138,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                                                         control={
                                                             <Checkbox name={checkbox.value} color="success" sx={{ "display": "block" }} />
                                                         }
-                                                        label={checkbox.value}
+                                                        label={checkbox.label}
                                                         checked={selectedOptions.indexOf(checkbox.value) !== -1}
                                                         onChange={() => handleCheckboxChange(checkbox.value)}
                                                     />

@@ -137,7 +137,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                             ) : (
                                 <span className="manulife-btn btn-orange btn-orange-lighter">Submit</span>
                             )}
-                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
+                            <Link to="/cross-sell" className="manulife-btn btn-white text-decoration-none" >
                                 Back
                             </Link>
                         </div>
