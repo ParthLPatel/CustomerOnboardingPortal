@@ -22,6 +22,8 @@ import FinancialInfo from '../../models/FinancialInfoModel';
 
 //page 5: Review and Submit
 import ReviewInfo from '../ReviewPage/ReviewInfo';
+import CrossSellPage from '../CrossSell/CrossSellPage';
+import CreditCardCrossSell from '../../models/CreditCardCrossSellModel';
 
 
 const ParentContainer = () => {
@@ -48,6 +50,8 @@ const ParentContainer = () => {
 
     const [financialInfoData,setFinancialInfoData] = useState(null);
 
+    const[creditCardCrossSell, setCreditCardCrossSell] = useState(new CreditCardCrossSell());
+
     const updateFormData = (data) => {
         setFormData((prevData) => ({
             ...prevData,
@@ -62,7 +66,13 @@ const ParentContainer = () => {
             ...prevData,
             ...data,
         }));
+    }
 
+    const updateCreditCardCrossSell = data =>{
+        setCreditCardCrossSell((prevData) => ({
+            ...prevData,
+            ...data,
+        }));
     }
 
     return (
@@ -96,6 +106,10 @@ const ParentContainer = () => {
                 <Route
                     path="/review-info"
                     element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} progress={progress}/>}
+                />
+                <Route
+                    path="/cross-sell"
+                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell} progress={progress}/>}
                 />
                 {/* Add routes for other pages */}
             </Routes>

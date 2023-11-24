@@ -1,0 +1,33 @@
+.cross-sell-subContainer{
+    width: 584px;
+    text-align: left;
+}
+
+.other-options{
+    font-size: 20px;
+}
+
+.do-not-miss{
+    font-size:16px;
+}
+
+.new-account{
+    border: 1px solid #9F9F9F;
+    border-radius: 5px;
+    padding: 20px 20px;
+    margin-bottom: 20px;
+}
+
+.cross-sell-more-input{
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.intend-to-use{
+    font-weight: 600;
+    color: #000000;
+}
+
+.cross-sell-option-wrapper{
+    display: flex;
+}

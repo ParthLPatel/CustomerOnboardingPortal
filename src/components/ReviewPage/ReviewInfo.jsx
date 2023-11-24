@@ -115,12 +115,10 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-check">
-                    <InputLabel htmlFor="agreement" color="success">I have read and agree to the Account Agreement and Terms and Conditions</InputLabel>
                         <Controller
                             name="agreement"
                             control={control}
-                            defaultValue={false}
-                            
+                            defaultValue={false}  
                             render={({ field }) => (
                                 <>
                                     <input
@@ -129,14 +127,12 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                                     {...field}
                                     {...register("agreement", { required: true })}
                                 />
-                                <FormHelperText sx={{ color: "crimson" }}>{errors.agreement && "This field is required"}</FormHelperText>
-                                                
                                 </>
-
                             )}
                             
                         />
                         <label className="form-check-label">I have read and agree to the Account Agreement and Terms and Conditions</label>
+                        <FormHelperText sx={{ color: "crimson" }}>{errors.agreement && "This field is required"}</FormHelperText>
                         </div>
 
                     <div className="btn-wrapper">

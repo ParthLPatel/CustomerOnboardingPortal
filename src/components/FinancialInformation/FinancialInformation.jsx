@@ -107,7 +107,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
             value: 0,
             label: '$0',
         },
-                {
+        {
             value: 100000,
             label: '$100,000',
         },
@@ -239,9 +239,9 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     aria-labelledby="input-slider"
                                                     valueLabelDisplay="auto"
                                                     step={1000}
-                                                        min={0}
-                                                        max={200000}
-                                                        marks={marks}
+                                                    min={0}
+                                                    max={200000}
+                                                    marks={marks}
                                                     sx={{
                                                         color: '#09874E'
                                                     }}
@@ -293,6 +293,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     {...register("employerIndustry", { required: true })}
                                                     render={({ field }) => (
                                                         <Select {...field}
+                                                        label="Select industry"
                                                             onChange={(e) => {
                                                                 field.onChange(e);
                                                                 setSelectedIndustry(e.target.value);
@@ -320,7 +321,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     defaultValue=""
                                                     {...register("occupation", { required: true })}
                                                     render={({ field }) => (
-                                                        <Select {...field} color="success">
+                                                        <Select {...field} color="success" label="Select occupation">
 
                                                             <MenuItem value="" disabled>Select an occupation</MenuItem>
                                                             {getOccupations(selectedIndustry)?.map((occupation) => (
@@ -344,18 +345,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                 <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.employerName) && "This field is required"}</FormHelperText>
                                             </FormControl>
                                         </div>
-                                        {/* <div className="input-div">
-                                            <FormControl fullWidth sx={{ m: 1 }}>
-                                                <InputLabel htmlFor="employer-industry" color="success">Employer industry</InputLabel>
-                                                <OutlinedInput
-                                                    color="success"
-                                                    id="employer-industry"
-                                                    label="Employer industry"
-                                                    {...register("employerIndustry", { required: true })}
-                                                />
-                                                <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.employerIndustry) && "This field is required"}</FormHelperText>
-                                            </FormControl>
-                                        </div> */}
+
                                     </div>) :
                                     (empStatus == "Student" ? (<div className="employment-wrapper">
                                         <div className="input-div">
@@ -395,7 +385,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             <div className="btn-wrapper">
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Continue</button>
-                                <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
+                                <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
                                     Back
                                 </Link>
                             </div>
