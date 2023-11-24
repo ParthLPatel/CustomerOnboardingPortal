@@ -1,24 +1,32 @@
+/* .header-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #434559;
+    z-index: 1000; 
+  }
+
 .row{
-    /* border: 5px solid green; */
+    border: 5px solid green;
     display: flex;
     flex-direction: row;
     background-color: #434559;
 }
 
 .box1{
-    /* border: 1px solid black; */
+    border: 1px solid black;
     height: 4em;
     width: 6em;
 }
 
 .manulifeLogo{
-    /* border: 1px solid orange; */
+    border: 1px solid orange;
     height: 4em;
     width: 4em;
 }
 
 .box2{
-    /* border: 1px solid orange; */
+    border: 1px solid orange;
     display: flex;
     flex-direction: row;
 }
@@ -39,24 +47,73 @@
 .para_text_2{
     font-weight: 400;
     color: #F5F5F5;
-}
-
-/* .fr_language{
-    padding: 0.2em;
-    margin-left: auto;
-    margin-right: 2em;
-}
-.fr_language_inner{
-    margin: 0.2em 0;
-    border: 1px solid #F5F5F5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.fr_text1{
-    color: #F5F5F5;
-    font-weight: 500;
-    padding: 0.2em;
 } */
 
 
+/*  */
+/* Header.css */
+
+.header-container {
+    position: sticky;
+    top: 0;
+    left: 0;
+    background-color: #434559;
+    z-index: 1000; /* Adjust the z-index as needed */
+
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .box1 {
+    height: 4em;
+    width: 6em;
+    
+  }
+  
+  .manulifeLogo {
+    height: 4em;
+    width: 4em;
+  }
+  
+  .box2 {
+    display: flex;
+    flex-direction: row;
+    /* border: 4px solid yellow; */
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .para {
+    color: #f5f5f5;
+    margin-top: 1em;
+    font-family: "Open Sans-Bold", Helvetica;
+  }
+  
+  .para_text_1 {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .para_text_2 {
+    font-weight: 400;
+    color: #F5F5F5;
+  }
+  
+  .fr_language {
+    display: flex;
+    align-items: center;
+  }
+  
+  .fr_text1 {
+    color: white; /* Set the color to white */
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16.34px;
+    padding: 0.6em;
+    margin-top: 1.2em;
+    border: 1px solid white;
+  }
+  

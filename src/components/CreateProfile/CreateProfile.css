@@ -74,6 +74,12 @@
   
 /* desktop version */
 @media only screen and (min-width: 525px) {
+    .header_label{
+        
+    }
+    .container{
+        width: 66%;
+    }
     .subContainer{
         padding: 2em;
         width: 70%;

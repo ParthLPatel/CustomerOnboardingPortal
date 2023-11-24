@@ -6,7 +6,7 @@
 
 .info-label {
     font-weight: 600;
-    padding-bottom: 20px;
+    padding-bottom: 0.8em;
 }
 
 .subContainer .row {
@@ -32,14 +32,21 @@
 }
 
 .terms {
-    color: #03bf66;
+    color: #09874E;
     font-size: 14px;
-    padding-bottom: 20px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+
+
+
 }
 
-a {
+.termsLink2, .termsLink1 {
     text-decoration: underline;
-    color: #03bf66;
+    color: #09874E;
+
 }
 
 .form-check {

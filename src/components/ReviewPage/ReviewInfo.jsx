@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
@@ -23,7 +23,11 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
         console.log(data);
     }
 
+    const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
 
+    const handleCheckboxChange = () => {
+        setIsCheckboxChecked(!isCheckboxChecked);
+    };
 
     return (
         <div>
@@ -105,45 +109,39 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                     <div className="please-review px-md-2">
                         Please review the following:
                     </div>
-                    <div className="terms px-md-2">
-                        <a href="">Account Agreement</a>
+                    <div className="terms px-md-2 mb-3">
+                        <a href="" className="termsLink1">Account Agreement</a>
 
                     </div>
-                    <div className="terms px-md-2">
-                        <a href="">Terms & Conditions & Privacy</a>
+                    <div className="terms px-md-2 mb-3">
+                        <a href="" className="termsLink2">Terms & Conditions & Privacy</a>
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-check">
-                        <Controller
-                            name="agreement"
-                            control={control}
-                            defaultValue={false}  
-                            render={({ field }) => (
-                                <>
-                                    <input
-                                    className="form-check-input custom-checkbox "
-                                    type="checkbox"
-                                    {...field}
-                                    {...register("agreement", { required: true })}
-                                />
-                                </>
-                            )}
-                            
-                        />
-                        <label className="form-check-label">I have read and agree to the Account Agreement and Terms and Conditions</label>
-                        <FormHelperText sx={{ color: "crimson" }}>{errors.agreement && "This field is required"}</FormHelperText>
+                        <div className="verification-checkbox mb-4 mt-3">
+                            <input
+                                type="checkbox"
+                                id="detailsVerified"
+                                name="detailsVerified"
+                                checked={isCheckboxChecked}
+                                onChange={handleCheckboxChange}
+                            />
+                            <label htmlFor='detailsVerified' className='checkboxLabel'>I have read and agree to the Account Agreement and Terms and Conditions</label>
                         </div>
 
-                    <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none">
-                                    Submit</button>
-
-                                <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
-                                    Back
+                        <div className="btn-wrapper">
+                            {isCheckboxChecked ? (
+                                <Link to="##" className="manulife-btn btn-orange text-decoration-none ">
+                                    Submit
                                 </Link>
-                            </div>
-                            </form>
+                            ) : (
+                                <span className="manulife-btn btn-orange btn-orange-lighter">Submit</span>
+                            )}
+                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
+                                Back
+                            </Link>
+                        </div>
+                    </form>
                 </div>
 
             </div>

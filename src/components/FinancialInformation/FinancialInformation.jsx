@@ -385,7 +385,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             <div className="btn-wrapper">
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Continue</button>
-                                <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
+                                <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
                                     Back
                                 </Link>
                             </div>

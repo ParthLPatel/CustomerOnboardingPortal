@@ -8,6 +8,7 @@ import TextField from '@mui/material/TextField';
 
 import phoneLogo from './phoneLogo.png'
 import Button from '@mui/material/Button';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -118,7 +119,7 @@ function PhoneVerification(props){
                         borderRadius: "100px" }}>
                   Resend passcode
                 </Button>
-                <p className="subHeaderOTP my-4">Please enter the six digit passcode :  </p>
+                <p className="subHeaderOTP my-4">Please enter the six digit passcode  </p>
                 {/* Input field for verification code */}
                 <TextField
                   className="form-control"
