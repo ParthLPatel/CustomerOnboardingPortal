@@ -18,16 +18,31 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         register,
         handleSubmit,
         formState,
-        control
+        control,
+        setValue
     } = useForm();
 
     const [selectedOptions, setSelectedOptions] = useState([]);
+    const [newChecking, setNewChecking] = useState(false);
+    const [newSaving, setNewSaving] = useState(false);
     useEffect(() => {
 
         if (creditCardCrossSell?.accountIntent) {
             setSelectedOptions([...creditCardCrossSell?.accountIntent]);
         }
+
+        setNewChecking(creditCardCrossSell?.newChecking);
+        setNewSaving(creditCardCrossSell?.newSaving);
+        setValue("SIN",creditCardCrossSell?.SIN || "")
     }, []);
+
+    const changeNewChanging = () => {
+        setNewChecking(!newChecking);
+    }
+
+    const changeNewSaving = () => {
+        setNewSaving(!newSaving);
+    }
 
     const checkboxOptions = [
         { value: 'PersonalSavings', label: 'Personal Savings' },
@@ -35,7 +50,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         { value: 'Investment', label: 'Investment' },
     ];
 
-
+    const navigate  = useNavigate();
     const handleCheckboxChange = (option) => {
         const optionIndex = selectedOptions.indexOf(option);
         if (optionIndex !== -1) {
@@ -50,6 +65,12 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         updateCreditCardCrossSell({ ...creditCardCrossSell, accountIntent: [...selectedOptions] })
     }
 
+    const onSubmit = (data) => {
+
+        updateCreditCardCrossSell({ newChecking, newSaving, SIN:data.SIN, accountIntent: [...selectedOptions], })
+        navigate("/review-info");
+    };
+
     return (
         <div>
             <div className="container">
@@ -62,11 +83,11 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                         <p className="other-options">Did you know there are other options to help you?</p>
                         <p className="do-not-miss">Right now, you can add them to your application bundle. If you want these products later, you have to re-apply</p>
                     </div>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="new-account">
                             <FormControlLabel
                                 control={
-                                    <Checkbox name="newChecking" color="success" />
+                                    <Checkbox name="newChecking" color="success" onChange={changeNewChanging} checked={newChecking}/>
                                 }
                                 label="Chequing Account"
                             />
@@ -76,60 +97,67 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                         <div className="new-account">
                             <FormControlLabel
                                 control={
-                                    <Checkbox name="newSaving" color="success" />
+                                    <Checkbox name="newSaving" color="success" onChange={changeNewSaving} checked={newSaving}/>
                                 }
                                 label="Saving Account"
                             />
                             <div>Description of the savings account</div>
                         </div>
-                        <div className="header_label" style={{ "textAlign": "left", "marginBottom": "20px" }}>
-                            Let’s set up your account.
-                        </div>
-                        <div className="cross-sell-more-input">
-                            We just need a bit more input from you.
-                        </div>
-                        <div className="input-div">
-                            <FormControl fullWidth sx={{ m: 1 }}>
-                                <InputLabel htmlFor="SIN" color="success">Social insurance number</InputLabel>
-                                <OutlinedInput
-                                    color="success"
-                                    id="SIN"
-                                    label="SIN"
-                                    {...register("SIN", { required: true })}
-                                />
-                                <FormHelperText >You SIN is required for tax reporting purposes. </FormHelperText>
-                                <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.SIN) && "This field is required"}</FormHelperText>
-                            </FormControl>
 
-                        </div>
-                        <div className="intend-to-use">
-                        How do you intend to use this account?
-                        </div>
-                        <div className="cross-sell-option-wrapper">
-                        <FormGroup>
                         {
-                            
-                            checkboxOptions.map((checkbox) => (
-                                <FormControlLabel key={checkbox.value}
-                                    control={
-                                        <Checkbox name={checkbox.value} color="success" sx={{"display":"block"}}/>
-                                    }
-                                    label={checkbox.value}
-                                    checked={selectedOptions.indexOf(checkbox.value) !== -1}
-                                    onChange={() => handleCheckboxChange(checkbox.value)}
-                                />
-                            ))
-                            
+                            (newSaving || newChecking) ?
+                                (<><div className="header_label" style={{ "textAlign": "left", "marginBottom": "20px" }}>
+                                    Let’s set up your account.
+                                </div>
+                                    <div className="cross-sell-more-input">
+                                        We just need a bit more input from you.
+                                    </div>
+                                    <div className="input-div">
+                                        <FormControl fullWidth sx={{ m: 1 }}>
+                                            <InputLabel htmlFor="SIN" color="success">Social insurance number</InputLabel>
+                                            <OutlinedInput
+                                                color="success"
+                                                id="SIN"
+                                                label="Social insurance number"
+                                                {...register("SIN", { required: true })}
+                                            />
+                                            <FormHelperText >You SIN is required for tax reporting purposes. </FormHelperText>
+                                            <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.SIN) && "This field is required"}</FormHelperText>
+                                        </FormControl>
+
+                                    </div>
+                                    <div className="intend-to-use">
+                                        How do you intend to use this account?
+                                    </div>
+                                    <div className="cross-sell-option-wrapper">
+                                        <FormGroup>
+                                            {
+
+                                                checkboxOptions.map((checkbox) => (
+                                                    <FormControlLabel key={checkbox.value}
+                                                        control={
+                                                            <Checkbox name={checkbox.value} color="success" sx={{ "display": "block" }} />
+                                                        }
+                                                        label={checkbox.value}
+                                                        checked={selectedOptions.indexOf(checkbox.value) !== -1}
+                                                        onChange={() => handleCheckboxChange(checkbox.value)}
+                                                    />
+                                                ))
+
+                                            }
+                                        </FormGroup>
+                                    </div></>) : (<div></div>)
                         }
-                        </FormGroup>
-                        </div>
+
+
+
                         <div className="btn-wrapper">
-                                <Link to="/review-info" className="manulife-btn btn-orange text-decoration-none">
-                                    Continue</Link>
-                                <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
-                                    Back
-                                </Link>
-                            </div>
+                        <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                    Continue</button>
+                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
+                                Back
+                            </Link>
+                        </div>
                     </form>
                 </div></div>
         </div>)
