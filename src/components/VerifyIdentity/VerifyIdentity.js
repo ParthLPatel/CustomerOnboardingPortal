@@ -148,6 +148,7 @@ function VerifyIdentity({ formData, updateFormData }) {
               inputProps={{ 'aria-label': 'Select ID type' }}
               style={{minWidth: "50%", fontSize: "16px", color: "#09874E", fontWeight: "400", lineHeight: "24px",
               letterSpacing: "0.5px",}}
+              color="success"
             >
               <MenuItem value="" disabled>
                 Select ID type

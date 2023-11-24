@@ -127,6 +127,7 @@ function PhoneVerification(props){
                   label="Passcode"
                   variant="outlined"
                   value={verificationCode}
+                  color="success"
                   onChange={(e) => setVerificationCode(e.target.value)}
                 />
                 

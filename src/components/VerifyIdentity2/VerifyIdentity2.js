@@ -25,7 +25,7 @@ function VerifyIdentity2({ formData, updateFormData }) {
     <div className='container'>
       <div className='subContainer'>
         <div className="progressBarContainer1">
-          <ProgressBar progress={4} />
+          <ProgressBar progress={3} />
         </div>
 
         <div className="section-header">Your ID looks good!</div>

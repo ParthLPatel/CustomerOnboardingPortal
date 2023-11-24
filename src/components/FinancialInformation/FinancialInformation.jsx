@@ -248,7 +248,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
                                         <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }}>
-                                                <InputLabel htmlFor="industry" color="success">Select Industry:</InputLabel>
+                                                <InputLabel htmlFor="industry" color="success">Select industry:</InputLabel>
                                                 <Controller
                                                     color="success"
                                                     name="industry"
@@ -277,7 +277,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                         </div>
                                         <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }} >
-                                                <InputLabel htmlFor="occupation" color="success">Select Occupation:</InputLabel>
+                                                <InputLabel htmlFor="occupation" color="success">Select occupation:</InputLabel>
                                                 <Controller
 
                                                     name="occupation"
@@ -328,7 +328,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                             <TextField
                                                 color="success"
                                                 id="graduation-date"
-                                                label="Date of Birth"
+                                                label="Graduation date"
                                                 type="date"
                                                 variant="outlined"
                                                 InputLabelProps={{
@@ -346,7 +346,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
                             }
 
-                            <div className="btn-wrapper">
+                            <div className="btn-wrapper" style={{padding: "0em", marginLeft:"0.4em"}}>
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Continue</button>
                                 <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>

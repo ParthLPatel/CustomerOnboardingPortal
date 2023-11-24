@@ -83,6 +83,7 @@ function CreateProfile({ formData, updateFormData }) {
                         <div className="row grpContainer">
                             <div className="col">
                                 <TextField
+                                    color="success"
                                     placeholder="First Name"
                                     {...register("firstName", { required: true })}
                                     value={formData.firstName}
@@ -99,6 +100,7 @@ function CreateProfile({ formData, updateFormData }) {
 
                             <div className="col">
                                 <TextField
+                                    color="success"
                                     placeholder="Last Name"
                                     {...register("lastName", { required: true })}
                                     value={formData.lastName}
@@ -114,6 +116,7 @@ function CreateProfile({ formData, updateFormData }) {
                         <div className="row grpContainer">
                             <div className="col">
                                 <TextField
+                                    color="success"
                                     id="outlined-basic"
                                     label="Date of Birth"
                                     type="date"
@@ -131,6 +134,7 @@ function CreateProfile({ formData, updateFormData }) {
                             
                             <div className="col">
                                 <TextField
+                                    color="success"
                                     placeholder="Email Address"
                                     {...register("emailAddress", { required: true })}
                                     value={formData.emailAddress}
@@ -147,6 +151,7 @@ function CreateProfile({ formData, updateFormData }) {
                         <div className="row grpContainer">
                             <div className="col">
                                 <TextField
+                                    color="success"
                                     placeholder="Phone Number"
                                     {...register("phoneNumber", { required: true })}
                                     value={formData.phoneNumber}
@@ -177,7 +182,7 @@ function CreateProfile({ formData, updateFormData }) {
                                 variant="outlined"
                                 fullWidth
                                 onChange={(e) => handleInputChange(e, "homeAddress")}
-            
+                                color="success"
                                 />
                             )}
                             isOptionEqualToValue={(option, value) =>

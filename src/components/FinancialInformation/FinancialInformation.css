@@ -1,28 +1,3 @@
-.container{
-    /* border: 5px solid black; */
-    padding: 1em;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-
-.subContainer{
-    width: 70%;
-    /* border: 5px solid #ffa500; */
-    background-color: white; 
-    /* padding: 1em; */
-    margin: auto;
-    text-align: left;
-    color: #000000;
-    font-family: 'Roboto', sans-serif;
-}
-
-.form-control{
-    margin-bottom: 0.4em;
-    border-bottom: 2px solid #03bf66;
-    border-radius: 0;
-    padding: 0.4em;
-}
 
 .employment-wrapper{
     padding-left: 0;
@@ -65,16 +40,3 @@
     color: #03bf66;
 }
 
-/* desktop version */
-@media only screen and (min-width: 525px) {
-    .subContainer{
-        padding: 2em;
-    }
-    .btn-white {
-        order: 1;
-    }
-
-    .btn-orange {
-        order:2;
-    }
-}
