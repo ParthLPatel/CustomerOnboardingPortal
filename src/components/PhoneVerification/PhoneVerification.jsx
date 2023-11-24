@@ -6,9 +6,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
 
-import phoneLogo from './phoneLogo.png'
+import phoneLogo from '../../assets/phoneLogo.png'
 import Button from '@mui/material/Button';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
@@ -98,7 +97,7 @@ function PhoneVerification(props){
               <ProgressBar progress={2} /> {/* Pass the progress for this page */}
           </div>
 
-          <div className=' subOTPContainer'>
+          <div className='subContainer'>
 
                 <div className="headerContainer">
                     <img src={phoneLogo} alt="Your SVG" className="phoneLogo"/>

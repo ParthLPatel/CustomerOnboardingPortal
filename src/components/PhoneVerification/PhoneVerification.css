@@ -31,7 +31,7 @@
 @media only screen and (min-width: 525px) {
     .subOTPContainer{
         padding: 2em;
-        width: 66%;
+        /* width: 66%; */
     }
     .btn-white {
         order: 1;

@@ -11,7 +11,7 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
-import plantImg from './plantImg.png'
+import plantImg from "../../assets/plantImg.png"
 
 
 function CreateProfile({ formData, updateFormData }) {

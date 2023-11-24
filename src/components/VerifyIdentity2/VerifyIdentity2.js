@@ -23,13 +23,14 @@ function VerifyIdentity2({ formData, updateFormData }) {
 
   return (
     <div className='container'>
-      <div className='subContainer'>
-        <div className="progressBarContainer1">
+      <div className="progressBarContainer1">
           <ProgressBar progress={3} />
         </div>
+      <div className='subContainer'>
+        
 
-        <div className="section-header">Your ID looks good!</div>
-        <p className='subHeader'>Please check the details of your ID we captured</p>
+        <div className="header_label">Your ID looks good!</div>
+        <p className='checkboxLabel my-4 px-0'>Please check the details of your ID we captured</p>
 
         <div className="verification-details">
           <p className='idContainer'>

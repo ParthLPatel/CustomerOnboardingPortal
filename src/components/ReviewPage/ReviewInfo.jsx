@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { useForm, Controller } from "react-hook-form"
 import { Link, useNavigate } from 'react-router-dom';
 import "./ReviewInfo.css";
-import FormHelperText from '@mui/material/FormHelperText';
 import ProgressBar from "../ProgressBar/ProgressBar.js";
-import InputLabel from '@mui/material/InputLabel';
 const ReviewInfo = ({ formData, financialInfoData }) => {
 
 
@@ -38,7 +36,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                 </div>
                 <div className="row subContainer">
 
-                    <p className="header_label">Please review your information and the terms and conditions</p>
+                    <p className="header_label" style={{textAlign:"left"}}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-md-6">
                             <div className="info-label">Full Name</div>
@@ -59,7 +57,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                             <div>{`${emailAddress}`}</div>
                         </div>
                     </div>
-                    <div className="row  ">
+                    <div className="row">
                         <div className="col-md-6">
                             <div className="info-label">Phone Number</div>
                             <div>{`${phoneNumber}`}</div>
@@ -68,7 +66,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
                     {
                         (employmentStatus === "Full-time employee") ?
-                            (<div className="row  ">
+                            (<div className="row">
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
                                     <div>{`${annualIncome}`}</div>
@@ -134,7 +132,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                                 checked={isCheckboxChecked}
                                 onChange={handleCheckboxChange}
                             />
-                            <label htmlFor='detailsVerified' className='checkboxLabel'>I have read and agree to the Account Agreement and Terms and Conditions</label>
+                            <label htmlFor='detailsVerified' className='' style={{marginLeft:"0.5em"}}>I have read and agree to the Account Agreement and Terms and Conditions</label>
                         </div>
 
                         <div className="btn-wrapper">

@@ -13,7 +13,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import { Slider } from "@mui/material";
 
-import { ReactComponent as FinancialInformationPageIcon } from "./FinancialInformationPageIcon.svg"
+import { ReactComponent as FinancialInformationPageIcon } from "../../assets/FinancialInformationPageIcon.svg"
 
 import { getIndustries, getOccupations } from "./joblist.js";
 

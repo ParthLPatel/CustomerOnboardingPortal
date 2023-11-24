@@ -5,12 +5,12 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import { Link } from 'react-router-dom';
 
 import './VerifyIdentity.css'
-import documetLogo from './documentLogo.png'
+import documetLogo from '../../assets/documentLogo.png'
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
-import btnLogoleft from './btnLogo01.png'
-import btnLogoright from './btnLogo02.png'
+import btnLogoleft from "../../assets/btnLogo01.png"
+import btnLogoright from "../../assets/btnLogo02.png"
 
 
 

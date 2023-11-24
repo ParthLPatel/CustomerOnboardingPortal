@@ -73,7 +73,31 @@
 }
   
 /* desktop version */
-@media only screen and (min-width: 525px) {
+@media only screen and (min-width: 1025px) {
+    .header_label{
+        
+    }
+    .container{
+        /* width: 66%; */
+    }
+    .subContainer{
+        padding: 2em;
+        width: 66%;
+    }
+    .btn-white {
+        order: 1;
+    }
+
+    .btn-orange {
+        order:2;
+    }
+    .grpContainer{
+        flex-direction: row;
+    }
+}
+
+/* ipad version */
+@media only screen and (min-device-width: 625px) and (max-device-width: 1024px){
     .header_label{
         
     }
@@ -82,7 +106,7 @@
     }
     .subContainer{
         padding: 2em;
-        width: 70%;
+        /* width: 70%; */
     }
     .btn-white {
         order: 1;
