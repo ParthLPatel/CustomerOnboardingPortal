@@ -145,7 +145,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <Link to="congratulations-page" className="manulife-btn btn-orange text-decoration-none ">
+                                <Link to="/congratulations-page" className="manulife-btn btn-orange text-decoration-none ">
                                     Submit
                                 </Link>
                             ) : (

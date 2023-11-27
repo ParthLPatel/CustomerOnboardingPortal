@@ -18,16 +18,66 @@
     /* font-weight: 600; */
 }
 
+.outerContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
 .btn-orange-lighter {
     background-color: #f1bf96;
     color: white
   }
+.desc{
+font-size: 14px;
+font-weight: 400;
+line-height: 19px;
+letter-spacing: 0em;
+text-align: left;
+
+}
+
+.greenBox{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #03BF66;
+    border-radius: 4px;
+    padding: 1.6em;
+    /* border: 1px solid black; */
+}
+
+.checkMarkLogo{
+    width: 92px;
+    height: 92px;
+}
+.descContainer{
+    /* border: 1px solid black; */
+    padding-left: 0;
+}
+
+.signInBtn{
+    width: 100%;
+    margin: 1em 0;
+    border-radius: 4px;
+}
+
+/* Add this to your stylesheet */
+@keyframes draw {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+.completed-animation {
+    animation: draw 0.5s ease-out forwards;
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+}
 
 /* desktop version */
 @media only screen and (min-width: 500px) {
-    .checkboxLabel{
-        padding: 0 0.6em;
-        font-size: 14px;
-        /* font-weight: 600; */
-    }
+    
 }
