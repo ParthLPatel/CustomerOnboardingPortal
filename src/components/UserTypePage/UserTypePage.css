@@ -1,30 +1,53 @@
-.section-header{
+.container {
+    width: 33.33%;
+    /* border: 3px solid black; Added 'solid' to specify the border style */
 
-    margin-bottom: 10px;
+    top: 100px;
+    left: 448px;
+
+}
+.no {
+    color: #434559;   /* Remove quotes around the color value */
+    font-size: 20px;   /* Remove quotes around the font-size value */
+    font-weight: 600;  /* Remove quotes around the font-weight value */
+}
+.experiment {
+    color: "#ED6453";
+    border-color: "#ED6453";
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: none;
+}
+.section-header {
+    margin-top: 45px;
     font-size: 24px;
     font-weight: 700;
     line-height: 33px;
     letter-spacing: 0em;
     text-align: left;
-
+    /* border: 3px solid red; Adjusted border color for visibility */
 }
 
-.usertype-disclaimer{
-    
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 19.07px;
+.ManulifeLogo {
+    width: 46px;
+    height: 52px;
+    /* border: 3px solid green; Adjusted border color for visibility */
 }
 
-.usertype-q{
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 27.24px; 
+.usertype-q {
+    font-size: 30px;
+    font-weight: 700;
+    color: #434559;
+
+    line-height: 40.85px;
+    border-width: 3px;
+    /* border-color: aqua; */
 }
 
-/* .btn-wrapper{
-    margin-top: 1em;
-} */
+/* Additional style for better visibility of the border */
+.usertype-q:hover {
+    /* border-color: red; Change border color on hover for better visibility */
+}
 
 /* .manulife-btn{
     margin: 0.8em 0;
@@ -34,19 +57,22 @@
 /* desktop version */
 @media only screen and (min-width: 525px) {
 
-    .usertype-disclaimer{
+    .usertype-disclaimer {
         font-size: 16px;
         font-weight: 400;
         /* padding: 1.6em 0em; */
         margin-top: 1.6em;
+        /* border: 1px dashed blue; Added a dashed border for better visibility */
     }
 
-    .section-header{
+    .section-header {
         padding: 0 1em;
+        /* border: 3px solid orange; Adjusted border color for visibility */
     }
 
-    .usertype-q{
+    .usertype-q {
         /* padding:  0em; */
+        /* border: 2px dotted purple; Added a dotted border for better visibility */
     }
 
 }
