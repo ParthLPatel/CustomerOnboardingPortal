@@ -1,0 +1,33 @@
+.verification-details{
+    font-size: 14px;
+    padding: 0 0.2em;
+    /* border: 1px solid black; */
+}
+
+.verification-checkbox{
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: row;
+}
+
+.checkboxLabel{
+    padding: 0 0.6em;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    color: black;
+    /* font-weight: 600; */
+}
+
+.btn-orange-lighter {
+    background-color: #f1bf96;
+    color: white
+  }
+
+/* desktop version */
+@media only screen and (min-width: 500px) {
+    .checkboxLabel{
+        padding: 0 0.6em;
+        font-size: 14px;
+        /* font-weight: 600; */
+    }
+}

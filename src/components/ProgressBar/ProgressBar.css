@@ -53,6 +53,8 @@
     height: 100%;
     background-color: green; /* Color for the active portion of the progress bar */
   }
+
+  
   
 /* Media Query for Mobile View */
 @media (max-width: 768px) {

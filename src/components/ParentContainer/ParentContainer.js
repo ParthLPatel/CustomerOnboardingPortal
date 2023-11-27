@@ -24,6 +24,7 @@ import FinancialInfo from '../../models/FinancialInfoModel';
 import ReviewInfo from '../ReviewPage/ReviewInfo';
 import CrossSellPage from '../CrossSell/CrossSellPage';
 import CreditCardCrossSell from '../../models/CreditCardCrossSellModel';
+import CongratulationsPage from '../CongratulationsPage/CongratulationsPage';
 
 
 const ParentContainer = () => {
@@ -110,6 +111,10 @@ const ParentContainer = () => {
                 <Route
                     path="/cross-sell"
                     element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell} progress={progress}/>}
+                />
+                <Route
+                    path="/congratulations-page"
+                    element={<CongratulationsPage progress={progress}/>}
                 />
                 {/* Add routes for other pages */}
             </Routes>

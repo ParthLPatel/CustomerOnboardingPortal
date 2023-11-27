@@ -90,7 +90,7 @@ function UserTypePage() {
                         >
                             <div className="no">No</div>
                             <div style={{ fontSize: '15px', fontWeight: '400', marginTop: '20px', lineHeight: '18px' }}>
-                                Thank you for choosing us! <br></br > Let’s get started setting you up as a new customer.
+                                Thank you for choosing us! <br></br> Let’s get started setting you up as a new customer.
                             </div>
                             <Button
                                 variant="outlined"

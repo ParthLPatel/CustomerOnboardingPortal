@@ -32,7 +32,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
             <div className="container">
                 <div className="progressBarContainer1">
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
-                    <ProgressBar progress={6} /> {/* Pass the progress for this page */}
+                    <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
                 <div className="row subContainer">
 
@@ -137,7 +137,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <Link to="##" className="manulife-btn btn-orange text-decoration-none ">
+                                <Link to="congratulations-page" className="manulife-btn btn-orange text-decoration-none ">
                                     Submit
                                 </Link>
                             ) : (

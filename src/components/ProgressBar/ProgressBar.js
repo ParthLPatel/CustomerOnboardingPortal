@@ -22,7 +22,11 @@ const ProgressBar = ({ progress }) => {
     <div className="progressContainer">
       <div className="iconsContainer">
         {steps.map((step, index) => (
-          <div key={index} className={`icon ${progress === index + 1 ? 'active' : ''}`}>
+          <div
+            key={index}
+            className={`icon ${progress === index + 1 ? 'active' : ''}`}
+            style={{ width: `${100 / steps.length}%` }}
+          >
             {progress > index + 1 ? <CheckIcon /> : step.icon}
             <span className="icon-label">{step.label}</span>
           </div>
