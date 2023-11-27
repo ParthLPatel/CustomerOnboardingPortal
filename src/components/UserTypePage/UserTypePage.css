@@ -49,10 +49,10 @@
     /* border-color: red; Change border color on hover for better visibility */
 }
 
-/* .manulife-btn{
-    margin: 0.8em 0;
-    font-size: 1.1rem;
-} */
+
+.noBtnExpand{
+    height: 240px;
+}
 
 /* desktop version */
 @media only screen and (min-width: 525px) {
@@ -73,6 +73,9 @@
     .usertype-q {
         /* padding:  0em; */
         /* border: 2px dotted purple; Added a dotted border for better visibility */
+    }
+    .noBtnExpand{
+        height: 210px;
     }
 
 }
