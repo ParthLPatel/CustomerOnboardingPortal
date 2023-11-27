@@ -78,14 +78,15 @@ function UserTypePage() {
                         </Button>
                     ) : (
                         <div
+                            className="noBtnExpand"
                             style={{
                                 width: "100%",
-                                height: "200px",
+                                // height: "240px",
                                 padding: '20px 30px 20px 30px',
                                 border: '2px solid #09874E',
                                 borderRadius: '4px',
                                 gap: '20px',
-                                marginTop: '20px'
+                                marginTop: '20px',
                             }}
                         >
                             <div className="no">No</div>
@@ -103,7 +104,8 @@ function UserTypePage() {
                                     textTransform: 'none',
                                     marginTop: '20px',
                                     width: '256px',
-                                    height:'52px'
+                                    height:'52px',
+                                    
                                 }}
                                 onClick={handleApplyNowClick}
                             >
