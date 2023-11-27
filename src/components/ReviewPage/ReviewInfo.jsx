@@ -7,7 +7,15 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
 
     const { firstName, lastName, birthDate, homeAddress, emailAddress, phoneNumber } = formData;
-    const { annualIncome, otherHouseholdIncome, employmentStatus, employerName, employerIndustry, institutionName, graduationDate } = financialInfoData;
+    //const { annualIncome, otherHouseholdIncome, employmentStatus, employerName, employerIndustry, institutionName, graduationDate } = financialInfoData;
+    const annualIncome = financialInfoData?.annualIncome || '';
+    const otherHouseholdIncome = financialInfoData?.otherHouseholdIncome || '';
+    const employmentStatus = financialInfoData?.employmentStatus || '';
+    const employerName = financialInfoData?.employerName || '';
+    const employerIndustry = financialInfoData?.employerIndustry || '';
+    const institutionName = financialInfoData?.institutionName || '';
+    const graduationDate = financialInfoData?.graduationDate || '';
+
 
     const {
         register,
