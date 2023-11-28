@@ -121,11 +121,11 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                         Please review the following:
                     </div>
                     <div className="terms px-md-2 mb-3">
-                        <a href="" className="termsLink1">Account Agreement</a>
+                        <a  className="termsLink1">Account Agreement</a>
 
                     </div>
                     <div className="terms px-md-2 mb-3">
-                        <a href="" className="termsLink2">Terms & Conditions & Privacy</a>
+                        <a  className="termsLink2">Terms & Conditions & Privacy</a>
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
