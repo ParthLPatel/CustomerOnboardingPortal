@@ -1,9 +1,7 @@
 /* FlipCard.css */
 
 .flip-card {
-    perspective: 1000px;
-    max-width: 20vw;
-    height: auto;
+    /* height: auto; */
     position: relative;
     transform-style: preserve-3d;
     transition: transform 0.6s;
