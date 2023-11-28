@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import FormHelperText from '@mui/material/FormHelperText';
@@ -8,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import "./CrossSellPage.css";
 
@@ -18,7 +17,6 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         register,
         handleSubmit,
         formState,
-        control,
         setValue
     } = useForm();
 

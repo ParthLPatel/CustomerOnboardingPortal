@@ -18,7 +18,6 @@ function CreateProfile({ formData, updateFormData }) {
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm()
 

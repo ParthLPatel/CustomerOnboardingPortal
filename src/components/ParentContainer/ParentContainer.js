@@ -18,7 +18,6 @@ import VerifyIdentity2 from '../VerifyIdentity2/VerifyIdentity2';
 
 //page 4: financial information
 import FinancialInformation from '../FinancialInformation/FinancialInformation';
-import FinancialInfo from '../../models/FinancialInfoModel';
 
 //page 5: Review and Submit
 import ReviewInfo from '../ReviewPage/ReviewInfo';

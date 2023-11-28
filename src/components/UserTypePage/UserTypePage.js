@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./UserTypePage.css";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import Manulife_green_Logo from "../../assets/Manulife_Logo1.svg";
