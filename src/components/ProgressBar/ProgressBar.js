@@ -19,7 +19,8 @@ const ProgressBar = ({ progress }) => {
   ];
 
   return (
-    <div className="progressContainer">
+    <div className="progress-position">
+<div className="progressContainer">
       <div className="iconsContainer">
         {steps.map((step, index) => (
           <div
@@ -43,6 +44,8 @@ const ProgressBar = ({ progress }) => {
         />
       </div>
     </div>
+    </div>
+    
   );
 };
 

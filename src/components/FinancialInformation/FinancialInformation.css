@@ -40,3 +40,18 @@
     color: #03bf66;
 }
 
+.employment-wrapper{
+    margin-top: 0;
+}
+
+.full-container{
+    position: relative;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.subContainer{
+    margin-top: 150px;
+    position: relative;
+    z-index: 1;
+}
