@@ -19,7 +19,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
     const {
         handleSubmit,
-        formState: {  },
+        // formState: {  },
     } = useForm()
 
     const onSubmit = data => {
