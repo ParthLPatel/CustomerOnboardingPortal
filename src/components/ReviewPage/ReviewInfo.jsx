@@ -24,6 +24,7 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
     const onSubmit = data => {
         console.log(data);
+        console.log(otherHouseholdIncome);
     }
 
     const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
@@ -121,11 +122,11 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
                         Please review the following:
                     </div>
                     <div className="terms px-md-2 mb-3">
-                        <a  className="termsLink1">Account Agreement</a>
+                        <p  className="termsLink1">Account Agreement</p>
 
                     </div>
                     <div className="terms px-md-2 mb-3">
-                        <a  className="termsLink2">Terms & Conditions & Privacy</a>
+                        <p  className="termsLink2">Terms & Conditions & Privacy</p>
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>

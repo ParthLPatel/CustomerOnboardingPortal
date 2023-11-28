@@ -60,7 +60,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
             // Option is not selected, add it
             setSelectedOptions([...selectedOptions, option]);
         }
-        updateCreditCardCrossSell({ ...creditCardCrossSell, accountIntent: [...selectedOptions] })
+        // updateCreditCardCrossSell({ ...creditCardCrossSell, accountIntent: [...selectedOptions] })
     }
 
     const onSubmit = (data) => {

@@ -38,6 +38,7 @@ function CreateProfile({ formData, updateFormData }) {
         const data = await getAddress(query);
         console.log(data.Items);
         setHomeAddressList(data.Items);
+        console.log(showDropdown);
         if(data.Items?.length > 0) {
             setShowDropdown(true);
         }else{
