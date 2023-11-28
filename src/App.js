@@ -2,7 +2,6 @@ import './App.css';
 
 // importing the common components in here, to reflect the css 
 import Header from './components/CommonComponents/Header/Header';
-import Button from './components/CommonComponents/Button/Button';
 
 import ParentContainer from './components/ParentContainer/ParentContainer';
 
@@ -11,8 +10,6 @@ function App() {
     <div className="App">
 
       <Header />
-
-      {/* <Button />  */}
       
       <ParentContainer />
     </div>
