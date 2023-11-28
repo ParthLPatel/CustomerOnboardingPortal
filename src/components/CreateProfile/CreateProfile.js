@@ -7,7 +7,7 @@ import './CreateProfile.css'
 import { Link } from 'react-router-dom';
 
 import ProgressBar from "../ProgressBar/ProgressBar";
-
+import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 
@@ -39,9 +39,9 @@ function CreateProfile({ formData, updateFormData }) {
         console.log(data.Items);
         setHomeAddressList(data.Items);
         console.log(showDropdown);
-        if(data.Items?.length > 0) {
+        if (data.Items?.length > 0) {
             setShowDropdown(true);
-        }else{
+        } else {
             // Handle the case when data or data.Items is null or undefined
             setHomeAddressList("");
             setShowDropdown(false);
@@ -58,7 +58,7 @@ function CreateProfile({ formData, updateFormData }) {
             console.error("Invalid option:", option);
         }
     };
-    
+
 
     return (
         <div>
@@ -74,102 +74,104 @@ function CreateProfile({ formData, updateFormData }) {
 
 
                         <div className="headerContainer">
-                            <img src={plantImg} alt="Your SVG" className="plantLogo"/>
+                            <img src={plantImg} alt="Your SVG" className="plantLogo" />
                             <p className="header_label">First, let's create your profile.</p>
                         </div>
 
                         <div className="insideContainer">
 
-                        <div className="row grpContainer">
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    placeholder="First Name"
-                                    {...register("firstName", { required: true })}
-                                    value={formData.firstName}
-                                    onChange={(e) => handleInputChange(e, "firstName")}
-                                    label="First Name"
-                                    variant="outlined"
-                                    className="form-control mb-4"
-                                    InputProps={{
-                                        style: { borderColor: '#09874E' }, // Set your desired color
-                                      }}
-                                />
-                            </div>
-                            {errors.firstName && <span>This field is required</span>}
+                            <div className="row grpContainer">
+                                <div className="col">
+                                    <TextField
+                                        color="success"
+                                        placeholder="First Name"
+                                        {...register("firstName", { required: true })}
+                                        value={formData.firstName}
+                                        onChange={(e) => handleInputChange(e, "firstName")}
+                                        label="First Name"
+                                        variant="outlined"
+                                        className="form-control mb-4"
+                                        InputProps={{
+                                            style: { borderColor: '#09874E' }, // Set your desired color
+                                        }}
+                                    />
+                                </div>
+                                {errors.firstName && <span>This field is required</span>}
 
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    placeholder="Last Name"
-                                    {...register("lastName", { required: true })}
-                                    value={formData.lastName}
-                                    onChange={(e) => handleInputChange(e, "lastName")}
-                                    label="Last Name"
-                                    variant="outlined"
-                                    className="form-control mb-4"
-                                />
+                                <div className="col">
+                                    <TextField
+                                        color="success"
+                                        placeholder="Last Name"
+                                        {...register("lastName", { required: true })}
+                                        value={formData.lastName}
+                                        onChange={(e) => handleInputChange(e, "lastName")}
+                                        label="Last Name"
+                                        variant="outlined"
+                                        className="form-control mb-4"
+                                    />
+                                </div>
+                                {errors.lastName && <span>This field is required</span>}
                             </div>
-                            {errors.lastName && <span>This field is required</span>}
+
+                            <div className="row grpContainer">
+                                <div className="col">
+                                    <TextField
+                                        color="success"
+                                        id="outlined-basic"
+                                        label="Date of Birth"
+                                        type="date"
+                                        variant="outlined"
+                                        value={formData.birthDate}
+                                        onChange={(e) => handleInputChange(e, "birthDate")}
+                                        InputLabelProps={{
+                                            shrink: true,
+                                        }}
+                                        className="form-control mb-4"
+                                    />
+                                </div>
+
+                                {errors.birthDate && <span>This field is required</span>}
+
+                                <div className="col">
+                                    <TextField
+                                        color="success"
+                                        placeholder="Email Address"
+                                        {...register("emailAddress", { required: true })}
+                                        value={formData.emailAddress}
+                                        onChange={(e) => handleInputChange(e, "emailAddress")}
+                                        label="Email Address"
+                                        variant="outlined"
+                                        className="form-control mb-4"
+                                    />
+                                </div>
+
+                                {errors.emailAddress && <span>This field is required</span>}
+                            </div>
+
+                            <div className="row grpContainer">
+
+                                <div className="col">
+                                    <TextField
+                                        color="success"
+                                        placeholder="Phone Number"
+                                        {...register("phoneNumber", { required: true })}
+                                        value={formData.phoneNumber}
+                                        onChange={(e) => handleInputChange(e, "phoneNumber")}
+                                        label="Phone Number"
+                                        variant="outlined"
+                                        className="form-control"
+                                    />
+
+                                </div>
+                                <div className="col">
+                                </div>
+                            </div>
+
+                            {errors.phoneNumber && <span>This field is required</span>}
+
                         </div>
 
                         <div className="row grpContainer">
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    id="outlined-basic"
-                                    label="Date of Birth"
-                                    type="date"
-                                    variant="outlined"
-                                    value={formData.birthDate}
-                                    onChange={(e) => handleInputChange(e, "birthDate")}
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                    className="form-control mb-4"
-                                />
-                            </div>
-
-                            {errors.birthDate && <span>This field is required</span>}
-                            
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    placeholder="Email Address"
-                                    {...register("emailAddress", { required: true })}
-                                    value={formData.emailAddress}
-                                    onChange={(e) => handleInputChange(e, "emailAddress")}
-                                    label="Email Address"
-                                    variant="outlined"
-                                    className="form-control mb-4"
-                                />
-                            </div>
-
-                        {errors.emailAddress && <span>This field is required</span>} 
-                        </div>
-
-                        <div className="row grpContainer">
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    placeholder="Phone Number"
-                                    {...register("phoneNumber", { required: true })}
-                                    value={formData.phoneNumber}
-                                    onChange={(e) => handleInputChange(e, "phoneNumber")}
-                                    label="Phone Number"
-                                    variant="outlined"
-                                    className="form-control"
-                                />
-                                
-                            </div>
-                            <div className="col"></div>
-                        </div>
-
-                        {errors.phoneNumber && <span>This field is required</span>}
-
-                        </div>
-
-
                         <Autocomplete
                             options={homeAddressList}
                             getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
@@ -177,12 +179,12 @@ function CreateProfile({ formData, updateFormData }) {
                             onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
                             renderInput={(params) => (
                                 <TextField
-                                {...params}
-                                label="Home Address"
-                                variant="outlined"
-                                fullWidth
-                                onChange={(e) => handleInputChange(e, "homeAddress")}
-                                color="success"
+                                    {...params}
+                                    label="Home Address"
+                                    variant="outlined"
+                                    fullWidth
+                                    onChange={(e) => handleInputChange(e, "homeAddress")}
+                                    color="success"
                                 />
                             )}
                             isOptionEqualToValue={(option, value) =>
@@ -191,7 +193,38 @@ function CreateProfile({ formData, updateFormData }) {
                             onChange={(event, newValue) => handleOptionClick(newValue)}
                             className="mt-4 mb-2"
                         />
+                        </div>
+                        <div className="row grpContainer">
+                            <div className="col">
+                                <TextField
+                                    color="success"
+                                    placeholder="PIN"
+                                    {...register("creditCardPIN", { required: true })}
+                                    value={formData.creditCardPIN}
+                                    onChange={(e) => handleInputChange(e, "creditCardPIN")}
+                                    label="Credit card PIN"
+                                    variant="outlined"
+                                    className="form-control"
 
+                                />
+                                <FormHelperText sx={{ color: "#09874E" }}>*This PIN will be your credit card PIN</FormHelperText>
+
+                                <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                            </div>
+                            <div className="col">
+
+                                <TextField
+                                    color="success"
+                                    placeholder="Confirm PIN"
+                                    {...register("confirmCreditCardPIN", { required: true })}
+                                    label="Confirm credit card PIN"
+                                    variant="outlined"
+                                    className="form-control"
+
+                                />
+                               <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                            </div>
+                        </div>
                         <div className="btn-wrapper">
                             <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
