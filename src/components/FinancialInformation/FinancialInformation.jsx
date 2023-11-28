@@ -243,7 +243,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             </div>
 
                             {
-                                empStatus == "Full-time employee" ?
+                                empStatus === "Full-time employee" ?
                                     (<div className="employment-wrapper">
 
                                         <div className="input-div">
@@ -311,7 +311,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                         </div>
 
                                     </div>) :
-                                    (empStatus == "Student" ? (<div className="employment-wrapper">
+                                    (empStatus === "Student" ? (<div className="employment-wrapper">
                                         <div className="input-div">
                                             <FormControl fullWidth sx={{ m: 1 }}>
                                                 <InputLabel htmlFor="institution-name" color="success">Institution name</InputLabel>

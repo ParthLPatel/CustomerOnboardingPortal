@@ -17,7 +17,6 @@ import btnLogoright from "../../assets/btnLogo02.png"
 function VerifyIdentity({ formData, updateFormData }) {
 
   const {
-    register,
     handleSubmit, // Add the missing import
   } = useForm();
 
@@ -38,9 +37,9 @@ function VerifyIdentity({ formData, updateFormData }) {
 //         verificationOption: "",
 
 
-  const handleInputChange = (e, fieldName) => {
-      updateFormData({ ...formData, [fieldName]: e.target.value });
-  };
+  // const handleInputChange = (e, fieldName) => {
+  //     updateFormData({ ...formData, [fieldName]: e.target.value });
+  // };
 
   const handleIDtype = (e) => {
       setIDType(e.target.value);

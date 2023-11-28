@@ -10,16 +10,16 @@ function VerifyIdentity2({ formData, updateFormData }) {
     setIsCheckboxChecked(!isCheckboxChecked);
   };
 
-  const handleContinueClick = () => {
-    // Check if the checkbox is checked before proceeding
-    if (isCheckboxChecked) {
-      // Continue with your logic
-      console.log('Continue button clicked');
-    } else {
-      // Optionally, you can show a message or perform some other action
-      console.log('Checkbox not checked. Please check before continuing.');
-    }
-  };
+  // const handleContinueClick = () => {
+  //   // Check if the checkbox is checked before proceeding
+  //   if (isCheckboxChecked) {
+  //     // Continue with your logic
+  //     console.log('Continue button clicked');
+  //   } else {
+  //     // Optionally, you can show a message or perform some other action
+  //     console.log('Checkbox not checked. Please check before continuing.');
+  //   }
+  // };
 
   return (
     <div className='container'>

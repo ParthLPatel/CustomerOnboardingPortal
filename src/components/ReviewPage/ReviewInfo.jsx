@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useForm, Controller } from "react-hook-form"
-import { Link, useNavigate } from 'react-router-dom';
+import { useForm } from "react-hook-form"
+import { Link } from 'react-router-dom';
 import "./ReviewInfo.css";
 import ProgressBar from "../ProgressBar/ProgressBar.js";
 const ReviewInfo = ({ formData, financialInfoData }) => {
@@ -18,11 +18,8 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
 
     const {
-        register,
         handleSubmit,
-        watch,
         formState: { errors },
-        control
     } = useForm()
 
     const onSubmit = data => {

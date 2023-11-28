@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ProgressBar from "../ProgressBar/ProgressBar";
-import { Link } from 'react-router-dom';
 import './CongratulationsPage.css';
 import checkMark from "../../assets/checkMark.png"
 
