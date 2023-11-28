@@ -105,7 +105,7 @@ function VerifyIdentity({ formData, updateFormData }) {
                 borderColor: verificationOption === 'online' ? '#09874E' : 'gray',
 
               }}
-              startIcon={<img src={btnLogoleft} className='btnLogosStyle'/>}
+              startIcon={<img src={btnLogoleft} className='btnLogosStyle' alt='btnLogoLeft'/>}
               variant="outlined"
               onClick={() => handleVerificationOptionClick('online')}
             >
@@ -125,7 +125,7 @@ function VerifyIdentity({ formData, updateFormData }) {
                 backgroundColor: verificationOption === 'inPerson' ? '#BBDBC5' : 'white',
                 borderColor: verificationOption === 'inPerson' ? '#09874E' : 'gray',
               }}
-              startIcon={<img src={btnLogoright} className='btnLogosStyle'/>}
+              startIcon={<img src={btnLogoright} className='btnLogosStyle' alt='btnLogoRight'/>}
               variant="outlined"
               onClick={() => handleVerificationOptionClick('inPerson')}
             >

@@ -32,7 +32,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         setNewChecking(creditCardCrossSell?.newChecking);
         setNewSaving(creditCardCrossSell?.newSaving);
         setValue("SIN",creditCardCrossSell?.SIN || "")
-    }, []);
+    }, [creditCardCrossSell?.SIN, creditCardCrossSell?.accountIntent, creditCardCrossSell?.newChecking, creditCardCrossSell?.newSaving, setValue]);
 
     const changeNewChanging = () => {
         setNewChecking(!newChecking);
