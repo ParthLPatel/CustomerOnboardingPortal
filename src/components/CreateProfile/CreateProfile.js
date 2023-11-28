@@ -168,15 +168,13 @@ function CreateProfile({ formData, updateFormData }) {
                                     />
 
                                 </div>
-                                <div className="col">
-                                </div>
                             </div>
 
                             {errors.phoneNumber && <span>This field is required</span>}
 
-                        </div>
+                        
 
-                        <div className="row grpContainer">
+                        
                         <FormGroup>
                             <FormControlLabel control={<Checkbox />} checked={manualAddress} label="Needs to enter the address manually" onChange={handleManualAddressChange}/>
                         </FormGroup>
@@ -195,20 +193,22 @@ function CreateProfile({ formData, updateFormData }) {
                                         fullWidth
                                         onChange={(e) => handleInputChange(e, "homeAddress")}
                                         color="success"
+                                    
                                     />
                                 )}
                                 isOptionEqualToValue={(option, value) =>
                                     `${option.Text}, ${option.Description}` === value
                                 }
                                 onChange={(event, newValue) => handleOptionClick(newValue)}
-                                className="mt-4 mb-2"
+                                className="mt-4 mb-2 "
                             />):(
                                 <div></div>
                             )
                         }
 
-                        </div>
-                        <div className="row grpContainer">
+                          
+                        
+                        <div className="row grpContainer my-4 px-0">
                             <div className="col">
                                 <TextField
                                     color="success"
@@ -239,6 +239,8 @@ function CreateProfile({ formData, updateFormData }) {
                                <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                             </div>
                         </div>
+                        
+                            </div>
                         <div className="btn-wrapper">
                             <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit

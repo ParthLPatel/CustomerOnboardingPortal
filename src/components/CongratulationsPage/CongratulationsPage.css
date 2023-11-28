@@ -27,6 +27,7 @@
     background-color: #f1bf96;
     color: white
   }
+  
 .desc{
 font-size: 14px;
 font-weight: 400;
@@ -36,20 +37,7 @@ text-align: left;
 
 }
 
-.greenBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #03BF66;
-    border-radius: 4px;
-    padding: 1.6em;
-    /* border: 1px solid black; */
-}
 
-.checkMarkLogo{
-    width: 92px;
-    height: 92px;
-}
 .descContainer{
     /* border: 1px solid black; */
     padding-left: 0;

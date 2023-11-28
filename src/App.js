@@ -11,7 +11,7 @@ function App() {
 
       <Header />
       
-      <ParentContainer />
+      <ParentContainer/>
     </div>
   );
 }

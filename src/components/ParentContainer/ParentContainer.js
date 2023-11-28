@@ -40,6 +40,7 @@ const ParentContainer = () => {
         needsManualAddress:"",
         manualAddress:"",
         
+
         //page 2: verify identity fields
         IDtype: "",
         selectedIDFile: "",

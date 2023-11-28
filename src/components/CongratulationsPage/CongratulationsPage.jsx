@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import FlipCard from '../CommonComponents/FlipCard/FlipCard'; // Update the path
 import './CongratulationsPage.css';
-import checkMark from '../../assets/checkMark.png';
+import checkMark from "../../assets/checkMark.png"
 import { border } from '@mui/system';
 
 function CongratulationsPage({ formData, updateFormData }) {
@@ -42,6 +42,22 @@ function CongratulationsPage({ formData, updateFormData }) {
             </div>
           </div>
         </div>
+          <ProgressBar progress={6} />
+        </div>
+      <div className='subContainer'>
+        
+        <div className='row outerContainer'>
+
+          <div>Tracker</div>
+          <div>
+            <div></div>
+            <div></div>
+          </div>
+
+
+          
+          </div>
+       
       </div>
     </div>
   );
