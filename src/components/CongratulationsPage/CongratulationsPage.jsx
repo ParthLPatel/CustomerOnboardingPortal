@@ -3,8 +3,6 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import FlipCard from '../CommonComponents/FlipCard/FlipCard'; // Update the path
 import './CongratulationsPage.css';
 import checkMark from "../../assets/checkMark.png"
-import FlipCard from "../CommonComponents/FlipCard/FlipCard"
-import checkMark from '../../assets/checkMark.png';
 import { border } from '@mui/system';
 
 function CongratulationsPage({ formData, updateFormData }) {
