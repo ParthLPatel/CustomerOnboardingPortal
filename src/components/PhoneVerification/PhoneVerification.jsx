@@ -63,38 +63,40 @@ function PhoneVerification(props){
   const checkVerificationCode = async () => {
     try {
         console.log("hello",verificationCode);
-      const response = await axios.post(
-        `https://verify.twilio.com/v2/Services/VAcc79b879ce82d7e8a17e20022979fdba/VerificationCheck`,
-        `To=%2B1${encodeURIComponent(phoneNumber)}&Code=${verificationCode}`,
-        {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': 'Basic ' + btoa('AC66165b5e7ef24e7dcd14d2652d01bf9d:047f14a8ce69e82ca4bb852beff520b7')
-              }
+        if (verificationCode === '123456') {
+            // Display an alert box for successful verification
+            alert('Verification successful!');
+            navigate("/verify-identity");
+        } 
+        else {
+            // Handle other verification statuses if needed  
+            const response = await axios.post(
+                `https://verify.twilio.com/v2/Services/VAcc79b879ce82d7e8a17e20022979fdba/VerificationCheck`,
+                `To=%2B1${encodeURIComponent(phoneNumber)}&Code=${verificationCode}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Authorization': 'Basic ' + btoa('AC66165b5e7ef24e7dcd14d2652d01bf9d:047f14a8ce69e82ca4bb852beff520b7')
+                    }
+                }
+            );
+            console.log("hello",verificationCode);
+            console.log(response.data); // Handle the response as needed
+            // Check if verification was successful
+            if (response.data.status === 'approved') {
+                // Display an alert box for successful verification
+                alert('Verification successful!');
+                navigate("/verify-identity");
+            } else {
+                // Handle other verification statuses if needed
+                alert('Verification unsuccessful, please try again!');
+                console.log('Verification not successful:', response.data);
+            }
         }
-      );
-      console.log("hello",verificationCode);
-      console.log(response.data); // Handle the response as needed
-     // Check if verification was successful
-     if (response.data.status === 'approved' || verificationCode === '123456') {
-        // Display an alert box for successful verification
-        alert('Verification successful!');
-        navigate("/verify-identity");
-      } else {
-        // Handle other verification statuses if needed
-        alert('Verification unsuccessful, please try again!');
-        console.log('Verification not successful:', response.data);
-      }
     } catch (error) {
         console.error('Error:', error);
         console.error('Response Data:', error.response.data);
-      }
-     // Check if verification was successful
-     if ( verificationCode === '123456') {
-        // Display an alert box for successful verification
-
-        navigate("/verify-identity");
-      } 
+      }  
   };
 
     return (        
