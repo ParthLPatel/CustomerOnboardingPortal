@@ -105,7 +105,6 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         setEmpStatus(e.target.value);
     }
 
-
     const marks = [
         {
             value: 0,
@@ -123,13 +122,14 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
     return (
         <div>
-            <div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="container">
-                        <div className="progressBarContainer1">
+            <div className="full-container">
+            <div className="progressBarContainer1">
                             {/* <p className="progressBarLabel1">Step 4 - Financial information</p> */}
                             <ProgressBar progress={4} /> {/* Pass the progress for this page */}
                         </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="container">
+
                         <div className="row subContainer">
                             <FinancialInformationPageIcon />
                             <p className="header_label">We need to know some of your financial information</p>
