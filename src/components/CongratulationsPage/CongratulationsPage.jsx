@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from "../ProgressBar/ProgressBar";
 import './CongratulationsPage.css';
 import checkMark from "../../assets/checkMark.png"
-
+import FlipCard from "../CommonComponents/FlipCard/FlipCard"
 
 function CongratulationsPage({ formData, updateFormData }) {
 
@@ -17,17 +17,15 @@ function CongratulationsPage({ formData, updateFormData }) {
       <div className='subContainer'>
         
         <div className='row outerContainer'>
-          <div className='col greenBox'>
-            <img src={checkMark} className='checkMarkLogo completed-animation' alt="Checkmark"/>
+
+          <div>Tracker</div>
+          <div>
+            <div></div>
+            <div></div>
           </div>
-          <div className="col descContainer">
-            <p className='header_label mt-4 mb-4' style={{textAlign: 'left'}}>Welcome to Manulife Bank</p>
-            <p className='desc'>We’re so thrilled you are here!</p>
-            <p className='desc'>Now, you may sign in the online banking portal to view your account details, fund your account and start you financial success journey with Manulife Bank</p>
-          </div>
-          <div className="col descContainer">
-            <button className="manulife-btn btn-orange signInBtn">Sign in</button>
-          </div>
+
+
+          
           </div>
        
       </div>

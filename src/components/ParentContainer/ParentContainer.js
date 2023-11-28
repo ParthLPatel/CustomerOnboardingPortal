@@ -36,7 +36,7 @@ const ParentContainer = () => {
         homeAddress:"",
         emailAddress:"",
         phoneNumber: "",
-        
+
         //page 2: verify identity fields
         IDtype: "",
         selectedIDFile: "",
