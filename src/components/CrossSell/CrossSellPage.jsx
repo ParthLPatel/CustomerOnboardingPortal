@@ -73,7 +73,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
         <div>
             <div className="container">
                 <div className="progressBarContainer1">
-                    <ProgressBar progress={5} /> {/* Pass the progress for this page */}
+                    <ProgressBar progress={6} /> {/* Pass the progress for this page */}
                 </div>
                 <div className="subContainer">
                     <p className="header_label" style={{textAlign:"left"}}>Congratulations! Your credit card has been approved!</p>

@@ -10,8 +10,10 @@ import ProgressBar from "../ProgressBar/ProgressBar";
 import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import Checkbox from '@mui/material/Checkbox';
 import plantImg from "../../assets/plantImg.png"
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
 
 
 function CreateProfile({ formData, updateFormData }) {
@@ -27,6 +29,7 @@ function CreateProfile({ formData, updateFormData }) {
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
+    const [manualAddress, setManualAddress] = useState(false);
 
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
@@ -58,6 +61,9 @@ function CreateProfile({ formData, updateFormData }) {
         }
     };
 
+    const handleManualAddressChange=()=>{
+        setManualAddress(!manualAddress)
+    }
 
     return (
         <div>
@@ -171,27 +177,36 @@ function CreateProfile({ formData, updateFormData }) {
                         </div>
 
                         <div className="row grpContainer">
-                        <Autocomplete
-                            options={homeAddressList}
-                            getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
-                            inputValue={inputValue}
-                            onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Home Address"
-                                    variant="outlined"
-                                    fullWidth
-                                    onChange={(e) => handleInputChange(e, "homeAddress")}
-                                    color="success"
-                                />
-                            )}
-                            isOptionEqualToValue={(option, value) =>
-                                `${option.Text}, ${option.Description}` === value
-                            }
-                            onChange={(event, newValue) => handleOptionClick(newValue)}
-                            className="mt-4 mb-2"
-                        />
+                        <FormGroup>
+                            <FormControlLabel control={<Checkbox />} checked={manualAddress} label="Needs to enter the address manually" onChange={handleManualAddressChange}/>
+                        </FormGroup>
+                        
+                        {
+                            (!manualAddress)?(                        <Autocomplete
+                                options={homeAddressList}
+                                getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
+                                inputValue={inputValue}
+                                onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
+                                renderInput={(params) => (
+                                    <TextField
+                                        {...params}
+                                        label="Home Address"
+                                        variant="outlined"
+                                        fullWidth
+                                        onChange={(e) => handleInputChange(e, "homeAddress")}
+                                        color="success"
+                                    />
+                                )}
+                                isOptionEqualToValue={(option, value) =>
+                                    `${option.Text}, ${option.Description}` === value
+                                }
+                                onChange={(event, newValue) => handleOptionClick(newValue)}
+                                className="mt-4 mb-2"
+                            />):(
+                                <div></div>
+                            )
+                        }
+
                         </div>
                         <div className="row grpContainer">
                             <div className="col">
