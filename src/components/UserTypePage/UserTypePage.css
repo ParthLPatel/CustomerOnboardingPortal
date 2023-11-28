@@ -44,14 +44,20 @@
     /* border-color: aqua; */
 }
 
-/* Additional style for better visibility of the border */
-.usertype-q:hover {
-    /* border-color: red; Change border color on hover for better visibility */
-}
-
 
 .noBtnExpand{
     height: 240px;
+    /* border: 15px solid black; */
+}
+
+.yesNoContainer{
+    /* width: 100%; */
+    /* border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2em 0;
 }
 
 /* desktop version */
