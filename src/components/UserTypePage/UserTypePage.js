@@ -28,15 +28,19 @@ function UserTypePage() {
 
     return (
         <div className='container'>
-            <div className="subContainer">
-                <div className="section-header">
-                    <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo"/>
-                </div>
-                <div className="usertype-q" style={{ width: "100%", marginTop: '45px' }}>
-                    Do you already have an account and bank with us online?
+            <div className="subContainer mx-1">
+                <div>
+                    <div className="section-header">
+                        <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo"/>
+                    </div>
+                    <div className="usertype-q" style={{ width: "100%", marginTop: '45px' }}>
+                        Do you already have an account and bank with us online?
+                    </div>
                 </div>
 
-                <Stack direction="column" spacing={2} style={{ width: "100%", marginTop: '45px' }}>
+                <Stack direction="column" spacing={2} 
+                // style={{ width: "100%", marginTop: '45px'}}
+                className="yesNoContainer">
                     <Button
                         variant="outlined"
                         style={{
@@ -50,7 +54,8 @@ function UserTypePage() {
                             textAlign: 'left',
                             fontSize: '20px',
                             fontWeight: '600',
-                            textTransform: 'none'
+                            textTransform: 'none',
+                            width: '100%',
                         }}
                         onClick={handleYesClick}
                     >
@@ -70,7 +75,8 @@ function UserTypePage() {
                                 textAlign: 'left',
                                 fontSize: '20px',
                                 fontWeight: '600',
-                                textTransform: 'none'
+                                textTransform: 'none',
+                                width: '100%',
                             }}
                             onClick={handleNoClick}
                         >
