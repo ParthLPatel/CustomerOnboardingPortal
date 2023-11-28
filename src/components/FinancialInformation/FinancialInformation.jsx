@@ -72,7 +72,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         }
         clearData(data);
         updateFinancialInfoData({ ...data, employmentStatus: empStatus });
-        navigate("/cross-sell");
+        navigate("/review-info");
     };
 
 

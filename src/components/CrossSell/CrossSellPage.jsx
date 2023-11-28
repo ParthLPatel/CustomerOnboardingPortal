@@ -66,7 +66,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
     const onSubmit = (data) => {
 
         updateCreditCardCrossSell({ newChecking, newSaving, SIN:data.SIN, accountIntent: [...selectedOptions], })
-        navigate("/review-info");
+        navigate("/congratulations-page");
     };
 
     return (
@@ -152,7 +152,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                         <div className="btn-wrapper">
                         <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Continue</button>
-                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
+                            <Link to="/review-info" className="manulife-btn btn-white text-decoration-none" >
                                 Back
                             </Link>
                         </div>

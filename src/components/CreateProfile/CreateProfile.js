@@ -28,7 +28,6 @@ function CreateProfile({ formData, updateFormData }) {
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
 
-
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
