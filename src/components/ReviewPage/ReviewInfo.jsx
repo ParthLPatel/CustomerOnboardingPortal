@@ -320,9 +320,12 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none ">
-                                    Submit application
-                                </button>
+                                                            <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none" >
+                                                            Submit application
+                                                        </Link>
+                                // <button type="submit" className="manulife-btn btn-orange text-decoration-none ">
+                                //     Submit application
+                                // </button>
                             ) : (
                                 <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit application</button>
                             )}
