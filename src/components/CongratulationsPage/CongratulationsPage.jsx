@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
 
-import cardFront from '../../Visa_Infinite_EN.png';
+import cardFront from '../../assets/Visa_Infinite_EN.png';
 
 function CongratulationsPage({ formData, updateFormData }) {
   return (

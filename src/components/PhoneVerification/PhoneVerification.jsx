@@ -22,7 +22,7 @@ import { flexbox } from "@mui/system";
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 </style>
 
-function PhoneVerification(props, updateFormData){
+function PhoneVerification(props){
     const [holdFormData, setHoldFormData] = useState(props.formData);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
