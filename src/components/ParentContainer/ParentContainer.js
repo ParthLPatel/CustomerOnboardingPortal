@@ -50,6 +50,10 @@ const ParentContainer = () => {
         selectedSelfieFile: "",
         verificationOption: "",
 
+        //page: reviewpage
+        creditCardPIN:"",
+        username:"",
+        password:"",       
 
     });
 
@@ -134,11 +138,11 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/review-info"
-                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} progress={progress}/>}
+                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress}/>}
                 />
                 <Route
                     path="/cross-sell"
-                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell} progress={progress}/>}
+                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell}  progress={progress}/>}
                 />
                 <Route
                     path="/congratulations-page"
