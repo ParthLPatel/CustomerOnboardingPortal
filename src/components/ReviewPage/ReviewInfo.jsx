@@ -17,7 +17,6 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
         setValue,
         setError,
@@ -25,7 +24,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     } = useForm()
     const navigate = useNavigate();
 
-    const { firstName, lastName, birthDate, homeAddress, emailAddress, phoneNumber } = formData;
+    const { firstName, lastName, birthDate, emailAddress, phoneNumber } = formData;
     //const { annualIncome, otherHouseholdIncome, employmentStatus, employerName, employerIndustry, institutionName, graduationDate } = financialInfoData;
     const annualIncome = financialInfoData?.annualIncome || '';
     const otherHouseholdIncome = financialInfoData?.otherHouseholdIncome || '';
@@ -34,6 +33,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     const employerIndustry = financialInfoData?.employerIndustry || '';
     const institutionName = financialInfoData?.institutionName || '';
     const graduationDate = financialInfoData?.graduationDate || '';
+
+    console.log(otherHouseholdIncome);
     
     const [useEmailAsUsername, setUseEmailAsUsername] = useState(true);
     const handleuChangeUseEmailAsUsernameCheckBoxChange = (e)=>{

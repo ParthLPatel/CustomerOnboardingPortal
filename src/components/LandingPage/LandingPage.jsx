@@ -1,10 +1,9 @@
 import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import visaInfiniteImage from '../../assets/Visa_Infinite_EN.png';
 import visaPlatinum from '../../assets/Visa_Platinum_EN.png';
 import banner from '../../assets/unsplashbanner1.jpg';
 import { Link } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
 import ArrowCircleRightRoundedIcon from '@mui/icons-material/ArrowCircleRightRounded';
 
 import './LandingPage.css';

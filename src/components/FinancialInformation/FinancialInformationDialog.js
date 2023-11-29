@@ -4,9 +4,9 @@ import Dialog from '@mui/material/Dialog';
 import  { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form"
 import "./FinancialInformation.css"
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
-import ProgressBar from "../ProgressBar/ProgressBar.js";
+// import ProgressBar from "../ProgressBar/ProgressBar.js";
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
@@ -16,7 +16,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import { Slider } from "@mui/material";
 import Autocomplete from '@mui/material/Autocomplete';
-import { ReactComponent as FinancialInformationPageIcon } from "../../assets/FinancialInformationPageIcon.svg"
+// import { ReactComponent as FinancialInformationPageIcon } from "../../assets/FinancialInformationPageIcon.svg"
 
 import { getIndustries, getOccupations } from "./joblist.js";
 import { getInstitutions } from "./institutionList.js";
@@ -31,18 +31,19 @@ const FinancialInformationDialog = (props) => {
         watch,
         setValue,
         setError,
-        getValues,
+        // getValues,
         formState,
         clearErrors,
         control
     } = useForm()
 
     // const employmentStatus = watch("employmentStatus");
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const [empStatus, setEmpStatus] = useState("");
     const [selectedIndustry, setSelectedIndustry] = useState('');
     const [insName,setInsName] = useState("");
     const [tempFinancialInfoData, setTempFinancialInfoData] = useState({});
+    console.log(tempFinancialInfoData);
 
     
     useEffect(() => {
