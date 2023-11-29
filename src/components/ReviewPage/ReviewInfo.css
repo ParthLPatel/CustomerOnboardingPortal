@@ -73,3 +73,31 @@
     background-color: green;
     border-color: green;
   }
+
+  .edit-area{
+    align-items:flex-start;
+    display: flex;
+  }
+
+  .mr-3{
+    margin-right: 20px;
+  }
+
+  .area{
+    
+    margin-top: 20px;
+  }
+
+  .review-page-header{
+    size: 14px;
+    font-weight: 600;
+  }
+
+
+
+  /* modbile version */
+@media only screen and (max-width: 625px) {
+    .password-field{
+        margin-top: 20px;
+      }
+}

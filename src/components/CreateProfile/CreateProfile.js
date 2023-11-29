@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useForm } from "react-hook-form"
 
@@ -7,12 +7,17 @@ import './CreateProfile.css'
 import { Link } from 'react-router-dom';
 
 import ProgressBar from "../ProgressBar/ProgressBar";
-import FormHelperText from '@mui/material/FormHelperText';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import Checkbox from '@mui/material/Checkbox';
 import plantImg from "../../assets/plantImg.png"
-
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import { getCities, getProvinces } from "./cityMapping";
 
 function CreateProfile({ formData, updateFormData }) {
     const {
@@ -21,16 +26,47 @@ function CreateProfile({ formData, updateFormData }) {
         formState: { errors },
     } = useForm()
 
-    const formRef = useRef(null);  // Create a ref for the form
-
     const onSubmit = () => console.log(formData)
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
 
+    const [needsManualAddress, setNeedsManualAddress] = useState(false);
+    const [cityList, setCityList] = useState([]);
+    const [manualProvince, setManualProvince] = useState('');
+    const [manualCity, setManualCity] = useState('');
+
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
+
+    const handleManualProvinceChange = (e) => {
+        updateFormData({ ...formData, manualProvince: e.target.value });
+        setManualProvince(e.target.value);
+    }
+
+    const handleManualCityChange = (e) => {
+        updateFormData({ ...formData, manualCity: e.target.value });
+        setManualCity(e.target.value);
+        }
+
+    const handleManualCheckboxChange = (e) => {
+        setNeedsManualAddress(e.target.checked);
+        updateFormData({ ...formData, needsManualAddress: e.target.checked });
+    }
+    useEffect(() => {
+        console.log(formData);
+        setNeedsManualAddress(formData.needsManualAddress);
+        setManualProvince(formData.manualProvince);
+        if(formData.manualProvince!==""){
+            setCityList([...getCities(formData.manualProvince)]);
+        }
+
+        
+        if(formData.manualCity!==""){
+            setManualCity(formData.manualCity);
+        }
+    }, [manualProvince]);
 
     const handleAddressSearch = async (query) => {
         setInputValue(query);
@@ -58,10 +94,9 @@ function CreateProfile({ formData, updateFormData }) {
         }
     };
 
-
     return (
         <div>
-            <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="container">
 
                     <div className="progressBarContainer1">
@@ -166,66 +201,118 @@ function CreateProfile({ formData, updateFormData }) {
 
                             {errors.phoneNumber && <span>This field is required</span>}
 
-                        
 
-                        
-                        <Autocomplete
-                            options={homeAddressList}
-                            getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
-                            inputValue={inputValue}
-                            onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
-                            renderInput={(params) => (
-                                <TextField
-                                    {...params}
-                                    label="Home Address"
-                                    variant="outlined"
-                                    fullWidth
-                                    onChange={(e) => handleInputChange(e, "homeAddress")}
-                                    color="success"
-                                    
-                                />
-                            )}
-                            isOptionEqualToValue={(option, value) =>
-                                `${option.Text}, ${option.Description}` === value
+
+
+
+
+                            {
+                                (!needsManualAddress) ? (<Autocomplete
+                                    options={homeAddressList}
+                                    getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
+                                    inputValue={inputValue}
+                                    onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Home Address"
+                                            variant="outlined"
+                                            fullWidth
+                                            onChange={(e) => handleInputChange(e, "homeAddress")}
+                                            color="success"
+
+                                        />
+                                    )}
+                                    isOptionEqualToValue={(option, value) =>
+                                        `${option.Text}, ${option.Description}` === value
+                                    }
+                                    onChange={(event, newValue) => handleOptionClick(newValue)}
+                                    className="mt-4 mb-2 "
+                                />) : (
+                                    <div></div>
+                                )
                             }
-                            onChange={(event, newValue) => handleOptionClick(newValue)}
-                            className="mt-4 mb-2 "
-                        />
-                          
-                        
-                        <div className="row grpContainer my-4 px-0">
-                            <div className="col">
-                                <TextField
-                                    color="success"
-                                    placeholder="PIN"
-                                    {...register("creditCardPIN", { required: true })}
-                                    value={formData.creditCardPIN}
-                                    onChange={(e) => handleInputChange(e, "creditCardPIN")}
-                                    label="Credit card PIN"
-                                    variant="outlined"
-                                    className="form-control"
-
+                            <FormGroup>
+                                <FormControlLabel control={<Checkbox color="success" />} checked={needsManualAddress} label="Can't find address? Needs to enter the address manually"
+                                    onChange={e => handleManualCheckboxChange(e)}
                                 />
-                                <FormHelperText sx={{ color: "#09874E" }}>*This PIN will be your credit card PIN</FormHelperText>
+                            </FormGroup>
 
-                                <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
-                            </div>
-                            <div className="col">
+                            {
+                                (needsManualAddress) ? (
+                                    <>
+                                        <div className="row grpContainer my-2">
+                                            <div className="col-12 col-md-8">
+                                                <TextField
+                                                    color="success"
+                                                    placeholder="Address line"
+                                                    {...register("manualAddressLine", { required: true })}
+                                                    value={formData.manualAddressLine}
+                                                    onChange={(e) => handleInputChange(e, "manualAddressLine")}
+                                                    label="Address line"
+                                                    variant="outlined"
+                                                    className="form-control"
+                                                />
 
-                                <TextField
-                                    color="success"
-                                    placeholder="Confirm PIN"
-                                    {...register("confirmCreditCardPIN", { required: true })}
-                                    label="Confirm credit card PIN"
-                                    variant="outlined"
-                                    className="form-control"
+                                            </div>
+                                            <div className="col-12 col-md-4">
+                                                <TextField
+                                                    color="success"
+                                                    placeholder="Postal code"
+                                                    {...register("manualPostalCode", { required: true })}
+                                                    value={formData.manualPostalCode}
+                                                    onChange={(e) => handleInputChange(e, "manualPostalCode")}
+                                                    label="Postal code"
+                                                    variant="outlined"
+                                                    className="form-control"
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="row grpContainer my-2">
+                                            <div className="col-12 col-md-6">
+                                                <FormControl fullWidth>
+                                                    <InputLabel id="province-label">Province</InputLabel>
+                                                    <Select
+                                                        labelId="province-label"
+                                                        id="manual-province"
+                                                        value={manualProvince}
+                                                        label="Province"
+                                                        color="success"
+                                                        onChange={e=>handleManualProvinceChange(e)}
+                                                    >
+                                                        {
+                                                            getProvinces().map(p=><MenuItem key={p} value={p}>{p}</MenuItem>)
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                            </div>
+                                            <div className="col-12 col-md-6">
+                                            <FormControl fullWidth>
+                                                    <InputLabel id="city-label">City</InputLabel>
+                                                    <Select
+                                                        labelId="city-label"
+                                                        id="manual-city"
+                                                        value={manualCity}
+                                                        label="City"
+                                                        color="success"
+                                                        onChange={e=>handleManualCityChange(e)}
+                                                    >
+                                                        {
+                                                            cityList.map(p=><MenuItem key={p} value={p}>{p}</MenuItem>)
+                                                        }
+                                                    </Select>
+                                                </FormControl>
+                                            </div>
+                                        </div>
+                                    </>
+                                ) : (
+                                    <div></div>
+                                )
+                            }
 
-                                />
-                               <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
-                            </div>
+
+
                         </div>
-                        
-                            </div>
                         <div className="btn-wrapper">
                             <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit

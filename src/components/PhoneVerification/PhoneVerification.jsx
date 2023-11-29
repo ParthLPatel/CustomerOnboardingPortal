@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import phoneLogo from '../../assets/phoneLogo.png'
 import QRCode from "qrcode.react";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-import { flexbox } from "@mui/system";
+// import { flexbox } from "@mui/system";
 // Example if QrReader is a named export
 
 
@@ -23,7 +23,7 @@ import { flexbox } from "@mui/system";
 </style>
 
 function PhoneVerification(props){
-    const [holdFormData, setHoldFormData] = useState(props.formData);
+    // const [holdFormData, setHoldFormData] = useState(props.formData);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const apiCallExecutedRef = useRef(false);
@@ -69,7 +69,7 @@ function PhoneVerification(props){
           sendVerificationCode(props.formData.phoneNumber);
           apiCallExecutedRef.current = true;
         }
-      }, [props.formData.phoneNumber]);
+      }, [props.formData.phoneNumber, props]);
 
     // Function to send verification code
   const sendVerificationCode = async (phone) => {
