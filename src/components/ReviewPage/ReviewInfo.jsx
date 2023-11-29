@@ -108,7 +108,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3">Your Contact Information</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Contact Information</span>
                             <span onClick={handleEditContactInfoDialogOpen}><EditIcon />(Edit)</span>
                             <CreateProfileDialog open={openContactInfoDialog}
                                 onClose={handleEditContactInfoDialogClose} formData={formData} updateFormData={updateFormData} />
@@ -145,7 +145,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3">Your Employment Information</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Employment Information</span>
                             <span onClick={handleEditFinancialInfoDialogOpen}><EditIcon />(Edit)</span>
                             <FinancialInformationDialog open={openFinancialInfoDialog}
                                 onClose={handleEditFinancialInfoDialogClose} formData={financialInfoData} updateFormData={updateFinancialInfoData} />
