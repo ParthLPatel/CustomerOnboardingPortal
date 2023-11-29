@@ -26,6 +26,11 @@
     font-size: 16px;
 }
 
+.qrcodetext {
+    font-size: 13px;
+    color: rgb(110, 106, 101);
+}
+
 
 /* desktop version */
 @media only screen and (min-width: 525px) {

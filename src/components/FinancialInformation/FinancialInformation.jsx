@@ -12,11 +12,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormHelperText from '@mui/material/FormHelperText';
 import Select from '@mui/material/Select';
 import { Slider } from "@mui/material";
-
+import Autocomplete from '@mui/material/Autocomplete';
 import { ReactComponent as FinancialInformationPageIcon } from "../../assets/FinancialInformationPageIcon.svg"
 
 import { getIndustries, getOccupations } from "./joblist.js";
-
+import { getInstitutions } from "./institutionList.js";
 
 const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) => {
     const {
@@ -35,7 +35,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
     const navigate = useNavigate();
     const [empStatus, setEmpStatus] = useState("");
     const [selectedIndustry, setSelectedIndustry] = useState('');
-
+    const [insName,setInsName] = useState("");
     useEffect(() => {
         console.log(financialInfoData);
         if (financialInfoData) {
@@ -49,11 +49,14 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
             setValue('occupation', financialInfoData.occupation || '');
             setSelectedIndustry(financialInfoData.employerIndustry || '');
             setEmpStatus(financialInfoData.employmentStatus || '');
+            setInsName(financialInfoData.institutionName || '');
         }
     }, [financialInfoData, setValue]);
 
 
     const employmentStatusList = ["Full-time employee", "Student", "Retired", "Unemployed"];
+    const institutionList = getInstitutions();
+
     const lessIncome = watch("annualIncome");
 
     const onSubmit = (data) => {
@@ -69,7 +72,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
         }
         clearData(data);
         updateFinancialInfoData({ ...data, employmentStatus: empStatus });
-        navigate("/cross-sell");
+        navigate("/review-info");
     };
 
 
@@ -119,13 +122,14 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
     return (
         <div>
-            <div>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="container">
-                        <div className="progressBarContainer1">
+            <div className="full-container">
+            <div className="progressBarContainer1">
                             {/* <p className="progressBarLabel1">Step 4 - Financial information</p> */}
                             <ProgressBar progress={4} /> {/* Pass the progress for this page */}
                         </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    <div className="container">
+
                         <div className="row subContainer">
                             <FinancialInformationPageIcon />
                             <p className="header_label">We need to know some of your financial information</p>
@@ -182,7 +186,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             </div>
                             <div className="input-div">
                                 <FormControl fullWidth sx={{ m: 1 }}>
-                                    <InputLabel htmlFor="household-annual-income" color="success">Other household annual income</InputLabel>
+                                    <InputLabel htmlFor="household-annual-income" color="success">Total household annual income</InputLabel>
                                     <Controller
                                         name="otherHouseholdIncome"
                                         control={control}
@@ -192,7 +196,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                 <OutlinedInput
                                                     id="household-annual-income"
                                                     startAdornment={<InputAdornment position="start">$</InputAdornment>}
-                                                    label="Other household annual income"
+                                                    label="Total household annual income"
                                                     {...field}
                                                     {...register("otherHouseholdIncome")}
                                                     color="success"
@@ -257,7 +261,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                                     {...register("employerIndustry", { required: true })}
                                                     render={({ field }) => (
                                                         <Select {...field}
-                                                        label="Select industry"
+                                                            label="Select industry"
                                                             onChange={(e) => {
                                                                 field.onChange(e);
                                                                 setSelectedIndustry(e.target.value);
@@ -313,16 +317,18 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                                     </div>) :
                                     (empStatus === "Student" ? (<div className="employment-wrapper">
                                         <div className="input-div">
-                                            <FormControl fullWidth sx={{ m: 1 }}>
-                                                <InputLabel htmlFor="institution-name" color="success">Institution name</InputLabel>
-                                                <OutlinedInput
-                                                    color="success"
-                                                    id="institution-name"
-                                                    label="Institution name"
-                                                    {...register("institutionName", { required: true })}
-                                                />
-                                                <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.institutionName) && "This field is required"}</FormHelperText>
-                                            </FormControl>
+                                            <Autocomplete
+                                                disablePortal
+                                                id="institution-name"
+                                                color="success"
+                                                options={institutionList}
+                                                fullWidth
+                                                sx={{ m: 1,marginTop:"10px" }}
+                                                defaultValue={insName}
+                                                renderInput={(params) => <TextField color="success" {...register("institutionName", { required: true })} {...params} label="Institution name" />}
+                                            />
+                                            <FormHelperText sx={{ color: "crimson" }}> {(formState.errors.institutionName) && "This field is required"}</FormHelperText>
+
                                         </div>
                                         <div className="input-div">
                                             <TextField
@@ -346,7 +352,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
 
                             }
 
-                            <div className="btn-wrapper" style={{padding: "0em", marginLeft:"0.4em"}}>
+                            <div className="btn-wrapper" style={{ padding: "0em", marginLeft: "0.4em" }}>
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none">
                                     Continue</button>
                                 <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>

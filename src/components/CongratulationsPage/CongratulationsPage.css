@@ -1,83 +1,74 @@
-.verification-details{
-    font-size: 14px;
-    padding: 0 0.2em;
-    /* border: 1px solid black; */
+
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid orange; */
+  margin: auto;
+  /* padding: 1em; */
 }
 
-.verification-checkbox{
-    /* border: 1px solid black; */
-    display: flex;
-    flex-direction: row;
+.cardPhoto {
+  /* border: 1px solid red; */
+  display: flex;
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* margin: 0em; */
+
+  
 }
 
-.checkboxLabel{
-    padding: 0 0.6em;
-    font-size: 12px;
-    letter-spacing: 0.4px;
-    color: black;
-    /* font-weight: 600; */
+
+
+.cardDesc {
+  /* border: 1px solid green; */
+  width: 100%;
+  min-width: 58%;
+  padding: 0 1.4em;
+  margin-top: 1.4em;
+  /* margin-bottom: 1em */
 }
 
-.outerContainer{
-    display: flex;
-    flex-direction: column;
-    margin-top: 2em;
-}
-.btn-orange-lighter {
-    background-color: #f1bf96;
-    color: white
-  }
-.desc{
-font-size: 14px;
-font-weight: 400;
-line-height: 19px;
-letter-spacing: 0em;
-text-align: left;
-
+.frontImg{
+  width: 100%;
+  min-width: 300px;
+  height: 200px;
 }
 
-.greenBox{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #03BF66;
-    border-radius: 4px;
-    padding: 1.6em;
-    /* border: 1px solid black; */
-}
+.featureList{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
 
-.checkMarkLogo{
-    width: 92px;
-    height: 92px;
 }
-.descContainer{
-    /* border: 1px solid black; */
-    padding-left: 0;
-}
+.paraDesc{
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 27px;
+  letter-spacing: 0em;
+  text-align: left;
 
+}
 .signInBtn{
-    width: 100%;
-    margin: 1em 0;
-    border-radius: 4px;
-}
-
-/* Add this to your stylesheet */
-@keyframes draw {
-    0% {
-        stroke-dashoffset: 1000;
-    }
-    100% {
-        stroke-dashoffset: 0;
-    }
-}
-
-.completed-animation {
-    animation: draw 0.5s ease-out forwards;
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 4em;
 }
 
 /* desktop version */
-@media only screen and (min-width: 500px) {
-    
+@media only screen and (min-width: 700px) {
+  .cardContainer{
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .cardDesc{
+    margin-top: 0em;
+    margin-bottom: 0em
+  }
+  .signInBtn{
+    margin: 2em 0;
+  }
+  .cardDesc {
+    /* margin-bottom: 2.4em */
+  }
 }
