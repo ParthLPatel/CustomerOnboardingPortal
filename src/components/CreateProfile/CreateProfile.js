@@ -281,17 +281,6 @@ function CreateProfile({ formData, updateFormData }) {
                                                         }
                                                     </Select>
                                                 </FormControl>
-                                                {/* <Autocomplete
-                                                    disablePortal
-                                                    id="manual-province"
-                                                    color="success"
-                                                    options={["", ...getProvinces()]}
-                                                    value={manualProvince}
-
-                                                    onChange={handleManualProvinceChange}
-                                                    renderInput={(params) => <TextField color="success"  {...params}  {...register("manualProvince", { required: true })} label="Province" />}
-                                                />
-                                                <FormHelperText sx={{ color: "crimson" }}> {(errors.manualProvince) && "This field is required"}</FormHelperText> */}
                                             </div>
                                             <div className="col-12 col-md-6">
                                             <FormControl fullWidth>
@@ -309,16 +298,6 @@ function CreateProfile({ formData, updateFormData }) {
                                                         }
                                                     </Select>
                                                 </FormControl>
-                                                {/* <Autocomplete
-                                                    disablePortal
-                                                    id="manual-city"
-                                                    color="success"
-                                                    options={cityList}
-                                                    value={manualCity}
-                                                    onChange={handleManualCityChange}
-                                                    renderInput={(params) => <TextField color="success"  {...register("manualCity", { required: true })} {...params} label="City" />}
-                                                />
-                                                <FormHelperText sx={{ color: "crimson" }}> {(errors.manualCity) && "This field is required"}</FormHelperText> */}
                                             </div>
                                         </div>
                                     </>
