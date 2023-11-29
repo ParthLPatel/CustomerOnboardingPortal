@@ -143,13 +143,13 @@ const ReviewInfo = ({ formData, financialInfoData }) => {
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <Link to="/congratulations-page" className="manulife-btn btn-orange text-decoration-none ">
+                                <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none ">
                                     Submit
                                 </Link>
                             ) : (
                                 <span className="manulife-btn btn-orange btn-orange-lighter">Submit</span>
                             )}
-                            <Link to="/cross-sell" className="manulife-btn btn-white text-decoration-none" >
+                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
                                 Back
                             </Link>
                         </div>
