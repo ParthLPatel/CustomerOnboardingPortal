@@ -5,24 +5,63 @@ import axios from "axios";
 import { Link, useNavigate } from 'react-router-dom';
 import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
-
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
 import phoneLogo from '../../assets/phoneLogo.png'
-import Button from '@mui/material/Button';
+import QRCode from "qrcode.react";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+// import { flexbox } from "@mui/system";
+// Example if QrReader is a named export
+
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 </style>
 
 function PhoneVerification(props){
-  
+    const [holdFormData, setHoldFormData] = useState(props.formData);
     const [phoneNumber, setPhoneNumber] = useState("");
     const [verificationCode, setVerificationCode] = useState("");
     const apiCallExecutedRef = useRef(false);
+    const [openDialog, setOpenDialog] = useState(false);
     const navigate = useNavigate();
+    
+    const handleOpenDialog = () => {
+        setOpenDialog(true);
+      };
+    
+      const handleCloseDialog = () => {
+        setOpenDialog(false);
+      };
 
+    const generateQRCodeData = () => {
+        props.formData.url = "https://main.d3jrvl3sduvqep.amplifyapp.com/verify-phone-number";
+        const formDataQueryString = encodeURIComponent(JSON.stringify(props.formData));
+        const dataToEncode = {
+            url: `https://main.d3jrvl3sduvqep.amplifyapp.com/verify-phone-number?formData=${formDataQueryString}`,
+            formData: props.formData,
+            
+        };
+        console.log(JSON.stringify(dataToEncode));
+        console.log(formDataQueryString)
+
+        return JSON.stringify(dataToEncode);
+    };
 
     useEffect(() => {
-     
+
+        // searching for params in link if any and passing that data to the parent
+        const queryParams = new URLSearchParams(window.location.search);
+        const formDataParam = queryParams.get('formData');
+        if (formDataParam) {
+            const formDataFromQR = JSON.parse(formDataParam);
+            props.setHoldFormData(formDataFromQR);
+        }
+
         if (props.formData.phoneNumber && !apiCallExecutedRef.current) {
        
           // Set the phone number and send verification code
@@ -106,13 +145,38 @@ function PhoneVerification(props){
               {/* <p className="progressBarLabel1">Step 2 - Verify your phone number</p> */}
               <ProgressBar progress={2} /> {/* Pass the progress for this page */}
           </div>
-
+        
           <div className='subContainer'>
 
                 <div className="headerContainer">
                     <img src={phoneLogo} alt="Your SVG" className="phoneLogo"/>
                     <p className="header_label headerlbl my-2">We just texted you.</p>
                 </div>
+
+                <div style={{display:"flex"}}>
+                    <QrCodeScannerIcon
+                    src="path/to/your/qr-code-icon.png"
+                    alt="QR Code Icon"
+                    onClick={handleOpenDialog} // Open the dialog on icon click
+                    style={{marginRight:"10px"}}
+                    />
+                    <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                </div>
+
+                {/* Dialog for displaying QR code */}
+                <Dialog open={openDialog} onClose={handleCloseDialog}>
+                    <DialogTitle>Scan QR Code</DialogTitle>
+                    <DialogContent>
+                    <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                    <DialogContentText>
+                        Click the button below to close this pop-up.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleCloseDialog}>Close</Button>
+                    </DialogActions>
+                </Dialog>
+
                 <p className="subHeaderOTP my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>
 
                 {/* Resend OTP button */}

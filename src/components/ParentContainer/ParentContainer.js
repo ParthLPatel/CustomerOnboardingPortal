@@ -24,6 +24,7 @@ import ReviewInfo from '../ReviewPage/ReviewInfo';
 import CrossSellPage from '../CrossSell/CrossSellPage';
 import CreditCardCrossSell from '../../models/CreditCardCrossSellModel';
 import CongratulationsPage from '../CongratulationsPage/CongratulationsPage';
+import LandingPage from '../LandingPage/LandingPage';
 // import VerticalStepper from '../VerticalStepper/VerticalStepper';
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard';
 
@@ -39,7 +40,11 @@ const ParentContainer = () => {
         emailAddress:"",
         phoneNumber: "",
         creditCardPIN:"",
-        
+        needsManualAddress:false,
+        manualAddressLine:"",
+        manualCity:"",
+        manualProvince:"",
+        manualPostalCode:"",
 
         //page 2: verify identity fields
         IDtype: "",
@@ -79,12 +84,34 @@ const ParentContainer = () => {
         }));
     }
 
+    // method to update formData based on QR code data
+    const setHoldFormData = (qrCodeData) => {
+        console.log("not yet");
+        if (qrCodeData) {
+            console.log("QR Code Data:", qrCodeData);
+            // Assuming qrCodeData.formData has the same structure as your formData state
+            setFormData((prevData) => {
+                console.log("Previous Data:", prevData);
+                return {
+                    ...prevData,
+                    ...qrCodeData, // Make sure you are accessing the correct property
+                };
+            });
+            console.log("works!!!!!");
+        }
+    };
+    
+
     return (
         <Router>
             <Routes>
 
                 <Route
                     path="/"
+                    element={<LandingPage />}
+                />
+                <Route
+                    path="/get-started"
                     element={<UserTypePage />}
                 />
                 <Route
@@ -93,7 +120,7 @@ const ParentContainer = () => {
                 />
                  <Route
                     path="/verify-phone-number"
-                    element={<PhoneVerification formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                    element={<PhoneVerification formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="verify-identity"
@@ -119,9 +146,6 @@ const ParentContainer = () => {
                     path="/congratulations-page"
                     element={<CongratulationsPage progress={progress}/>}
                 />
-                {/* <Route 
-                    path='/stepper'
-                    element={<FlipCard />}/> */}
                 {/* Add routes for other pages */}
             </Routes>
         </Router>

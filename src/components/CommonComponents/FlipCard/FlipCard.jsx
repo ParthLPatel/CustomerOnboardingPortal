@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import "../../CommonComponents/FlipCard/FlipCard.css";
 import "./FlipCard.css";
-import frontImage from '../../../Visa_Infinite_EN.png';
-import backImage from '../../../credit-card-cvv.png';
+import frontImage from '../../../assets/Visa_Infinite_EN.png';
+import backImage from '../../../assets/credit-card-cvv.png';
 
 const FlipCard = () => {
   const [isFlipped, setIsFlipped] = useState(false);
