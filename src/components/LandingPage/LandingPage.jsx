@@ -5,8 +5,7 @@ import visaPlatinum from '../../assets/Visa_Platinum_EN.png';
 import banner from '../../assets/unsplashbanner1.jpg';
 import { Link } from 'react-router-dom';
 import IconButton from '@mui/material/IconButton';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import ArrowCircleRightRoundedIcon from '@mui/icons-material/ArrowCircleRightRounded';
 
 import './LandingPage.css';
 
@@ -15,103 +14,314 @@ const LandingPage = () => {
     <div className="container-landing-page">
       {/* Banner */}
       <div className="banner">
-        <Typography variant="h5" className="banner-heading">Credit Card</Typography>
-        <Typography variant="subtitle1" className="banner-subheading">Get cashback rewards on every purchase</Typography>
+        <Typography variant="h5" className="banner-heading"
+        style={{
+          fontFamily:'sans-serif',
+          fontSize: '3rem',
+          fontWeight: '500',
+          lineHeight:'1.5',
+          
+        }}>Credit Cards</Typography>
+        <Typography variant="subtitle1" className="banner-subheading"
+        style={{
+          fontFamily:'sans-serif',
+          fontSize: '1.3em',
+          fontWeight: '300',
+          lineHeight:'1.5',
+          marginTop: '2em',
+        }}>Get cashback rewards on every purchase</Typography>
         <img src={banner} alt="Credit Card Banner" />
       </div>
 
-      <Container>
-        <Typography variant="h4" align="center" gutterBottom>
+      <Container
+        style={{
+          // border: '5px solid orange',
+          padding: "0 4em",
+        }}>
+        <Typography  align="center" gutterBottom
+          style={
+            {
+              fontWeight:"400",
+              fontSize: "1.6rem",
+              lineHeight:'1.5',
+              marginTop: "2em",
+              marginBottom: "1em",
+            }}
+          >
           Find the right cash back credit card for you
         </Typography>
-        <Typography paragraph>
+        <Typography paragraph
+          style={
+            {
+              fontFamily:'sans-serif',
+              fontSize: '0.9rem',
+              lineHeight: '1.4rem',
+              textAlign: 'justify'   
+            }}
+          >
           Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your ManulifeMONEY+™ Visa* Card.
           Both of our cards provide convenience, security, and valuable rewards on every purchase. Plus, you can use your smartphone,
           smartwatch, or tablet to make purchases with your card through Apple Pay®, Google Pay™, Samsung Pay, Fitbit Pay™, and Garmin Pay™.
         </Typography>
-        <Typography paragraph>
+        <Typography paragraph
+          style={
+            {
+              fontFamily:'sans-serif',
+              fontSize: '0.9rem',
+              lineHeight: '1.4rem',
+              textAlign: 'justify'   
+            }}
+        >
           There’s only one thing left to decide: which card is right for you?
         </Typography>
 
         {/* Cards Container */}
         <div className="cards-container">
           {/* ManulifeMONEY+ Visa Infinite Card */}
-          <div className="card">
+          <div className="card"
+            style={{
+              backgroundColor: '#fff',
+            }}
+          >
             {/* Card Image and Title */}
             <img src={visaInfiniteImage} alt={"Manulife Visa Platinum Card"} />
-            <Typography variant="h5">ManulifeMONEY+ Visa Infinite</Typography>
+            <Typography variant="h5"
+              style={
+                {
+                  color: 'black',
+                  fontWeight: '500',
+                  marginBottom: '1em',
+                  fontSize: '1.4rem',
+                  textAlign:'center',
+                }
+              }
+            >ManulifeMONEY+ Visa Infinite</Typography>
 
             {/* Card Content */}
-            <Typography>
+            <Typography
+              style={{
+                textAlign:'center',
+                fontWeight: '500',
+                margin:'0.1em 0',
+                fontFamily:'sans-serif',
+                fontSize: '0.9rem',
+                lineHeight: '1.4rem',
+              }}
+            >
               Travel benefits, exclusive perks, and accelerated cash back rewards.
             </Typography>
 
-            {/* Card Rates */}
+            {/* Card Rates */}  
             <div>
-              <Typography style={{ color: '#008747' }}>1.99% for balance transfers for the first 6 months</Typography>
-              <Typography style={{ color: '#008747' }}>3% cash back at grocery stores</Typography>
-              <Typography style={{ color: '#008747' }}>2% cash back on travel</Typography>
-              <Typography style={{ color: '#008747' }}>1% cash back on everything else</Typography>
-              <Typography style={{ color: '#008747' }}>$139 annual fee waived for the first year</Typography>
-              <Typography style={{ color: '#008747' }}>20.99% purchase rate</Typography>
-              <Typography style={{ color: '#008747' }}>22.99% cash advance and balance transfer rate</Typography>
+            <Typography style={{ textAlign: 'center', marginTop:'1.4em', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600, color: '#09874E', fontSize:'1.4rem'}}>1.99%</span> <br />
+                <span style={{fontSize:'0.9rem', fontWeight:'600'}}>for balance transfers</span> <br />
+                <span style={{fontSize:'0.9rem'}}>for the first 6 months</span> <br />
+              </Typography>
+              
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>3%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>cash back at grocery stores</span>
+              </Typography>
+
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>2%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>cash back on travel</span>
+              </Typography>
+
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>1%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>cash back on everything else</span>
+              </Typography>
+
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>$139 annual fee</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>waived for the first year</span>
+              </Typography>
+
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>20.99%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>purchase rate</span>
+              </Typography>
+
+              <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>22.99%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>cash advance and balance transfer rate</span>
+              </Typography>
+
             </div>
 
             {/* Action Buttons */}
-            <Button variant="contained" color="primary" href="/support/contact-us/credit-cards.html">
-              Get this card
-            </Button>
+            <Link to="/get-started" className="text-decoration-none" 
+              style={{
+                display: 'flex',
+                borderTop: '1px solid lightgray',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+                <ArrowCircleRightRoundedIcon style={{
+                  color:'#ED6453',
+                  marginTop: '0.6em',
+                  marginRight: '0.2em',
+                }}/>
+                <span style={{
+                  fontWeight:"400",
+                  fontSize: "0.9rem",
+                  lineHeight:'1.5',
+                  marginTop: "2em",
+                  marginBottom: "1em",
+                  color:'#ED6453',
+                }}>LEARN MORE</span>
+            </Link>
           </div>
 
           {/* ManulifeMONEY+ Visa Platinum Card */}
-          <div className="card">
+          <div className="card" 
+               style={{
+                  backgroundColor: '#fff',
+               }}
+               >
             {/* Card Image and Title */}
             <img src={visaPlatinum} alt="Manulife Visa Platinum Card" />
-            <Typography variant="h5">ManulifeMONEY+ Visa Platinum</Typography>
+            <Typography variant="h5"
+              style={
+                {
+                  
+                  color: 'black',
+                  fontWeight: '500',
+                  marginBottom: '1em',
+                  fontSize: '1.4rem',
+                  textAlign:'center',
+                }
+              }
+            >ManulifeMONEY+ Visa Platinum</Typography>
 
             {/* Card Content */}
-            <Typography>
+            <Typography
+              style={{
+                textAlign:'center',
+                fontWeight: '500',
+                margin:'0.1em 0',
+                fontFamily:'sans-serif',
+                fontSize: '0.9rem',
+                lineHeight: '1.4rem',
+              }}
+            >
               No annual fee, cash back rewards, and purchase protection.
             </Typography>
 
             {/* Card Rates */}
             <div>
-              <Typography style={{ color: '#008747' }}>1.99% for balance transfers for the first 6 months</Typography>
-              <Typography style={{ color: '#008747' }}>2% cash back at grocery stores</Typography>
-              <Typography style={{ color: '#008747' }}>0.5% cash back on everything else</Typography>
-              {/* Other items with no rate information */}
-              <Typography>$0 annual fee</Typography>
-              <Typography>20.99% purchase rate</Typography>
-              <Typography>22.99% cash advance and balance transfer rate</Typography>
-            </div>
+            <Typography style={{ textAlign: 'center', marginTop:'1.4em', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600, color: '#09874E', fontSize:'1.4rem'}}>1.99%</span> <br />
+              <span style={{fontSize:'0.9rem', fontWeight:'600'}}>for balance transfers</span> <br />
+              <span style={{fontSize:'0.9rem'}}>for the first 6 months</span> <br />
+            </Typography>
+
+            <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600}}>2%</span>
+              <br />
+              <span style={{fontSize:'0.9rem'}}>cash back at grocery stores</span>
+            </Typography>
+
+            <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+                fontFamily:'sans-serif',
+                lineHeight: '1.4rem',}}
+                >
+                <span style={{fontWeight:600}}>0.5%</span>
+                <br />
+                <span style={{fontSize:'0.9rem'}}>cash back on travel</span>
+              </Typography>
+
+            <Typography style={{textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600}}>0.5%</span>
+              <br />
+              <span style={{fontSize:'0.9rem'}}>cash back on everything else</span>
+            </Typography>
+
+            {/* Other items with no rate information */}
+            <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600}}>$0 annual fee</span>
+              <br />
+                <span style={{fontSize:'0.9rem', visibility:'hidden'}}>waived for the first year</span>
+            </Typography>
+
+            <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600}}>20.99%</span>
+              <br />
+              <span style={{fontSize:'0.9rem'}}>purchase rate</span>
+            </Typography>
+
+            <Typography style={{ textAlign: 'center', marginBottom:'1.4em', fontWeight: '500',
+              fontFamily:'sans-serif',
+              lineHeight: '1.4rem',}}>
+              <span style={{fontWeight:600}}>22.99%</span>
+              <br />
+              <span style={{fontSize:'0.9rem'}}>cash advance and balance transfer rate</span>
+            </Typography>
+          </div>
 
             {/* Action Buttons */}
-            <Button
-                component={Link}
-                to="/get-started"
-                variant="contained"
-                color="primary"
-                style={{
-                    backgroundColor: 'transparent',
-                    border: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    fontWeight: 'bold',
-                    fontFamily: 'Open Sans',
-                }}
-                >
-                Get this card
-                <IconButton
-                    style={{
-                    backgroundColor: '#008747',
-                    borderRadius: '50%',
-                    marginLeft: '8px', // Adjust as needed for spacing
-                    }}
-                >
-                    <ArrowForwardIcon style={{ color: 'none solid rgb(53)' }} />
-                </IconButton>
-                </Button>
-
+            <Link to="###" className="text-decoration-none" 
+              style={{
+                display: 'flex',
+                borderTop: '1px solid lightgray',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+                <ArrowCircleRightRoundedIcon style={{
+                  color:'#ED6453',
+                  marginTop: '0.6em',
+                  marginRight: '0.2em',
+                }}/>
+                <span style={{
+                  fontWeight:"400",
+                  fontSize: "0.9rem",
+                  lineHeight:'1.5',
+                  marginTop: "2em",
+                  marginBottom: "1em",
+                  color:'#ED6453',
+                }}>LEARN MORE</span>
+            </Link>
 
           </div>
         </div>

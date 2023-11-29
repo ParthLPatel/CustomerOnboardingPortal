@@ -14,7 +14,7 @@ import Button from "@mui/material/Button";
 import phoneLogo from '../../assets/phoneLogo.png'
 import QRCode from "qrcode.react";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
-import { flexbox } from "@mui/system";
+// import { flexbox } from "@mui/system";
 // Example if QrReader is a named export
 
 
