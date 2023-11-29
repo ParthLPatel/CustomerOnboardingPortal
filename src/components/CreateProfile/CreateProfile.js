@@ -61,7 +61,7 @@ function CreateProfile({ formData, updateFormData }) {
         if(formData.manualProvince!==""){
             setCityList([...getCities(formData.manualProvince)]);
         }
-        
+
         
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
@@ -311,39 +311,6 @@ function CreateProfile({ formData, updateFormData }) {
                             }
 
 
-
-                            {/* 
-                            <div className="row grpContainer my-4 px-0">
-                                <div className="col">
-                                    <TextField
-                                        color="success"
-                                        placeholder="PIN"
-                                        {...register("creditCardPIN", { required: true })}
-                                        value={formData.creditCardPIN}
-                                        onChange={(e) => handleInputChange(e, "creditCardPIN")}
-                                        label="Credit card PIN"
-                                        variant="outlined"
-                                        className="form-control"
-
-                                    />
-                                    <FormHelperText sx={{ color: "#09874E" }}>*This PIN will be your credit card PIN</FormHelperText>
-
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
-                                </div>
-                                <div className="col">
-
-                                    <TextField
-                                        color="success"
-                                        placeholder="Confirm PIN"
-                                        {...register("confirmCreditCardPIN", { required: true })}
-                                        label="Confirm credit card PIN"
-                                        variant="outlined"
-                                        className="form-control"
-
-                                    />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
-                                </div>
-                            </div> */}
 
                         </div>
                         <div className="btn-wrapper">
