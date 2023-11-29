@@ -1,0 +1,82 @@
+/* Add this CSS in a separate landing-page.css file */
+.container-landing-page {
+    background: #f5f5f5;
+    width: 100%;
+  }
+  
+  /* Cards Container */
+  .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Card styles */
+  .card {
+    width: 48%; /* Adjust as needed */
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .card img {
+    width: 40%; /* Make the image take up the full width of the card */
+    margin:auto;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+  
+  .card h5 {
+    color: #008747;
+  }
+
+  .banner {
+    position: relative;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  
+  .banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    max-height: 300px; 
+    object-fit: cover;
+  }
+
+  .banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .banner-heading {
+    position: absolute;
+    top: 41%; /* Adjust the top spacing as needed */
+    left: 20px; /* Adjust the left spacing as needed */
+    color: #fff; /* Set text color */
+  }
+
+  .banner-subheading {
+    position: absolute;
+    top: 50%; /* Adjust the top spacing as needed */
+    left: 20px; /* Adjust the left spacing as needed */
+    color: #fff; /* Set text color */
+  }
+  
+  @media (max-width: 600px) {
+    /* For screens up to 600px (mobile view) */
+    .card {
+      width: 100%; /* Stack cards on top of each other in mobile view */
+    }
+    .banner {
+        max-width: 100%;
+      }
+      .banner img {
+        max-height: 200px; /* Adjust the maximum height as needed */
+      }
+  }
+  
+  
