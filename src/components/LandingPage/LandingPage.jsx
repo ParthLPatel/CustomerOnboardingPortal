@@ -25,12 +25,13 @@ const LandingPage = () => {
         <Typography variant="subtitle1" className="banner-subheading"
         style={{
           fontFamily:'sans-serif',
-          fontSize: '1.3em',
+          fontSize: '1.1em',
           fontWeight: '300',
           lineHeight:'1.5',
-          marginTop: '2em',
+          marginTop: '2.4em',
+          
         }}>Get cashback rewards on every purchase</Typography>
-        <img src={banner} alt="Credit Card Banner" />
+        <img src={banner} alt="Credit Card Banner"/>
       </div>
 
       <Container
