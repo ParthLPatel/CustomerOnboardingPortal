@@ -66,7 +66,7 @@ function CreateProfile({ formData, updateFormData }) {
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
         }
-    }, [manualProvince]);
+    }, [manualProvince, formData]);
 
     const handleAddressSearch = async (query) => {
         setInputValue(query);
