@@ -58,7 +58,11 @@ function CreateProfile({ formData, updateFormData }) {
         console.log(formData);
         setNeedsManualAddress(formData.needsManualAddress);
         setManualProvince(formData.manualProvince);
-        setCityList([...getCities(formData.manualProvince)]);
+        if(formData.manualProvince!==""){
+            setCityList([...getCities(formData.manualProvince)]);
+        }
+        
+        
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
         }
