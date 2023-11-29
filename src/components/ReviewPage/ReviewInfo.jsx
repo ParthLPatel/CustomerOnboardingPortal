@@ -104,7 +104,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                     <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="row subContainer">
+                <div className="row subContainer" style={{width:'85%'}}>
                     <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
