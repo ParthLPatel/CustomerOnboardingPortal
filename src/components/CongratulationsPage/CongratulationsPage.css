@@ -1,4 +1,10 @@
 
+.cardMainContainer{
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
 .cardContainer {
   display: flex;
   flex-direction: column;
@@ -6,6 +12,14 @@
   margin: auto;
   /* padding: 1em; */
 }
+
+.cardTracker{
+  /* border: 1px solid black; */
+  width: 80%;
+  padding: 1em; 
+}
+
+
 
 .cardPhoto {
   /* border: 1px solid red; */
@@ -16,8 +30,6 @@
 
   
 }
-
-
 
 .cardDesc {
   /* border: 1px solid green; */
@@ -30,7 +42,7 @@
 
 .frontImg{
   width: 100%;
-  min-width: 300px;
+  min-width: 295px;
   height: 200px;
 }
 
@@ -49,26 +61,71 @@
   text-align: left;
 
 }
+
+/* .signInBtnContainer{
+  display: flex;
+  justify-content: end;
+} */
+
 .signInBtn{
   width: 100%;
   border-radius: 5px;
   margin-bottom: 4em;
 }
 
+/* ipad version */
+@media only screen and (min-device-width: 625px) and (max-device-width: 900px){
+  .cardContainer{
+    flex-direction: column;
+  }
+}
+
+.cardC{
+
+}
+
 /* desktop version */
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 900px) {
+  .cardMainContainer{
+    flex-direction: row;
+    justify-content: space-between;
+    /* border: 1pxs solid orange; */
+  }
   .cardContainer{
     flex-direction: row;
     justify-content: space-between;
+    
   }
   .cardDesc{
     margin-top: 0em;
     margin-bottom: 0em
   }
   .signInBtn{
-    margin: 2em 0;
+    margin-top: 2em;
   }
   .cardDesc {
     /* margin-bottom: 2.4em */
   }
+  .widthSubContainer{
+    width: 90%;
+    /* border: 1px solid black; */
+  }
+  .cardTracker{
+    /* border: 1px solid black; */
+    width: 30%;
+    padding: 0em;
+    
+  }
+  .exceptTrackerContainer{
+    margin-left: 0.5em;
+    padding-left: 1em;
+    border-left: 0.09em solid lightgray;
+    /* border: 1px solid black; */
+  }
+  .signInBtn{
+    width: 94%;
+    border-radius: 5px;
+    margin-bottom: 1em;
+  }
+  
 }

@@ -24,6 +24,8 @@ import ReviewInfo from '../ReviewPage/ReviewInfo';
 import CrossSellPage from '../CrossSell/CrossSellPage';
 import CreditCardCrossSell from '../../models/CreditCardCrossSellModel';
 import CongratulationsPage from '../CongratulationsPage/CongratulationsPage';
+// import VerticalStepper from '../VerticalStepper/VerticalStepper';
+// import FlipCard from '../CommonComponents/FlipCard/FlipCard';
 
 
 const ParentContainer = () => {
@@ -117,6 +119,9 @@ const ParentContainer = () => {
                     path="/congratulations-page"
                     element={<CongratulationsPage progress={progress}/>}
                 />
+                {/* <Route 
+                    path='/stepper'
+                    element={<FlipCard />}/> */}
                 {/* Add routes for other pages */}
             </Routes>
         </Router>
