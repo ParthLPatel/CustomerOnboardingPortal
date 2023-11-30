@@ -23,7 +23,7 @@
   .iconsContainer {
     display: flex;
     justify-content: space-between;
-    /* border: 1px solid red; */
+    width: 100%; /* Ensure the container takes up the full width */
     padding: 0.4em;
   }
   
@@ -31,12 +31,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #ccc; /* Default color for inactive icons */
-    transition: transform 0.3s ease; /* Add transition for smooth scaling */
+    color: #ccc;
+    transition: transform 0.3s ease;
     margin-top: 1em;
-    margin-left: 1em;
-    margin-right: 1em;
-    /* border: 1px solid green; */
+    flex-grow: 1; /* Allows icons to spread across the available space */
   }
   .icon:hover {
     transform: scale(1.1); /* Adjust the scale factor for the hover effect */
