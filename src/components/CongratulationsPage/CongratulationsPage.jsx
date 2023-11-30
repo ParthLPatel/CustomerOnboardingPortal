@@ -59,7 +59,8 @@ function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSell
         
     };
     console.log(JSON.stringify(dataToEncode));
-    console.log(formDataQueryString)
+    console.log(dataToEncode.url);
+  
 
     return JSON.stringify(dataToEncode);
 };
@@ -86,7 +87,7 @@ function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSell
       <Dialog open={openDialog} onClose={handleCloseDialog}>
           <DialogTitle>Scan QR Code</DialogTitle>
           <DialogContent>
-          <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+          <QRCode value={generateQRCodeData()} renderAs="svg" size={512} />
           <DialogContentText>
               Click the button below to close this pop-up.
           </DialogContentText>

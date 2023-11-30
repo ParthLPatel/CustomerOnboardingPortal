@@ -176,7 +176,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/cross-sell"
-                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell}  progress={progress}/>}
+                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell}  progress={progress} formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="/congratulations-page"
