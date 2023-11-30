@@ -4,10 +4,11 @@ import { useForm } from "react-hook-form"
 
 import { getAddress } from "../../utils/RetrieveAddress";
 import './CreateProfile.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 import plantImg from "../../assets/plantImg.png"
@@ -23,10 +24,14 @@ function CreateProfile({ formData, updateFormData }) {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState,
+        clearErrors,
+        setError,
     } = useForm()
 
-    const onSubmit = () => console.log(formData)
+    const navigate = useNavigate();
+
+
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
@@ -36,8 +41,11 @@ function CreateProfile({ formData, updateFormData }) {
     const [manualProvince, setManualProvince] = useState('');
     const [manualCity, setManualCity] = useState('');
 
+    const [existingAddress, setExistingAddress] = useState(false);
+
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
+        clearErrors(fieldName);
     };
 
     const handleManualProvinceChange = (e) => {
@@ -48,39 +56,44 @@ function CreateProfile({ formData, updateFormData }) {
     const handleManualCityChange = (e) => {
         updateFormData({ ...formData, manualCity: e.target.value });
         setManualCity(e.target.value);
-        }
+    }
 
     const handleManualCheckboxChange = (e) => {
         setNeedsManualAddress(e.target.checked);
         updateFormData({ ...formData, needsManualAddress: e.target.checked });
     }
     useEffect(() => {
-        console.log(formData);
+
         setNeedsManualAddress(formData.needsManualAddress);
         setManualProvince(formData.manualProvince);
-        if(formData.manualProvince!==""){
+        if (formData.manualProvince !== "") {
             setCityList([...getCities(formData.manualProvince)]);
         }
 
-        
-        if(formData.manualCity!==""){
+        if (formData.homeAddress !== "") {
+            setExistingAddress(true);
+            setInputValue(formData.homeAddress);
+        }
+
+        if (formData.manualCity !== "") {
             setManualCity(formData.manualCity);
         }
+
     }, [manualProvince, formData]);
 
     const handleAddressSearch = async (query) => {
-        setInputValue(query);
-        const data = await getAddress(query);
-        console.log(data.Items);
-        setHomeAddressList(data.Items);
-        console.log(showDropdown);
-        if (data.Items?.length > 0) {
-            setShowDropdown(true);
+        if (query === "" && existingAddress) {
         } else {
-            // Handle the case when data or data.Items is null or undefined
-            setHomeAddressList("");
-            setShowDropdown(false);
+            setExistingAddress(false);
+            setInputValue(query);
+            if (query !== "") {
+                console.log("find");
+                const data = await getAddress(query);
+                // console.log(data.Items);
+                setHomeAddressList([...data.Items]);
+            }
         }
+
     };
 
     const handleOptionClick = (option) => {
@@ -93,6 +106,29 @@ function CreateProfile({ formData, updateFormData }) {
             console.error("Invalid option:", option);
         }
     };
+
+    const onSubmit = () => {
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const numberRegex = /^\d{10,12}$/;
+        const isValidNumber = numberRegex.test(formData.phoneNumber);
+        const isValidEmail = emailRegex.test(formData.emailAddress);
+        if(!isValidEmail){
+            setError("emailAddress", {
+                type: "manual",
+                message: "Please enter a valid email address",
+            });
+            return;
+        }
+
+        if(!isValidNumber){
+            setError("phoneNumber", {
+                type: "manual",
+                message: "Please enter a valid phone number",
+            });
+            return;
+        }
+        navigate("/verify-phone-number")
+    }
 
     return (
         <div>
@@ -115,7 +151,7 @@ function CreateProfile({ formData, updateFormData }) {
                         <div className="insideContainer">
 
                             <div className="row grpContainer">
-                                <div className="col">
+                                <div className="col textfield-wrapper mb-4">
                                     <TextField
                                         color="success"
                                         placeholder="First Name"
@@ -124,15 +160,16 @@ function CreateProfile({ formData, updateFormData }) {
                                         onChange={(e) => handleInputChange(e, "firstName")}
                                         label="First Name"
                                         variant="outlined"
-                                        className="form-control mb-4"
+                                        className="form-control"
                                         InputProps={{
                                             style: { borderColor: '#09874E' }, // Set your desired color
                                         }}
                                     />
-                                </div>
-                                {errors.firstName && <span>This field is required</span>}
+                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.firstName && "This field is required"}</FormHelperText>
 
-                                <div className="col">
+                                </div>
+
+                                <div className="col textfield-wrapper mb-4">
                                     <TextField
                                         color="success"
                                         placeholder="Last Name"
@@ -141,14 +178,15 @@ function CreateProfile({ formData, updateFormData }) {
                                         onChange={(e) => handleInputChange(e, "lastName")}
                                         label="Last Name"
                                         variant="outlined"
-                                        className="form-control mb-4"
+                                        className="form-control"
                                     />
+                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.lastName && "This field is required"}</FormHelperText>
                                 </div>
-                                {errors.lastName && <span>This field is required</span>}
+
                             </div>
 
                             <div className="row grpContainer">
-                                <div className="col">
+                                <div className="col mb-4">
                                     <TextField
                                         color="success"
                                         id="outlined-basic"
@@ -160,13 +198,13 @@ function CreateProfile({ formData, updateFormData }) {
                                         InputLabelProps={{
                                             shrink: true,
                                         }}
-                                        className="form-control mb-4"
+                                        className="form-control "
                                     />
+                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.birthDate && "This field is required"}</FormHelperText>
+
                                 </div>
 
-                                {errors.birthDate && <span>This field is required</span>}
-
-                                <div className="col">
+                                <div className="col mb-4">
                                     <TextField
                                         color="success"
                                         placeholder="Email Address"
@@ -175,16 +213,16 @@ function CreateProfile({ formData, updateFormData }) {
                                         onChange={(e) => handleInputChange(e, "emailAddress")}
                                         label="Email Address"
                                         variant="outlined"
-                                        className="form-control mb-4"
+                                        className="form-control "
                                     />
+                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.emailAddress && "Please enter a valid email address"}</FormHelperText>
+                            
                                 </div>
-
-                                {errors.emailAddress && <span>This field is required</span>}
-                            </div>
+                                </div>
 
                             <div className="row grpContainer">
 
-                                <div className="col">
+                                <div className="col mb-4">
                                     <TextField
                                         color="success"
                                         placeholder="Phone Number"
@@ -195,19 +233,15 @@ function CreateProfile({ formData, updateFormData }) {
                                         variant="outlined"
                                         className="form-control"
                                     />
-
+                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.phoneNumber &&"Please enter a valid phone number"}</FormHelperText>
                                 </div>
                             </div>
 
-                            {errors.phoneNumber && <span>This field is required</span>}
-
-
-
-
-
 
                             {
-                                (!needsManualAddress) ? (<Autocomplete
+                                (!needsManualAddress) ? (<><Autocomplete
+                                    clearOnEscape
+                                    filterOptions={(x) => x}
                                     options={homeAddressList}
                                     getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                     inputValue={inputValue}
@@ -218,17 +252,18 @@ function CreateProfile({ formData, updateFormData }) {
                                             label="Home Address"
                                             variant="outlined"
                                             fullWidth
-                                            onChange={(e) => handleInputChange(e, "homeAddress")}
-                                            color="success"
 
+                                            color="success"
                                         />
                                     )}
                                     isOptionEqualToValue={(option, value) =>
                                         `${option.Text}, ${option.Description}` === value
                                     }
                                     onChange={(event, newValue) => handleOptionClick(newValue)}
-                                    className="mt-4 mb-2 "
-                                />) : (
+                                    className="mb-4 "
+
+                                /> <FormHelperText sx={{ color: "crimson" }}>{formState.errors.address && "This field is required"}</FormHelperText>
+                                </>) : (
                                     <div></div>
                                 )
                             }
@@ -236,9 +271,10 @@ function CreateProfile({ formData, updateFormData }) {
                                 <FormControlLabel control={<Checkbox color="success" />} checked={needsManualAddress} label="Can't find address? Needs to enter the address manually"
                                     onChange={e => handleManualCheckboxChange(e)}
                                     style={{
-                                        padding:'1em 0',
-                                        fontSize:'1em',
-                                        lineHeight:'1.5',
+                                        // padding: '1em 0',
+                                        fontSize: '1em',
+                                        lineHeight: '1.5',
+                                        marginBottom: '1.5rem'
                                     }}
                                 />
                             </FormGroup>
@@ -247,7 +283,7 @@ function CreateProfile({ formData, updateFormData }) {
                                 (needsManualAddress) ? (
                                     <>
                                         <div className="row grpContainer">
-                                            <div className="col-12 col-md-8 mt-4">
+                                            <div className="col-12 col-md-8 mb-4">
                                                 <TextField
                                                     color="success"
                                                     placeholder="Address line"
@@ -258,9 +294,9 @@ function CreateProfile({ formData, updateFormData }) {
                                                     variant="outlined"
                                                     className="form-control"
                                                 />
-
+                                                <FormHelperText sx={{ color: "crimson" }}>{formState.errors.manualAddressLine && "This field is required"}</FormHelperText>
                                             </div>
-                                            <div className="col-12 col-md-4 mt-4">
+                                            <div className="col-12 col-md-4 mb-4">
                                                 <TextField
                                                     color="success"
                                                     placeholder="Postal code"
@@ -271,39 +307,40 @@ function CreateProfile({ formData, updateFormData }) {
                                                     variant="outlined"
                                                     className="form-control"
                                                 />
+                                                <FormHelperText sx={{ color: "crimson" }}>{formState.errors.manualPostalCode && "This field is required"}</FormHelperText>
                                             </div>
                                         </div>
                                         <div className="row grpContainer">
-                                            <div className="col-12 col-md-6">
+                                            <div className="col-12 col-md-6 mb-4 pt-0">
                                                 <FormControl fullWidth>
-                                                    <InputLabel id="province-label">Province</InputLabel>
+                                                    <InputLabel color="success" id="province-label">Province</InputLabel>
                                                     <Select
                                                         labelId="province-label"
                                                         id="manual-province"
                                                         value={manualProvince}
                                                         label="Province"
                                                         color="success"
-                                                        onChange={e=>handleManualProvinceChange(e)}
+                                                        onChange={e => handleManualProvinceChange(e)}
                                                     >
                                                         {
-                                                            getProvinces().map(p=><MenuItem key={p} value={p}>{p}</MenuItem>)
+                                                            getProvinces().map(p => <MenuItem key={p} value={p}>{p}</MenuItem>)
                                                         }
                                                     </Select>
                                                 </FormControl>
                                             </div>
-                                            <div className="col-12 col-md-6">
-                                            <FormControl fullWidth>
-                                                    <InputLabel id="city-label">City</InputLabel>
+                                            <div className="col-12 col-md-6 mb-4 pt-0">
+                                                <FormControl fullWidth>
+                                                    <InputLabel color="success" id="city-label">City</InputLabel>
                                                     <Select
                                                         labelId="city-label"
                                                         id="manual-city"
                                                         value={manualCity}
                                                         label="City"
                                                         color="success"
-                                                        onChange={e=>handleManualCityChange(e)}
+                                                        onChange={e => handleManualCityChange(e)}
                                                     >
                                                         {
-                                                            cityList.map(p=><MenuItem key={p} value={p}>{p}</MenuItem>)
+                                                            cityList.map(p => <MenuItem key={p} value={p}>{p}</MenuItem>)
                                                         }
                                                     </Select>
                                                 </FormControl>
@@ -319,10 +356,12 @@ function CreateProfile({ formData, updateFormData }) {
 
                         </div>
                         <div className="btn-wrapper">
-                            <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
+                            {/* <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
-                            </Link>
-
+                            </Link> */}
+                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                Submit button
+                            </button>
                             <Link to="/" className="manulife-btn btn-white text-decoration-none">
                                 Back
                             </Link>
