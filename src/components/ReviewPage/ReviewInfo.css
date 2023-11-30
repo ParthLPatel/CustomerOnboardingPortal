@@ -100,7 +100,9 @@ width: 80%;
   font-weight: 600;
 }
 
-
+/* .visibility{
+  padding-top:1em;
+} */
 
 /* modbile version */
 @media only screen and (max-width: 625px) {
