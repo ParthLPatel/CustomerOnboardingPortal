@@ -7,12 +7,20 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import ProgressBar from "../ProgressBar/ProgressBar";
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import QRCode from "qrcode.react";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
 import "./CrossSellPage.css";
 
 
-const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
+const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHoldFormData, setHoldFinancialInfoData, setHoldCreditCrossSellData, updateCreditCardCrossSell }) => {
     const {
         register,
         handleSubmit,
@@ -23,7 +31,43 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [newChecking, setNewChecking] = useState(false);
     const [newSaving, setNewSaving] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOpenDialog = () => {
+      setOpenDialog(true);
+    };
+  
+    const handleCloseDialog = () => {
+      setOpenDialog(false);
+    };
+  
+    const generateQRCodeData = () => {
+  
+      const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+      const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
+      const dataToEncode = {
+          url: `https://main.d3jrvl3sduvqep.amplifyapp.com/cross-sell?formData=${formDataQueryString}&financial=${financialDataQueryString}`,
+          formData: formData,
+          financialInfoData: financialInfoData
+      };
+      console.log(JSON.stringify(dataToEncode));
+      console.log(dataToEncode.url);
+      return JSON.stringify(dataToEncode);
+  };
+
     useEffect(() => {
+        const queryParams = new URLSearchParams(window.location.search);
+        const formDataParam = queryParams.get('formData');
+        const financialDataParam = queryParams.get('financial');
+      
+  
+        if (formDataParam && financialDataParam) {
+            const formDataFromQR = JSON.parse(formDataParam);
+            const financialDataFromQR = JSON.parse(financialDataParam);
+            setHoldFormData(formDataFromQR);
+            setHoldFinancialInfoData(financialDataFromQR);
+            
+        }
 
         if (creditCardCrossSell?.accountIntent) {
             setSelectedOptions([...creditCardCrossSell?.accountIntent]);
@@ -75,6 +119,7 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                 <div className="progressBarContainer1">
                     <ProgressBar progress={6} /> {/* Pass the progress for this page */}
                 </div>
+
                 <div className="subContainer">
                     <p className="header_label" style={{textAlign:"left"}}>Congratulations! Your credit card has been approved!</p>
                     <div>
@@ -156,6 +201,30 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
                                 Back
                             </Link>
                         </div>
+
+                        <div style={{display:"flex"}}>
+                            <QrCodeScannerIcon
+                            src="path/to/your/qr-code-icon.png"
+                            alt="QR Code Icon"
+                            onClick={handleOpenDialog} // Open the dialog on icon click
+                            style={{marginRight:"10px"}}
+                            />
+                            <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                        </div>
+
+                        {/* Dialog for displaying QR code */}
+                        <Dialog open={openDialog} onClose={handleCloseDialog}>
+                            <DialogTitle>Scan QR Code</DialogTitle>
+                            <DialogContent>
+                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                            <DialogContentText>
+                                Click the button below to close this pop-up.
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleCloseDialog}>Close</Button>
+                            </DialogActions>
+                        </Dialog>
                     </form>
                 </div></div>
         </div>)

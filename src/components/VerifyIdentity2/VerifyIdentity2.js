@@ -1,11 +1,51 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProgressBar from "../ProgressBar/ProgressBar";
 import { Link } from 'react-router-dom';
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import QRCode from "qrcode.react";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+import Button from '@mui/material/Button';
+
 import './VerifyIdentity2.css';
 
-function VerifyIdentity2({ formData, updateFormData }) {
+function VerifyIdentity2({ formData, updateFormData, setHoldFormData }) {
   const [isCheckboxChecked, setIsCheckboxChecked] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
+  useEffect(() => {
+
+    // searching for params in link if any and passing that data to the parent
+    const queryParams = new URLSearchParams(window.location.search);
+    const formDataParam = queryParams.get('formData');
+    if (formDataParam) {
+        const formDataFromQR = JSON.parse(formDataParam);
+        setHoldFormData(formDataFromQR);
+    }
+  }, []);
+
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+const generateQRCodeData = () => {
+
+    const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+    const dataToEncode = {
+        url: `https://main.d3jrvl3sduvqep.amplifyapp.com/confirm-identity?formData=${formDataQueryString}`,
+        formData: formData,
+        
+    };
+    return JSON.stringify(dataToEncode);
+};
   const handleCheckboxChange = () => {
     setIsCheckboxChecked(!isCheckboxChecked);
   };
@@ -62,6 +102,30 @@ function VerifyIdentity2({ formData, updateFormData }) {
             Back
           </Link>
         </div>
+
+        <div style={{display:"flex"}}>
+          <QrCodeScannerIcon
+          src="path/to/your/qr-code-icon.png"
+          alt="QR Code Icon"
+          onClick={handleOpenDialog} // Open the dialog on icon click
+          style={{marginRight:"10px"}}
+          />
+          <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+      </div>
+
+        {/* Dialog for displaying QR code */}
+        <Dialog open={openDialog} onClose={handleCloseDialog}>
+            <DialogTitle>Scan QR Code</DialogTitle>
+            <DialogContent>
+            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+            <DialogContentText>
+                Click the button below to close this pop-up.
+            </DialogContentText>
+            </DialogContent>
+            <DialogActions>
+            <Button onClick={handleCloseDialog}>Close</Button>
+            </DialogActions>
+        </Dialog>
       </div>
     </div>
   );

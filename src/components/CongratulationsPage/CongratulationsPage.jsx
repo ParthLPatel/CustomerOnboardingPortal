@@ -1,15 +1,16 @@
 import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
-
 import VerticalStepper from '../VerticalStepper/VerticalStepper';
 import cardFront from '../../assets/Visa_Infinite_EN.png'
+
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard'
 
-function CongratulationsPage({ formData, updateFormData }) {
+function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSellData, setHoldFinancialInfoData, financialInfoData, creditCardCrossSell }) {
+  
+
   return (
     <div className="container" >
-
       <div className="progressBarContainer1">
           {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
           <ProgressBar progress={6} /> {/* Pass the progress for this page */}
