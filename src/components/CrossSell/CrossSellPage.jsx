@@ -150,9 +150,9 @@ const CrossSellPage = ({ creditCardCrossSell, updateCreditCardCrossSell }) => {
 
 
                         <div className="btn-wrapper">
-                        <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                        <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                     Continue</button>
-                            <Link to="/review-info" className="manulife-btn btn-white text-decoration-none" >
+                            <Link to="/review-info" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back
                             </Link>
                         </div>

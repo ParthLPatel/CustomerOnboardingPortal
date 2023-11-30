@@ -29,18 +29,6 @@ function VerifyIdentity({ formData, updateFormData }) {
   const [verificationOption, setVerificationOption] = useState('online'); // Add the missing state
   const [IDtype, setIDType] = useState(''); // Add the missing state
 
-
-
-//         IDtype: "",
-//         selectedIDFile: "",
-//         selectedSelfieFile: "",
-//         verificationOption: "",
-
-
-  // const handleInputChange = (e, fieldName) => {
-  //     updateFormData({ ...formData, [fieldName]: e.target.value });
-  // };
-
   const handleIDtype = (e) => {
       setIDType(e.target.value);
       updateFormData({ ...formData, IDtype:  e.target.value});
@@ -101,6 +89,7 @@ function VerifyIdentity({ formData, updateFormData }) {
                 textTransform: "none",
                 color: "black",
                 fontWeight: "600",
+                padding:'10px 12px',
                 backgroundColor: verificationOption === 'online' ? '#BBDBC5' : 'white',
                 borderColor: verificationOption === 'online' ? '#09874E' : 'gray',
 
@@ -122,6 +111,7 @@ function VerifyIdentity({ formData, updateFormData }) {
                 textTransform: "none",
                 color: "black",
                 fontWeight: "600",
+                padding:'10px 12px',
                 backgroundColor: verificationOption === 'inPerson' ? '#BBDBC5' : 'white',
                 borderColor: verificationOption === 'inPerson' ? '#09874E' : 'gray',
               }}
@@ -177,11 +167,15 @@ function VerifyIdentity({ formData, updateFormData }) {
                         fontSize: "14px",
                         border: "1px solid gray",
                         lineHeight: "20px",
-                        letterSpacing: "0.1px",
+                        letterSpacing: "0.2px",
                         borderRadius: "100px",
                         textTransform: 'none',
+                        paddingTop: '10px',
+                        paddingBottom: '10px',
+                        paddingRight:'24px',
+                        paddingLeft:'16px',
                         textAlign: "center" }}>
-              + Upload ID photo
+              +&nbsp;&nbsp;Upload ID photo
             </Button>
           </div>
 
@@ -207,21 +201,27 @@ function VerifyIdentity({ formData, updateFormData }) {
                       fontWeight: 500,
                       fontSize: "14px",
                       border: "1px solid gray",
+                      letterSpacing: "0.2px",
                       lineHeight: "20px",
-                      letterSpacing: "0.1px",
                       borderRadius: "100px",
                       textTransform: 'none',
+                      paddingTop: '10px',
+                      paddingBottom: '10px',
+                      paddingRight:'24px',
+                      paddingLeft:'16px',
                       textAlign: "center" }}>
-              + Upload selfie
+              +&nbsp;&nbsp;Upload selfie
             </Button>
           </div>
     
             <div className="btn-wrapper my-4">
-                <Link to="/verify-phone-number" className="manulife-btn btn-white text-decoration-none">
-                    Back
+                <Link to="/confirm-identity" className="manulife-btn btn-orange text-decoration-none"
+                  style={{fontWeight:'700', fontSize:'18px'}}>
+                    Continue
                 </Link>
-                <Link to="/confirm-identity" className="manulife-btn btn-orange text-decoration-none">
-                Continue
+                <Link to="/verify-phone-number" className="manulife-btn btn-white text-decoration-none"
+                  style={{fontWeight:'700', fontSize:'18px'}}>
+                    Back
                 </Link>
             </div>
           </form>   

@@ -199,7 +199,7 @@ const LandingPage = () => {
                   marginTop: "2em",
                   marginBottom: "1em",
                   color:'#ED6453',
-                }}>LEARN MORE</span>
+                }}>APPLY NOW</span>
             </Link>
           </div>
 
@@ -320,7 +320,7 @@ const LandingPage = () => {
                   marginTop: "2em",
                   marginBottom: "1em",
                   color:'#ED6453',
-                }}>LEARN MORE</span>
+                }}>APPLY NOW</span>
             </Link>
 
           </div>

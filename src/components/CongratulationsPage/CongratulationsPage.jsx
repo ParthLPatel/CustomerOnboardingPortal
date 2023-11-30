@@ -59,7 +59,7 @@ function CongratulationsPage({ formData, updateFormData }) {
 
           </div>
           <div className='signInBtnContainer'>
-                <button className="manulife-btn btn-orange signInBtn">Sign in</button>
+                <button className="manulife-btn btn-orange signInBtn" style={{fontWeight:'700', fontSize:'18px'}}>Sign in</button>
             </div>
 </div>
             

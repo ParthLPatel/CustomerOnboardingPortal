@@ -353,9 +353,9 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData }) =>
                             }
 
                             <div className="btn-wrapper" style={{ padding: "0em", marginLeft: "0.4em" }}>
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                     Continue</button>
-                                <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel}>
+                                <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel} style={{fontWeight:'700', fontSize:'18px'}}>
                                     Back
                                 </Link>
                             </div>

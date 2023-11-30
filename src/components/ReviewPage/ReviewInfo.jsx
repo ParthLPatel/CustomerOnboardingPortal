@@ -105,12 +105,12 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                     <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="row subContainer" style={{width:'80%'}}>
-                    <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
+                <div className="row subContainer reviewInfoSubContainer">
+                    <p className="header_label" style={{ textAlign: "left", marginBottom:'2em'}}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Contact Information</span>
-                            <span onClick={handleEditContactInfoDialogOpen}><EditIcon />(Edit)</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', fontSize:'1.2rem'}}>Contact Information</span>
+                            <span onClick={handleEditContactInfoDialogOpen} className="editContainer"><EditIcon style={{marginRight:'0.2em'}}/>(Edit)</span>
                             <CreateProfileDialog open={openContactInfoDialog}
                                 onClose={handleEditContactInfoDialogClose} formData={formData} updateFormData={updateFormData} />
                         </div>
@@ -146,8 +146,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Employment Information</span>
-                            <span onClick={handleEditFinancialInfoDialogOpen}><EditIcon />(Edit)</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', fontSize:'1.2rem'}}>Employment Information</span>
+                            <span onClick={handleEditFinancialInfoDialogOpen} className="editContainer"><EditIcon style={{marginRight:'0.2em'}}/>(Edit)</span>
                             <FinancialInformationDialog open={openFinancialInfoDialog}
                                 onClose={handleEditFinancialInfoDialogClose} formData={financialInfoData} updateFormData={updateFinancialInfoData} />
                         </div>
@@ -221,6 +221,9 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             name="detailsVerified"
                             checked={isCheckboxChecked}
                             onChange={handleCheckboxChange}
+                            style={{
+                                marginBottom:'3em',
+                            }}
                         />
                         </FormGroup>
 
@@ -230,16 +233,15 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                 <div className="col">
                                     <TextField
                                         color="success"
-                                        placeholder="PIN"
+                                        placeholder="Enter PIN"
                                         {...register("creditCardPIN", { required: true })}
                                         value={formData.creditCardPIN}
                                         onChange={(e) => handleInputChange(e, "creditCardPIN")}
-                                        label="Credit card PIN"
                                         variant="outlined"
                                         className="form-control"
 
                                     />
-                                    <FormHelperText sx={{ color: "#09874E" }}>*This PIN will be your credit card PIN</FormHelperText>
+                                    <FormHelperText sx={{ color: "#09874E", marginBottom:'1.4em' }}>*This PIN will be your credit card PIN</FormHelperText>
 
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                                 </div>
@@ -249,7 +251,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         color="success"
                                         placeholder="Confirm PIN"
                                         {...register("confirmCreditCardPIN", { required: true })}
-                                        label="Confirm credit card PIN"
+                                        label="Confirm PIN"
                                         variant="outlined"
                                         className="form-control"
 
@@ -262,7 +264,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                         <div>
                             <div className="review-page-header">Online Banking Information</div>
                             <div className="row grpContainer my-4 px-0">
-                                <div className="col-12 col-md-8">
+                                <div className="col-12 col-md-6">
                                     <TextField
                                         color="success"
 
@@ -277,7 +279,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText>
                                 </div>
-                                <div className="col-12 col-md-4">
+                                <div className="col-12 col-md-6">
                                 <FormGroup>
                                 <FormControlLabel control={<Checkbox color="success" />} checked={useEmailAsUsername} label="Use email address "
                                     onChange={e => handleuChangeUseEmailAsUsernameCheckBoxChange(e)}
@@ -318,18 +320,18 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                                            <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none" >
-                                                            Submit application
-                                                        </Link>
-                                // <button type="submit" className="manulife-btn btn-orange text-decoration-none ">
-                                //     Submit application
-                                // </button>
+                                <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none" 
+                                style={{fontWeight:'700', fontSize:'18px'}}>
+                                    Submit application
+                                </Link>
                             ) : (
-                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit</button>
+                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled
+                                style={{fontWeight:'700', fontSize:'18px'}}>Submit</button>
                             )}
-                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
-                                Back
-                            </Link>
+                                <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" 
+                                style={{fontWeight:'700', fontSize:'18px'}}>
+                                    Back
+                                </Link>
                         </div>
                     </form>
                 </div>

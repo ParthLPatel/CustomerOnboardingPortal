@@ -31,7 +31,6 @@ function CreateProfile({ formData, updateFormData }) {
 
     const navigate = useNavigate();
 
-
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
@@ -359,10 +358,10 @@ function CreateProfile({ formData, updateFormData }) {
                             {/* <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
                             </Link> */}
-                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                            <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Submit button
                             </button>
-                            <Link to="/" className="manulife-btn btn-white text-decoration-none">
+                            <Link to="/" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back
                             </Link>
                         </div>

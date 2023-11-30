@@ -13,6 +13,7 @@ import './CreateProfile.css'
 
 // import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
+import FormHelperText from '@mui/material/FormHelperText';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
 // import plantImg from "../../assets/plantImg.png"
@@ -31,10 +32,12 @@ const CreateProfileDialog = (props) => {
     const {
         register,
         handleSubmit,
-        // formState,
+        formState,
+        clearErrors,
+        setError,
     } = useForm()
 
-    
+
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
@@ -43,12 +46,13 @@ const CreateProfileDialog = (props) => {
     const [cityList, setCityList] = useState([]);
     const [manualProvince, setManualProvince] = useState('');
     const [manualCity, setManualCity] = useState('');
-    const [tempFormData,setTempFormData] = useState({});
+    const [tempFormData, setTempFormData] = useState({});
 
     const [existingAddress, setExistingAddress] = useState(false);
 
     const handleInputChange = (e, fieldName) => {
         setTempFormData({ ...tempFormData, [fieldName]: e.target.value });
+        clearErrors(fieldName);
     };
 
     const handleManualProvinceChange = (e) => {
@@ -73,19 +77,19 @@ const CreateProfileDialog = (props) => {
         if (formData.manualCity !== "") {
             setManualCity(formData.manualCity);
         }
-        if(formData.homeAddress!==""){
+        if (formData.homeAddress !== "") {
             setExistingAddress(true);
             setInputValue(formData.homeAddress);
         }
-        setTempFormData({...formData});
+        setTempFormData({ ...formData });
     }, [formData]);
 
     const handleAddressSearch = async (query) => {
-        if(query==="" && existingAddress){
-        }else{
+        if (query === "" && existingAddress) {
+        } else {
             setExistingAddress(false);
             setInputValue(query);
-            if(query!==""){
+            if (query !== "") {
                 console.log("find");
                 const data = await getAddress(query);
                 // console.log(data.Items);
@@ -106,29 +110,48 @@ const CreateProfileDialog = (props) => {
     };
 
     const onSubmit = () => {
-        updateFormData({...tempFormData,manualCity,manualProvince,needsManualAddress});
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const numberRegex = /^\d{10,12}$/;
+        const isValidNumber = numberRegex.test(formData.phoneNumber);
+        const isValidEmail = emailRegex.test(formData.emailAddress);
+        if (!isValidEmail) {
+            setError("emailAddress", {
+                type: "manual",
+                message: "Please enter a valid email address",
+            });
+            return;
+        }
+
+        if (!isValidNumber) {
+            setError("phoneNumber", {
+                type: "manual",
+                message: "Please enter a valid phone number",
+            });
+            return;
+        }
+        updateFormData({ ...tempFormData, manualCity, manualProvince, needsManualAddress });
         onClose();
     }
 
-    
+
     const handleClose = (e) => {
         e.preventDefault();
         onClose();
     };
 
     return (
-        <Dialog onClose={handleClose} open={open}>
+        <Dialog onClose={handleClose} open={open} >
             <DialogTitle>Edit Contact Information</DialogTitle>
             <div>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                
+
                     <div className="container">
 
                         <div className="row subContainer mt-2" >
                             <div className="insideContainer">
 
                                 <div className="row grpContainer">
-                                    <div className="col">
+                                    <div className="col mb-4">
                                         <TextField
                                             color="success"
                                             placeholder="First Name"
@@ -137,15 +160,16 @@ const CreateProfileDialog = (props) => {
                                             onChange={(e) => handleInputChange(e, "firstName")}
                                             label="First Name"
                                             variant="outlined"
-                                            className="form-control mb-4"
+                                            className="form-control"
                                             InputProps={{
                                                 style: { borderColor: '#09874E' }, // Set your desired color
                                             }}
                                         />
-                                    </div>
-                                    {/* {errors.firstName && <span>This field is required</span>} */}
+                                        <FormHelperText sx={{ color: "crimson" }}>{formState.errors.firstName && "This field is required"}</FormHelperText>
 
-                                    <div className="col">
+                                    </div>
+
+                                    <div className="col mb-4">
                                         <TextField
                                             color="success"
                                             placeholder="Last Name"
@@ -154,14 +178,15 @@ const CreateProfileDialog = (props) => {
                                             onChange={(e) => handleInputChange(e, "lastName")}
                                             label="Last Name"
                                             variant="outlined"
-                                            className="form-control mb-4"
+                                            className="form-control"
                                         />
+                                        <FormHelperText sx={{ color: "crimson" }}>{formState.errors.lastName && "This field is required"}</FormHelperText>
+
                                     </div>
-                                    {/* {errors.lastName && <span>This field is required</span>} */}
                                 </div>
 
                                 <div className="row grpContainer">
-                                    <div className="col">
+                                    <div className="col  mb-4">
                                         <TextField
                                             color="success"
                                             id="outlined-basic"
@@ -173,13 +198,12 @@ const CreateProfileDialog = (props) => {
                                             InputLabelProps={{
                                                 shrink: true,
                                             }}
-                                            className="form-control mb-4"
+                                            className="form-control"
                                         />
+                                        <FormHelperText sx={{ color: "crimson" }}>{formState.errors.birthDate && "This field is required"}</FormHelperText>
+
                                     </div>
-
-                                    {/* {errors.birthDate && <span>This field is required</span>} */}
-
-                                    <div className="col">
+                                    <div className="col  mb-4">
                                         <TextField
                                             color="success"
                                             placeholder="Email Address"
@@ -188,16 +212,17 @@ const CreateProfileDialog = (props) => {
                                             onChange={(e) => handleInputChange(e, "emailAddress")}
                                             label="Email Address"
                                             variant="outlined"
-                                            className="form-control mb-4"
+                                            className="form-control"
                                         />
+                                        <FormHelperText sx={{ color: "crimson" }}>{formState.errors.emailAddress && "Please enter a valid email address"}</FormHelperText>
+
                                     </div>
 
-                                    {/* {errors.emailAddress && <span>This field is required</span>} */}
                                 </div>
 
                                 <div className="row grpContainer">
 
-                                    <div className="col">
+                                    <div className="col mb-4">
                                         <TextField
                                             color="success"
                                             placeholder="Phone Number"
@@ -208,14 +233,14 @@ const CreateProfileDialog = (props) => {
                                             variant="outlined"
                                             className="form-control"
                                         />
+                                        <FormHelperText sx={{ color: "crimson" }}>{formState.errors.phoneNumber && "Please enter a valid phone number"}</FormHelperText>
 
                                     </div>
                                 </div>
 
-                                {/* {errors.phoneNumber && <span>This field is required</span>} */}
-
                                 {
-                                    (!needsManualAddress) ? (<Autocomplete
+                                    (!needsManualAddress) ? (<><Autocomplete
+                                        className="mb-4 "
                                         clearOnEscape
                                         filterOptions={(x) => x}
                                         options={homeAddressList}
@@ -237,22 +262,28 @@ const CreateProfileDialog = (props) => {
                                             `${option.Text}, ${option.Description}` === value
                                         }
                                         onChange={(event, newValue) => handleOptionClick(newValue)}
-                                        className="mt-4 mb-2 "
-                                    />) : (
+                                    /><FormHelperText sx={{ color: "crimson" }}>{formState.errors.address && "This field is required"}</FormHelperText>
+                                    </>) : (
                                         <div></div>
                                     )
                                 }
                                 <FormGroup>
                                     <FormControlLabel control={<Checkbox color="success" />} checked={needsManualAddress} label="Can't find address? Needs to enter the address manually"
                                         onChange={e => handleManualCheckboxChange(e)}
+                                        style={{
+                                            // padding: '1em 0',
+                                            fontSize: '1em',
+                                            lineHeight: '1.5',
+                                            marginBottom: '1.5rem'
+                                        }}
                                     />
                                 </FormGroup>
 
                                 {
                                     (needsManualAddress) ? (
                                         <>
-                                            <div className="row grpContainer my-2">
-                                                <div className="col-12 col-md-8">
+                                            <div className="row grpContainer">
+                                                <div className="col-12 col-md-8  mb-4">
                                                     <TextField
                                                         color="success"
                                                         placeholder="Address line"
@@ -263,9 +294,10 @@ const CreateProfileDialog = (props) => {
                                                         variant="outlined"
                                                         className="form-control"
                                                     />
+                                                    <FormHelperText sx={{ color: "crimson" }}>{formState.errors.manualAddressLine && "This field is required"}</FormHelperText>
 
                                                 </div>
-                                                <div className="col-12 col-md-4">
+                                                <div className="col-12 col-md-4 mb-4">
                                                     <TextField
                                                         color="success"
                                                         placeholder="Postal code"
@@ -276,10 +308,12 @@ const CreateProfileDialog = (props) => {
                                                         variant="outlined"
                                                         className="form-control"
                                                     />
+                                                     <FormHelperText sx={{ color: "crimson" }}>{formState.errors.manualPostalCode && "This field is required"}</FormHelperText>
+                                            
                                                 </div>
                                             </div>
-                                            <div className="row grpContainer my-2">
-                                                <div className="col-12 col-md-6">
+                                            <div className="row grpContainer">
+                                                <div className="col-12 col-md-6  mb-4 pt-0">
                                                     <FormControl fullWidth>
                                                         <InputLabel color="success" id="province-label">Province</InputLabel>
                                                         <Select
@@ -296,7 +330,7 @@ const CreateProfileDialog = (props) => {
                                                         </Select>
                                                     </FormControl>
                                                 </div>
-                                                <div className="col-12 col-md-6">
+                                                <div className="col-12 col-md-6  mb-4 pt-0">
                                                     <FormControl fullWidth>
                                                         <InputLabel id="city-label" color="success">City</InputLabel>
                                                         <Select
@@ -322,11 +356,11 @@ const CreateProfileDialog = (props) => {
 
                             </div>
                             <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                     Submit
                                 </button>
 
-                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none">
+                                <button onClick={e => handleClose(e)} className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                     Cancel
                                 </button>
                             </div>

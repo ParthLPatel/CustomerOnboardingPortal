@@ -10,17 +10,6 @@ function VerifyIdentity2({ formData, updateFormData }) {
     setIsCheckboxChecked(!isCheckboxChecked);
   };
 
-  // const handleContinueClick = () => {
-  //   // Check if the checkbox is checked before proceeding
-  //   if (isCheckboxChecked) {
-  //     // Continue with your logic
-  //     console.log('Continue button clicked');
-  //   } else {
-  //     // Optionally, you can show a message or perform some other action
-  //     console.log('Checkbox not checked. Please check before continuing.');
-  //   }
-  // };
-
   return (
     <div className='container'>
       <div className="progressBarContainer1">
@@ -34,16 +23,16 @@ function VerifyIdentity2({ formData, updateFormData }) {
 
         <div className="verification-details">
           <p className='idContainer'>
-            <p className='dropdown my-1'>ID Type</p>
-            <p>{formData.IDtype}</p>
+            <p className='eachLabel my-2'>ID Type</p>
+            <p className='eachLabelValue'>{formData.IDtype}</p>
           </p>
           <p className='idContainer'>
-            <p className='dropdown my-1'>ID Number</p>
-            <p>123456</p>
+            <p className='eachLabel my-2'>ID Number</p>
+            <p className='eachLabelValue'>123456</p>
           </p>
           <p className='idContainer'>
-            <p className='dropdown my-1'>Expiry Date</p>
-            <p>2030/05/21</p>
+            <p className='eachLabel my-2'>Expiry Date</p>
+            <p className='eachLabelValue'>2030/05/21</p>
           </p>
         </div>
 
@@ -59,16 +48,19 @@ function VerifyIdentity2({ formData, updateFormData }) {
         </div>
 
         <div className="btn-wrapper my-4 px-0">
-          <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none">
+          {isCheckboxChecked ? (
+              <Link to="/financial-info" className="manulife-btn btn-orange text-decoration-none "
+              style={{fontWeight:'700', fontSize:'18px'}}>
+                Continue
+              </Link>
+          ) : (
+            <span className="manulife-btn btn-orange btn-orange-lighter"
+            style={{fontWeight:'700', fontSize:'18px'}}>Continue</span>
+          )}
+          <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none"
+          style={{fontWeight:'700', fontSize:'18px'}}>
             Back
           </Link>
-          {isCheckboxChecked ? (
-            <Link to="/financial-info" className="manulife-btn btn-orange text-decoration-none ">
-              Continue
-            </Link>
-          ) : (
-            <span className="manulife-btn btn-orange btn-orange-lighter">Continue</span>
-          )}
         </div>
       </div>
     </div>
