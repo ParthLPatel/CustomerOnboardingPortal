@@ -9,13 +9,13 @@ import { useForm } from "react-hook-form"
 
 import { getAddress } from "../../utils/RetrieveAddress";
 import './CreateProfile.css'
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
-import ProgressBar from "../ProgressBar/ProgressBar";
+// import ProgressBar from "../ProgressBar/ProgressBar";
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Checkbox from '@mui/material/Checkbox';
-import plantImg from "../../assets/plantImg.png"
+// import plantImg from "../../assets/plantImg.png"
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import InputLabel from '@mui/material/InputLabel';
@@ -31,7 +31,7 @@ const CreateProfileDialog = (props) => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        // formState,
     } = useForm()
 
     
@@ -73,7 +73,7 @@ const CreateProfileDialog = (props) => {
         }
 
         setTempFormData({...formData});
-    }, []);
+    }, [formData]);
 
     const handleAddressSearch = async (query) => {
         setInputValue(query);

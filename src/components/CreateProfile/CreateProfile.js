@@ -69,7 +69,7 @@ function CreateProfile({ formData, updateFormData }) {
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
         }
-    }, [manualProvince]);
+    }, [manualProvince, formData]);
 
     const handleAddressSearch = async (query) => {
         setInputValue(query);
@@ -239,14 +239,19 @@ function CreateProfile({ formData, updateFormData }) {
                             <FormGroup>
                                 <FormControlLabel control={<Checkbox color="success" />} checked={needsManualAddress} label="Can't find address? Needs to enter the address manually"
                                     onChange={e => handleManualCheckboxChange(e)}
+                                    style={{
+                                        padding:'1em 0',
+                                        fontSize:'1em',
+                                        lineHeight:'1.5',
+                                    }}
                                 />
                             </FormGroup>
 
                             {
                                 (needsManualAddress) ? (
                                     <>
-                                        <div className="row grpContainer my-2">
-                                            <div className="col-12 col-md-8">
+                                        <div className="row grpContainer">
+                                            <div className="col-12 col-md-8 mt-4">
                                                 <TextField
                                                     color="success"
                                                     placeholder="Address line"
@@ -259,7 +264,7 @@ function CreateProfile({ formData, updateFormData }) {
                                                 />
 
                                             </div>
-                                            <div className="col-12 col-md-4">
+                                            <div className="col-12 col-md-4 mt-4">
                                                 <TextField
                                                     color="success"
                                                     placeholder="Postal code"
@@ -272,7 +277,7 @@ function CreateProfile({ formData, updateFormData }) {
                                                 />
                                             </div>
                                         </div>
-                                        <div className="row grpContainer my-2">
+                                        <div className="row grpContainer">
                                             <div className="col-12 col-md-6">
                                                 <FormControl fullWidth>
                                                     <InputLabel id="province-label">Province</InputLabel>

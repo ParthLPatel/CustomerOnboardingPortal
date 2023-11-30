@@ -17,7 +17,6 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
         setValue,
         setError,
@@ -25,7 +24,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     } = useForm()
     const navigate = useNavigate();
 
-    const { firstName, lastName, birthDate, homeAddress, emailAddress, phoneNumber } = formData;
+    const { firstName, lastName, birthDate, emailAddress, phoneNumber } = formData;
     //const { annualIncome, otherHouseholdIncome, employmentStatus, employerName, employerIndustry, institutionName, graduationDate } = financialInfoData;
     const annualIncome = financialInfoData?.annualIncome || '';
     const otherHouseholdIncome = financialInfoData?.otherHouseholdIncome || '';
@@ -34,6 +33,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     const employerIndustry = financialInfoData?.employerIndustry || '';
     const institutionName = financialInfoData?.institutionName || '';
     const graduationDate = financialInfoData?.graduationDate || '';
+
+    console.log(otherHouseholdIncome);
     
     const [useEmailAsUsername, setUseEmailAsUsername] = useState(true);
     const handleuChangeUseEmailAsUsernameCheckBoxChange = (e)=>{
@@ -104,11 +105,11 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                     <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="row subContainer">
+                <div className="row subContainer" style={{width:'80%'}}>
                     <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3">Your Contact Information</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Contact Information</span>
                             <span onClick={handleEditContactInfoDialogOpen}><EditIcon />(Edit)</span>
                             <CreateProfileDialog open={openContactInfoDialog}
                                 onClose={handleEditContactInfoDialogClose} formData={formData} updateFormData={updateFormData} />
@@ -145,7 +146,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3">Your Employment Information</span>
+                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Employment Information</span>
                             <span onClick={handleEditFinancialInfoDialogOpen}><EditIcon />(Edit)</span>
                             <FinancialInformationDialog open={openFinancialInfoDialog}
                                 onClose={handleEditFinancialInfoDialogClose} formData={financialInfoData} updateFormData={updateFinancialInfoData} />
@@ -215,16 +216,13 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="verification-checkbox mb-4 mt-3">
-                            <input
-                                type="checkbox"
-                                id="detailsVerified"
-                                name="detailsVerified"
-                                checked={isCheckboxChecked}
-                                onChange={handleCheckboxChange}
-                            />
-                            <label htmlFor='detailsVerified' className='' style={{ marginLeft: "0.5em" }}>I have read and agree to the Account Agreement and Terms and Conditions</label>
-                        </div>
+                        <FormGroup>
+                        <FormControlLabel control={<Checkbox color="success" />} label="I have read and agree to the Account Agreement and Terms and Conditions"
+                            name="detailsVerified"
+                            checked={isCheckboxChecked}
+                            onChange={handleCheckboxChange}
+                        />
+                        </FormGroup>
 
                         <div>
                             <div className="review-page-header">Credit Card PIN</div>
@@ -327,7 +325,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                 //     Submit application
                                 // </button>
                             ) : (
-                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit application</button>
+                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit</button>
                             )}
                             <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
                                 Back

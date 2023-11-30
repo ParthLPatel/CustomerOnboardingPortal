@@ -28,7 +28,7 @@ function UserTypePage() {
 
     return (
         <div className='container'>
-            <div className="subContainer mx-1">
+            <div className="subContainer mx-1 subBox">
                 <div>
                     <div className="section-header">
                         <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo"/>

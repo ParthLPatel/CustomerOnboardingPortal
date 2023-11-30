@@ -1,10 +1,9 @@
 import React from 'react';
-import { Container, Typography, Button } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 import visaInfiniteImage from '../../assets/Visa_Infinite_EN.png';
 import visaPlatinum from '../../assets/Visa_Platinum_EN.png';
 import banner from '../../assets/unsplashbanner1.jpg';
 import { Link } from 'react-router-dom';
-import IconButton from '@mui/material/IconButton';
 import ArrowCircleRightRoundedIcon from '@mui/icons-material/ArrowCircleRightRounded';
 
 import './LandingPage.css';
@@ -25,12 +24,13 @@ const LandingPage = () => {
         <Typography variant="subtitle1" className="banner-subheading"
         style={{
           fontFamily:'sans-serif',
-          fontSize: '1.3em',
+          fontSize: '1.1em',
           fontWeight: '300',
           lineHeight:'1.5',
-          marginTop: '2em',
+          marginTop: '2.4em',
+          
         }}>Get cashback rewards on every purchase</Typography>
-        <img src={banner} alt="Credit Card Banner" />
+        <img src={banner} alt="Credit Card Banner"/>
       </div>
 
       <Container
@@ -56,10 +56,10 @@ const LandingPage = () => {
               fontFamily:'sans-serif',
               fontSize: '0.9rem',
               lineHeight: '1.4rem',
-              textAlign: 'justify'   
+              textAlign: 'justify',
             }}
           >
-          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your ManulifeMONEY+™ Visa* Card.
+          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your Manulife MONEY+™ Visa* Card.
           Both of our cards provide convenience, security, and valuable rewards on every purchase. Plus, you can use your smartphone,
           smartwatch, or tablet to make purchases with your card through Apple Pay®, Google Pay™, Samsung Pay, Fitbit Pay™, and Garmin Pay™.
         </Typography>

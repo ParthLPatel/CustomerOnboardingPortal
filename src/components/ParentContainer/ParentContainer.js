@@ -53,7 +53,7 @@ const ParentContainer = () => {
         verificationOption: "",
 
         //page: reviewpage
-        creditCardPIN:"",
+        // creditCardPIN:"",
         username:"",
         password:"",       
 
