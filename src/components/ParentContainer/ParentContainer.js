@@ -104,6 +104,38 @@ const ParentContainer = () => {
             console.log("works!!!!!");
         }
     };
+
+    // method to update financialInfoData based on QR code data
+    const setHoldFinancialInfoData = (qrCodeData) => {
+        if (qrCodeData) {
+            console.log("QR Code Data:", qrCodeData);
+            // Assuming qrCodeData.formData has the same structure as your formData state
+            setFinancialInfoData((prevData) => {
+                console.log("Previous Data:", prevData);
+                return {
+                    ...prevData,
+                    ...qrCodeData, // Make sure you are accessing the correct property
+                };
+            });
+           
+        }
+    };
+
+    // method to update creditCrossSellInfo based on QR code data
+    const setHoldCreditCrossSellData = (qrCodeData) => {
+        if (qrCodeData) {
+            console.log("QR Code Data:", qrCodeData);
+            // Assuming qrCodeData.formData has the same structure as your formData state
+            setCreditCardCrossSell((prevData) => {
+                console.log("Previous Data:", prevData);
+                return {
+                    ...prevData,
+                    ...qrCodeData, // Make sure you are accessing the correct property
+                };
+            });
+           
+        }
+    };
     
 
     return (
@@ -148,7 +180,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/congratulations-page"
-                    element={<CongratulationsPage progress={progress}/>}
+                    element={<CongratulationsPage formData={formData}  financialInfoData={financialInfoData} creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress} setHoldCreditCrossSellData={setHoldCreditCrossSellData} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
                 />
                 {/* Add routes for other pages */}
             </Routes>
