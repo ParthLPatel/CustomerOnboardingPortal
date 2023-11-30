@@ -16,6 +16,7 @@
     text-align: left;
     color: #000000;
     font-family: 'Roboto', sans-serif;
+    margin-top: 7em !important;
 }
 
 .header_label{
@@ -81,7 +82,7 @@
         /* width: 66%; */
     }
     .subContainer{
-        padding: 2em;
+        /* padding: 2em; */
         width: 66%;
     }
     .btn-white {
@@ -105,7 +106,7 @@
         width: 66%;
     }
     .subContainer{
-        padding: 2em;
+        /* padding: 2em; */
         /* width: 70%; */
     }
     .btn-white {

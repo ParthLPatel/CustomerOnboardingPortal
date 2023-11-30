@@ -105,7 +105,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                     <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="row subContainer" style={{width:'85%'}}>
+                <div className="row subContainer" style={{width:'80%'}}>
                     <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
@@ -216,16 +216,13 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="verification-checkbox mb-4 mt-3">
-                            <input
-                                type="checkbox"
-                                id="detailsVerified"
-                                name="detailsVerified"
-                                checked={isCheckboxChecked}
-                                onChange={handleCheckboxChange}
-                            />
-                            <label htmlFor='detailsVerified' className='' style={{ marginLeft: "0.5em" }}>I have read and agree to the Account Agreement and Terms and Conditions</label>
-                        </div>
+                        <FormGroup>
+                        <FormControlLabel control={<Checkbox color="success" />} label="I have read and agree to the Account Agreement and Terms and Conditions"
+                            name="detailsVerified"
+                            checked={isCheckboxChecked}
+                            onChange={handleCheckboxChange}
+                        />
+                        </FormGroup>
 
                         <div>
                             <div className="review-page-header">Credit Card PIN</div>
@@ -328,7 +325,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                 //     Submit application
                                 // </button>
                             ) : (
-                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit application</button>
+                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit</button>
                             )}
                             <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
                                 Back

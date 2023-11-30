@@ -56,10 +56,10 @@ const LandingPage = () => {
               fontFamily:'sans-serif',
               fontSize: '0.9rem',
               lineHeight: '1.4rem',
-              textAlign: 'justify'   
+              textAlign: 'justify',
             }}
           >
-          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your ManulifeMONEY+™ Visa* Card.
+          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your Manulife MONEY+™ Visa* Card.
           Both of our cards provide convenience, security, and valuable rewards on every purchase. Plus, you can use your smartphone,
           smartwatch, or tablet to make purchases with your card through Apple Pay®, Google Pay™, Samsung Pay, Fitbit Pay™, and Garmin Pay™.
         </Typography>
