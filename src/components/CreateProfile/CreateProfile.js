@@ -36,6 +36,8 @@ function CreateProfile({ formData, updateFormData }) {
     const [manualProvince, setManualProvince] = useState('');
     const [manualCity, setManualCity] = useState('');
 
+    const [existingAddress, setExistingAddress] = useState(false);
+
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
@@ -55,7 +57,7 @@ function CreateProfile({ formData, updateFormData }) {
         updateFormData({ ...formData, needsManualAddress: e.target.checked });
     }
     useEffect( () => {
-        console.log(formData);
+        
         setNeedsManualAddress(formData.needsManualAddress);
         setManualProvince(formData.manualProvince);
         if(formData.manualProvince!==""){
@@ -63,27 +65,29 @@ function CreateProfile({ formData, updateFormData }) {
         }
 
         if(formData.homeAddress!==""){
-            handleAddressSearch(formData.homeAddress);
+            setExistingAddress(true);
+            setInputValue(formData.homeAddress);
         }
         
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
         }
-    }, [manualProvince, formData]);
+
+    }, [manualProvince,formData]);
 
     const handleAddressSearch = async (query) => {
-        setInputValue(query);
-        const data = await getAddress(query);
-        // console.log(data.Items);
-        setHomeAddressList(data.Items);
-        // console.log(showDropdown);
-        if (data.Items?.length > 0) {
-            setShowDropdown(true);
-        } else {
-            // Handle the case when data or data.Items is null or undefined
-            setHomeAddressList("");
-            setShowDropdown(false);
+        if(query==="" && existingAddress){
+        }else{
+            setExistingAddress(false);
+            setInputValue(query);
+            if(query!==""){
+                console.log("find");
+                const data = await getAddress(query);
+                // console.log(data.Items);
+                setHomeAddressList([...data.Items]);
+            }
         }
+
     };
 
     const handleOptionClick = (option) => {
@@ -205,16 +209,13 @@ function CreateProfile({ formData, updateFormData }) {
                             {errors.phoneNumber && <span>This field is required</span>}
 
 
-
-
-
-
                             {
                                 (!needsManualAddress) ? (<Autocomplete
+                                    clearOnEscape
+                                    filterOptions={(x) => x}
                                     options={homeAddressList}
                                     getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                     inputValue={inputValue}
-                                    
                                     onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
                                     renderInput={(params) => (
                                         <TextField
@@ -222,9 +223,8 @@ function CreateProfile({ formData, updateFormData }) {
                                             label="Home Address"
                                             variant="outlined"
                                             fullWidth
-                                            onChange={(e) => handleInputChange(e, "homeAddress")}
+
                                             color="success"
-                                            
                                         />
                                     )}
                                     isOptionEqualToValue={(option, value) =>
@@ -280,7 +280,7 @@ function CreateProfile({ formData, updateFormData }) {
                                         <div className="row grpContainer">
                                             <div className="col-12 col-md-6">
                                                 <FormControl fullWidth>
-                                                    <InputLabel id="province-label">Province</InputLabel>
+                                                    <InputLabel color="success" id="province-label">Province</InputLabel>
                                                     <Select
                                                         labelId="province-label"
                                                         id="manual-province"
@@ -297,7 +297,7 @@ function CreateProfile({ formData, updateFormData }) {
                                             </div>
                                             <div className="col-12 col-md-6">
                                             <FormControl fullWidth>
-                                                    <InputLabel id="city-label">City</InputLabel>
+                                                    <InputLabel color="success" id="city-label">City</InputLabel>
                                                     <Select
                                                         labelId="city-label"
                                                         id="manual-city"

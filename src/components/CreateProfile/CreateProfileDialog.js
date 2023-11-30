@@ -45,6 +45,8 @@ const CreateProfileDialog = (props) => {
     const [manualCity, setManualCity] = useState('');
     const [tempFormData,setTempFormData] = useState({});
 
+    const [existingAddress, setExistingAddress] = useState(false);
+
     const handleInputChange = (e, fieldName) => {
         setTempFormData({ ...tempFormData, [fieldName]: e.target.value });
     };
@@ -71,22 +73,24 @@ const CreateProfileDialog = (props) => {
         if (formData.manualCity !== "") {
             setManualCity(formData.manualCity);
         }
-
+        if(formData.homeAddress!==""){
+            setExistingAddress(true);
+            setInputValue(formData.homeAddress);
+        }
         setTempFormData({...formData});
     }, [formData]);
 
     const handleAddressSearch = async (query) => {
-        setInputValue(query);
-        const data = await getAddress(query);
-        console.log(data.Items);
-        setHomeAddressList(data.Items);
-        console.log(showDropdown);
-        if (data.Items?.length > 0) {
-            setShowDropdown(true);
-        } else {
-            // Handle the case when data or data.Items is null or undefined
-            setHomeAddressList("");
-            setShowDropdown(false);
+        if(query==="" && existingAddress){
+        }else{
+            setExistingAddress(false);
+            setInputValue(query);
+            if(query!==""){
+                console.log("find");
+                const data = await getAddress(query);
+                // console.log(data.Items);
+                setHomeAddressList([...data.Items]);
+            }
         }
     };
 
@@ -94,7 +98,7 @@ const CreateProfileDialog = (props) => {
         if (option && option.Text && option.Description) {
             setInputValue(`${option.Text}, ${option.Description}`);
             setShowDropdown(false);
-            updateFormData({ ...formData, homeAddress: option.Text + ", " + option.Description });
+            setTempFormData({ ...formData, homeAddress: option.Text + ", " + option.Description });
         } else {
             // Handle the case where option or its properties are null or undefined
             console.error("Invalid option:", option);
@@ -102,7 +106,6 @@ const CreateProfileDialog = (props) => {
     };
 
     const onSubmit = () => {
-        console.log("submit");
         updateFormData({...tempFormData,manualCity,manualProvince,needsManualAddress});
         onClose();
     }
@@ -211,13 +214,10 @@ const CreateProfileDialog = (props) => {
 
                                 {/* {errors.phoneNumber && <span>This field is required</span>} */}
 
-
-
-
-
-
                                 {
                                     (!needsManualAddress) ? (<Autocomplete
+                                        clearOnEscape
+                                        filterOptions={(x) => x}
                                         options={homeAddressList}
                                         getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                         inputValue={inputValue}
@@ -228,7 +228,7 @@ const CreateProfileDialog = (props) => {
                                                 label="Home Address"
                                                 variant="outlined"
                                                 fullWidth
-                                                onChange={(e) => handleInputChange(e, "homeAddress")}
+                                                // onChange={(e) => handleInputChange(e, "homeAddress")}
                                                 color="success"
 
                                             />
@@ -281,7 +281,7 @@ const CreateProfileDialog = (props) => {
                                             <div className="row grpContainer my-2">
                                                 <div className="col-12 col-md-6">
                                                     <FormControl fullWidth>
-                                                        <InputLabel id="province-label">Province</InputLabel>
+                                                        <InputLabel color="success" id="province-label">Province</InputLabel>
                                                         <Select
                                                             labelId="province-label"
                                                             id="manual-province"
@@ -298,7 +298,7 @@ const CreateProfileDialog = (props) => {
                                                 </div>
                                                 <div className="col-12 col-md-6">
                                                     <FormControl fullWidth>
-                                                        <InputLabel id="city-label">City</InputLabel>
+                                                        <InputLabel id="city-label" color="success">City</InputLabel>
                                                         <Select
                                                             labelId="city-label"
                                                             id="manual-city"
