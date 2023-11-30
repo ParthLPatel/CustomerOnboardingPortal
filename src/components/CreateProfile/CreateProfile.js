@@ -18,9 +18,17 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import Button from "@mui/material/Button";
+import QRCode from "qrcode.react";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { getCities, getProvinces } from "./cityMapping";
 
-function CreateProfile({ formData, updateFormData }) {
+function CreateProfile({ formData, updateFormData, setHoldFormData }) {
     const {
         register,
         handleSubmit,
@@ -42,6 +50,27 @@ function CreateProfile({ formData, updateFormData }) {
     const [manualCity, setManualCity] = useState('');
 
     const [existingAddress, setExistingAddress] = useState(false);
+    const [openDialog, setOpenDialog] = useState(false);
+
+    const handleOpenDialog = () => {
+      setOpenDialog(true);
+    };
+  
+    const handleCloseDialog = () => {
+      setOpenDialog(false);
+    };
+  
+    const generateQRCodeData = () => {
+  
+      const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+      const dataToEncode = {
+          url: `https://main.d3jrvl3sduvqep.amplifyapp.com/create-profile?formData=${formDataQueryString}`,
+          formData: formData
+      };
+      console.log(JSON.stringify(dataToEncode));
+      console.log(dataToEncode.url);
+      return JSON.stringify(dataToEncode);
+  };
 
     const handleInputChange = (e, fieldName) => {
         updateFormData({ ...formData, [fieldName]: e.target.value });
@@ -62,7 +91,18 @@ function CreateProfile({ formData, updateFormData }) {
         setNeedsManualAddress(e.target.checked);
         updateFormData({ ...formData, needsManualAddress: e.target.checked });
     }
+
     useEffect(() => {
+        
+        const queryParams = new URLSearchParams(window.location.search);
+        const formDataParam = queryParams.get('formData'); 
+  
+        if (formDataParam) {
+            const formDataFromQR = JSON.parse(formDataParam);
+            setHoldFormData(formDataFromQR);
+         
+            
+        }
 
         setNeedsManualAddress(formData.needsManualAddress);
         setManualProvince(formData.manualProvince);
@@ -366,6 +406,30 @@ function CreateProfile({ formData, updateFormData }) {
                                 Back
                             </Link>
                         </div>
+
+                        <div style={{display:"flex"}}>
+                            <QrCodeScannerIcon
+                            src="path/to/your/qr-code-icon.png"
+                            alt="QR Code Icon"
+                            onClick={handleOpenDialog} // Open the dialog on icon click
+                            style={{marginRight:"10px"}}
+                            />
+                            <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                        </div>
+
+                        {/* Dialog for displaying QR code */}
+                        <Dialog open={openDialog} onClose={handleCloseDialog}>
+                            <DialogTitle>Scan QR Code</DialogTitle>
+                            <DialogContent>
+                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                            <DialogContentText>
+                                Click the button below to close this pop-up.
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleCloseDialog}>Close</Button>
+                            </DialogActions>
+                        </Dialog>
                     </div>
                 </div>
             </form>

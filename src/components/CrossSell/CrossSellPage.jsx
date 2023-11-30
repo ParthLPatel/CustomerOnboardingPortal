@@ -52,10 +52,9 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
       };
       console.log(JSON.stringify(dataToEncode));
       console.log(dataToEncode.url);
-    
-  
       return JSON.stringify(dataToEncode);
   };
+
     useEffect(() => {
         const queryParams = new URLSearchParams(window.location.search);
         const formDataParam = queryParams.get('formData');
@@ -120,29 +119,7 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                 <div className="progressBarContainer1">
                     <ProgressBar progress={6} /> {/* Pass the progress for this page */}
                 </div>
-                <div style={{display:"flex", marginTop: '200px'}}>
-                <QrCodeScannerIcon
-                src="path/to/your/qr-code-icon.png"
-                alt="QR Code Icon"
-                onClick={handleOpenDialog} // Open the dialog on icon click
-                style={{marginRight:"10px"}}
-                />
-                <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
-            </div>
 
-                {/* Dialog for displaying QR code */}
-                <Dialog open={openDialog} onClose={handleCloseDialog}>
-                    <DialogTitle>Scan QR Code</DialogTitle>
-                    <DialogContent>
-                    <QRCode value={generateQRCodeData()} renderAs="svg" size={512} />
-                    <DialogContentText>
-                        Click the button below to close this pop-up.
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleCloseDialog}>Close</Button>
-                    </DialogActions>
-                </Dialog>
                 <div className="subContainer">
                     <p className="header_label" style={{textAlign:"left"}}>Congratulations! Your credit card has been approved!</p>
                     <div>
@@ -224,6 +201,30 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                                 Back
                             </Link>
                         </div>
+
+                        <div style={{display:"flex"}}>
+                            <QrCodeScannerIcon
+                            src="path/to/your/qr-code-icon.png"
+                            alt="QR Code Icon"
+                            onClick={handleOpenDialog} // Open the dialog on icon click
+                            style={{marginRight:"10px"}}
+                            />
+                            <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                        </div>
+
+                        {/* Dialog for displaying QR code */}
+                        <Dialog open={openDialog} onClose={handleCloseDialog}>
+                            <DialogTitle>Scan QR Code</DialogTitle>
+                            <DialogContent>
+                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                            <DialogContentText>
+                                Click the button below to close this pop-up.
+                            </DialogContentText>
+                            </DialogContent>
+                            <DialogActions>
+                            <Button onClick={handleCloseDialog}>Close</Button>
+                            </DialogActions>
+                        </Dialog>
                     </form>
                 </div></div>
         </div>)

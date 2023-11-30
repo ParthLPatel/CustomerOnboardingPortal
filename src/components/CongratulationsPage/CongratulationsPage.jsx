@@ -1,102 +1,20 @@
 import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
-import {useState, useEffect} from "react";
 import VerticalStepper from '../VerticalStepper/VerticalStepper';
 import cardFront from '../../assets/Visa_Infinite_EN.png'
-import Dialog from "@mui/material/Dialog";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
-import Button from "@mui/material/Button";
-import QRCode from "qrcode.react";
-import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard'
 
 function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSellData, setHoldFinancialInfoData, financialInfoData, creditCardCrossSell }) {
   
-  const [openDialog, setOpenDialog] = useState(false);
 
-  useEffect(() => {
-
-    // searching for params in link if any and passing that data to the parent
-    const queryParams = new URLSearchParams(window.location.search);
-    const formDataParam = queryParams.get('formData');
-    const financialDataParam = queryParams.get('financial');
-    const crossSellDataParam = queryParams.get('crosssell');
-
-    if (formDataParam && financialDataParam && crossSellDataParam) {
-        const formDataFromQR = JSON.parse(formDataParam);
-        const financialDataFromQR = JSON.parse(financialDataParam);
-        const crossSellDataFromQR = JSON.parse(crossSellDataParam);
-
-        setHoldFormData(formDataFromQR);
-        setHoldFinancialInfoData(financialDataFromQR);
-        setHoldCreditCrossSellData(crossSellDataFromQR);
-    }
-  }, []);
-
-  const handleOpenDialog = () => {
-    setOpenDialog(true);
-  };
-
-  const handleCloseDialog = () => {
-    setOpenDialog(false);
-  };
-
-  const generateQRCodeData = () => {
-
-    const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
-    const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
-    const crossSellDataQueryString = encodeURIComponent(JSON.stringify(creditCardCrossSell));
-    const dataToEncode = {
-        url: `https://main.d3jrvl3sduvqep.amplifyapp.com/congratulations-page?formData=${formDataQueryString}&financial=${financialDataQueryString}&crosssell=${crossSellDataQueryString}`,
-        formData: formData,
-        financialInfoData: financialInfoData,
-        creditCardCrossSell: creditCardCrossSell
-
-        
-    };
-    console.log(JSON.stringify(dataToEncode));
-    console.log(dataToEncode.url);
-  
-
-    return JSON.stringify(dataToEncode);
-};
-  
-  
   return (
     <div className="container" >
       <div className="progressBarContainer1">
           {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
           <ProgressBar progress={6} /> {/* Pass the progress for this page */}
       </div>
-      
-      <div style={{display:"flex", marginTop: '200px'}}>
-        <QrCodeScannerIcon
-        src="path/to/your/qr-code-icon.png"
-        alt="QR Code Icon"
-        onClick={handleOpenDialog} // Open the dialog on icon click
-        style={{marginRight:"10px"}}
-        />
-        <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
-      </div>
-
-      {/* Dialog for displaying QR code */}
-      <Dialog open={openDialog} onClose={handleCloseDialog}>
-          <DialogTitle>Scan QR Code</DialogTitle>
-          <DialogContent>
-          <QRCode value={generateQRCodeData()} renderAs="svg" size={512} />
-          <DialogContentText>
-              Click the button below to close this pop-up.
-          </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-          <Button onClick={handleCloseDialog}>Close</Button>
-          </DialogActions>
-      </Dialog>
-      
 
       <div className='subContainer widthSubContainer'>
       <div className='cardMainContainer'> 

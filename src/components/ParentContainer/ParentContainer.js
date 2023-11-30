@@ -152,7 +152,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="create-profile"
-                    element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                    element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
                 />
                  <Route
                     path="/verify-phone-number"
@@ -160,7 +160,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="verify-identity"
-                    element={<VerifyIdentity formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                    element={<VerifyIdentity formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="/confirm-identity"
@@ -168,11 +168,11 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/financial-info"
-                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} progress={progress}/>}
+                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} progress={progress} formData={formData} updateFormData={updateFormData} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="/review-info"
-                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress}/>}
+                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="/cross-sell"

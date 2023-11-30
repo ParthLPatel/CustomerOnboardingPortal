@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useForm } from 'react-hook-form';
 
 import ProgressBar from "../ProgressBar/ProgressBar";
@@ -11,10 +11,16 @@ import MenuItem from '@mui/material/MenuItem';
 import Button from '@mui/material/Button';
 import btnLogoleft from "../../assets/btnLogo01.png"
 import btnLogoright from "../../assets/btnLogo02.png"
+import Dialog from "@mui/material/Dialog";
+import DialogTitle from "@mui/material/DialogTitle";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogActions from "@mui/material/DialogActions";
+import QRCode from "qrcode.react";
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 
 
-
-function VerifyIdentity({ formData, updateFormData }) {
+function VerifyIdentity({ formData, updateFormData, setHoldFormData }) {
 
   const {
     handleSubmit, // Add the missing import
@@ -28,7 +34,7 @@ function VerifyIdentity({ formData, updateFormData }) {
 
   const [verificationOption, setVerificationOption] = useState('online'); // Add the missing state
   const [IDtype, setIDType] = useState(''); // Add the missing state
-
+  const [openDialog, setOpenDialog] = useState(false);
 
 
 //         IDtype: "",
@@ -40,6 +46,37 @@ function VerifyIdentity({ formData, updateFormData }) {
   // const handleInputChange = (e, fieldName) => {
   //     updateFormData({ ...formData, [fieldName]: e.target.value });
   // };
+
+  useEffect(() => {
+
+    // searching for params in link if any and passing that data to the parent
+    const queryParams = new URLSearchParams(window.location.search);
+    const formDataParam = queryParams.get('formData');
+    if (formDataParam) {
+        const formDataFromQR = JSON.parse(formDataParam);
+        setHoldFormData(formDataFromQR);
+    }
+  }, []);
+
+
+  const handleOpenDialog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+const generateQRCodeData = () => {
+
+    const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+    const dataToEncode = {
+        url: `https://main.d3jrvl3sduvqep.amplifyapp.com/verify-identity?formData=${formDataQueryString}`,
+        formData: formData,
+        
+    };
+    return JSON.stringify(dataToEncode);
+};
 
   const handleIDtype = (e) => {
       setIDType(e.target.value);
@@ -224,6 +261,29 @@ function VerifyIdentity({ formData, updateFormData }) {
                 Continue
                 </Link>
             </div>
+            <div style={{display:"flex"}}>
+                    <QrCodeScannerIcon
+                    src="path/to/your/qr-code-icon.png"
+                    alt="QR Code Icon"
+                    onClick={handleOpenDialog} // Open the dialog on icon click
+                    style={{marginRight:"10px"}}
+                    />
+                    <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                </div>
+
+                {/* Dialog for displaying QR code */}
+                <Dialog open={openDialog} onClose={handleCloseDialog}>
+                    <DialogTitle>Scan QR Code</DialogTitle>
+                    <DialogContent>
+                    <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                    <DialogContentText>
+                        Click the button below to close this pop-up.
+                    </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={handleCloseDialog}>Close</Button>
+                    </DialogActions>
+                </Dialog>
           </form>   
         </div> 
     </div>
