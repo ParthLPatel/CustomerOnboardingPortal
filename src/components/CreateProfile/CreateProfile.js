@@ -54,7 +54,7 @@ function CreateProfile({ formData, updateFormData }) {
         setNeedsManualAddress(e.target.checked);
         updateFormData({ ...formData, needsManualAddress: e.target.checked });
     }
-    useEffect(() => {
+    useEffect( () => {
         console.log(formData);
         setNeedsManualAddress(formData.needsManualAddress);
         setManualProvince(formData.manualProvince);
@@ -62,6 +62,9 @@ function CreateProfile({ formData, updateFormData }) {
             setCityList([...getCities(formData.manualProvince)]);
         }
 
+        if(formData.homeAddress!==""){
+            handleAddressSearch(formData.homeAddress);
+        }
         
         if(formData.manualCity!==""){
             setManualCity(formData.manualCity);
@@ -71,9 +74,9 @@ function CreateProfile({ formData, updateFormData }) {
     const handleAddressSearch = async (query) => {
         setInputValue(query);
         const data = await getAddress(query);
-        console.log(data.Items);
+        // console.log(data.Items);
         setHomeAddressList(data.Items);
-        console.log(showDropdown);
+        // console.log(showDropdown);
         if (data.Items?.length > 0) {
             setShowDropdown(true);
         } else {
@@ -211,6 +214,7 @@ function CreateProfile({ formData, updateFormData }) {
                                     options={homeAddressList}
                                     getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                     inputValue={inputValue}
+                                    
                                     onInputChange={(event, newInputValue) => handleAddressSearch(newInputValue)}
                                     renderInput={(params) => (
                                         <TextField
@@ -220,7 +224,7 @@ function CreateProfile({ formData, updateFormData }) {
                                             fullWidth
                                             onChange={(e) => handleInputChange(e, "homeAddress")}
                                             color="success"
-
+                                            
                                         />
                                     )}
                                     isOptionEqualToValue={(option, value) =>
