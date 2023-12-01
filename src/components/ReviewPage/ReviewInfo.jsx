@@ -19,6 +19,9 @@ import FormHelperText from '@mui/material/FormHelperText';
 import Checkbox from '@mui/material/Checkbox';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import InputAdornment from '@mui/material/InputAdornment';
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
 
     const {
@@ -78,16 +81,16 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
       console.log(dataToEncode.url);
       return JSON.stringify(dataToEncode);
   };
-    
+
     const [useEmailAsUsername, setUseEmailAsUsername] = useState(true);
-    const handleuChangeUseEmailAsUsernameCheckBoxChange = (e)=>{
+    const handleuChangeUseEmailAsUsernameCheckBoxChange = (e) => {
         setUseEmailAsUsername(e.target.checked);
-        if(!e.target.checked){
-            setValue("username","");
+        if (!e.target.checked) {
+            setValue("username", "");
         }
     }
     const handleInputChange = (e, fieldName) => {
-        clearErrors();
+        clearErrors(fieldName);
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
 
@@ -107,20 +110,32 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
         setOpenFinancialInfoDialog(true);
     };
 
+    const [pinVisiable, setPinVisiable] = useState(false);
+
+    const handlePinVisibleChange = (v) => {
+        setPinVisiable(v);
+    }
+
+    const [passwordVisiable, setPasswordVisiable] = useState(false);
+
+    const handlePasswordVisibleChange = (v) => {
+        setPasswordVisiable(v);
+    }
+
     const handleEditFinancialInfoDialogClose = () => {
         setOpenFinancialInfoDialog(false);
     };
 
 
     const onSubmit = data => {
-        
-        console.log(data);
-        if(data.password !== data.confirmPassword){
+
+        // console.log(data);
+        if (data.password !== data.confirmPassword) {
             setError("passwordMismatch", {
                 type: "manual",
                 message: "Password doesn't match",
             });
-            return; 
+            return;
         }
 
         navigate("/cross-sell");
@@ -148,12 +163,12 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
                     <ProgressBar progress={5} /> {/* Pass the progress for this page */}
                 </div>
-                <div className="row subContainer" style={{width:'80%'}}>
-                    <p className="header_label" style={{ textAlign: "left" }}>Please review your information and the terms and conditions</p>
+                <div className="row subContainer reviewInfoSubContainer">
+                    <p className="header_label" style={{ textAlign: "left", marginBottom: '2em' }}>Please review your information and the terms and conditions</p>
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Contact Information</span>
-                            <span onClick={handleEditContactInfoDialogOpen}><EditIcon />(Edit)</span>
+                            <span className="mr-3" style={{ fontWeight: '600', marginTop: '0.2em', fontSize: '1.2rem' }}>Contact Information</span>
+                            <span onClick={handleEditContactInfoDialogOpen} className="editContainer"><EditIcon style={{ marginRight: '0.2em' }} />(Edit)</span>
                             <CreateProfileDialog open={openContactInfoDialog}
                                 onClose={handleEditContactInfoDialogClose} formData={formData} updateFormData={updateFormData} />
                         </div>
@@ -189,8 +204,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                     <div className="row ">
                         <div className="col-12 edit-area">
-                            <span className="mr-3" style={{fontWeight:'600', marginTop:'0.2em', borderBottom:'2px solid lightgray'}}>Your Employment Information</span>
-                            <span onClick={handleEditFinancialInfoDialogOpen}><EditIcon />(Edit)</span>
+                            <span className="mr-3" style={{ fontWeight: '600', marginTop: '0.2em', fontSize: '1.2rem' }}>Employment Information</span>
+                            <span onClick={handleEditFinancialInfoDialogOpen} className="editContainer"><EditIcon style={{ marginRight: '0.2em' }} />(Edit)</span>
                             <FinancialInformationDialog open={openFinancialInfoDialog}
                                 onClose={handleEditFinancialInfoDialogClose} formData={financialInfoData} updateFormData={updateFinancialInfoData} />
                         </div>
@@ -260,57 +275,71 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FormGroup>
-                        <FormControlLabel control={<Checkbox color="success" />} label="I have read and agree to the Account Agreement and Terms and Conditions"
-                            name="detailsVerified"
-                            checked={isCheckboxChecked}
-                            onChange={handleCheckboxChange}
-                        />
+                            <FormControlLabel control={<Checkbox color="success" />} label="I have read and agree to the Account Agreement and Terms and Conditions"
+                                name="detailsVerified"
+                                checked={isCheckboxChecked}
+                                onChange={handleCheckboxChange}
+                                style={{
+                                    marginBottom: '3em',
+                                }}
+                            />
                         </FormGroup>
 
                         <div>
-                            <div className="review-page-header">Credit Card PIN</div>
+                            <div className="review-page-header">Create You Personalized Credit Card PIN</div>
                             <div className="row grpContainer my-4 px-0">
-                                <div className="col">
+                                <div className="col-12 col-md-6">
                                     <TextField
                                         color="success"
-                                        placeholder="PIN"
+                                        placeholder="Enter PIN"
                                         {...register("creditCardPIN", { required: true })}
                                         value={formData.creditCardPIN}
                                         onChange={(e) => handleInputChange(e, "creditCardPIN")}
-                                        label="Credit card PIN"
                                         variant="outlined"
                                         className="form-control"
-
+                                        type={pinVisiable ? "text" : "password"}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">                                    {
+                                                pinVisiable ? (<span className="visibility" onClick={e => handlePinVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePinVisibleChange(true)} > <VisibilityIcon /></span>)
+                                            }</InputAdornment>,
+                                          }}
                                     />
-                                    <FormHelperText sx={{ color: "#09874E" }}>*This PIN will be your credit card PIN</FormHelperText>
+                                    <FormHelperText sx={{ color: "#09874E", marginBottom: '1.4em' }}>*This PIN will be your credit card PIN</FormHelperText>
 
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                                 </div>
-                                <div className="col">
+                                <div className="col-12 col-md-6">
 
                                     <TextField
                                         color="success"
                                         placeholder="Confirm PIN"
                                         {...register("confirmCreditCardPIN", { required: true })}
-                                        label="Confirm credit card PIN"
+                                        label="Confirm PIN"
                                         variant="outlined"
                                         className="form-control"
+                                        type={pinVisiable ? "text" : "password"}
 
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                                 </div>
+                                {/* <div className="col-12 col-md-4 visibility">
+                                    {
+                                        pinVisiable ? (<span className="visibility" onClick={e => handlePinVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePinVisibleChange(true)} > <VisibilityIcon /></span>)
+                                    }
+
+                                </div> */}
                             </div>
                         </div>
 
                         <div>
-                            <div className="review-page-header">Online Banking Information</div>
+                            <div className="review-page-header">Create Your Online Banking Profile</div>
                             <div className="row grpContainer my-4 px-0">
-                                <div className="col-12 col-md-8">
+                                <div className="col-12 col-md-6">
                                     <TextField
                                         color="success"
 
                                         {...register("username", { required: true })}
-                                        value={useEmailAsUsername?formData.emailAddress:formData.username}
+                                        value={useEmailAsUsername ? formData.emailAddress : formData.username}
                                         disabled={useEmailAsUsername}
                                         onChange={(e) => handleInputChange(e, "username")}
                                         label="Username"
@@ -320,16 +349,16 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText>
                                 </div>
-                                <div className="col-12 col-md-4">
-                                <FormGroup>
-                                <FormControlLabel control={<Checkbox color="success" />} checked={useEmailAsUsername} label="Use email address "
-                                    onChange={e => handleuChangeUseEmailAsUsernameCheckBoxChange(e)}
-                                />
-                                </FormGroup>
+                                <div className="col-12 col-md-6">
+                                    <FormGroup>
+                                        <FormControlLabel control={<Checkbox color="success" />} checked={useEmailAsUsername} label="Use email address "
+                                            onChange={e => handleuChangeUseEmailAsUsernameCheckBoxChange(e)}
+                                        />
+                                    </FormGroup>
                                 </div>
                             </div>
                             <div className="row grpContainer my-4 px-0">
-                                <div className="col">
+                                <div className="col-12 col-md-6">
                                     <TextField
                                         color="success"
                                         placeholder="Password"
@@ -339,11 +368,16 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         label="Password"
                                         variant="outlined"
                                         className="form-control"
-
+                                        type={passwordVisiable ? "text" : "password"}
+                                        InputProps={{
+                                            endAdornment: <InputAdornment position="end">                                    {
+                                                passwordVisiable ? (<span className="visibility" onClick={e => handlePasswordVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePasswordVisibleChange(true)} > <VisibilityIcon /></span>)
+                                            }</InputAdornment>,
+                                          }}
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                                 </div>
-                                <div className="col password-field">
+                                <div className="col-12 col-md-6 password-field">
 
                                     <TextField
                                         color="success"
@@ -352,7 +386,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         label="Confirm password"
                                         variant="outlined"
                                         className="form-control"
-
+                                        type={passwordVisiable ? "text" : "password"}
+                                        onChange={(e) => handleInputChange(e, "passwordMismatch")}
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.passwordMismatch && "Does not match with the password"}</FormHelperText>
                                 </div>
@@ -361,48 +396,51 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                                            <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none" >
-                                                            Submit application
-                                                        </Link>
-                                // <button type="submit" className="manulife-btn btn-orange text-decoration-none ">
-                                //     Submit application
-                                // </button>
+                                <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                    style={{ fontWeight: '700', fontSize: '18px' }}>
+                                    Submit application
+                                </Link>
                             ) : (
-                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled>Submit</button>
+                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled
+                                    style={{ fontWeight: '700', fontSize: '18px' }}>Submit</button>
                             )}
-                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none" >
+                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none"
+                                style={{ fontWeight: '700', fontSize: '18px' }}>
                                 Back
                             </Link>
                         </div>
 
-                        <div style={{display:"flex"}}>
+                        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
-                            src="path/to/your/qr-code-icon.png"
-                            alt="QR Code Icon"
-                            onClick={handleOpenDialog} // Open the dialog on icon click
-                            style={{marginRight:"10px"}}
+                                src="path/to/your/qr-code-icon.png"
+                                alt="QR Code Icon"
+                                style={{ marginRight: "10px" }}
                             />
-                            <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                            <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
+                                Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.
+                            </p>
                         </div>
 
                         {/* Dialog for displaying QR code */}
-                        <Dialog open={openDialog} onClose={handleCloseDialog}>
-                            <DialogTitle>Scan QR Code</DialogTitle>
-                            <DialogContent>
-                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
-                            <DialogContentText>
-                                Click the button below to close this pop-up.
-                            </DialogContentText>
+                        <Dialog open={openDialog} onClose={handleCloseDialog} style={{ borderRadius: "10px" }}>
+                            <DialogTitle style={{ textAlign: "center" }}>Scan QR Code</DialogTitle>
+                            <DialogContent style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                                <DialogContentText style={{ textAlign: "center", marginTop: "10px" }}>
+                                    Click the button below to close this pop-up.
+                                </DialogContentText>
                             </DialogContent>
-                            <DialogActions>
-                            <Button onClick={handleCloseDialog}>Close</Button>
+                            <DialogActions style={{ justifyContent: "center" }}>
+                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "#fff", marginBottom:"10px" }}>
+                                    Close
+                                </Button>
                             </DialogActions>
                         </Dialog>
                     </form>
                 </div>
 
-            </div>
-        </div>
+            </div >
+        </div >
     )
 
 }

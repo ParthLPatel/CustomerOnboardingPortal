@@ -134,11 +134,15 @@ const FinancialInformationDialog = (props) => {
 
 
     return (        <Dialog onClose={handleClose} open={open}>
-        <DialogTitle>Edit Contact Information</DialogTitle>
+        <DialogTitle style={{
+                // borderBottom: '1px solid black',
+                fontWeight: '600',
+                textAlign:'center',
+            }}>Edit Contact Information</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="container">
+                    <div className="">
 
-                        <div className="row subContainer mt-1">
+                        <div className="row changeContainer mx-3">
                             <div className="input-div ">
 
                                 <FormControl fullWidth sx={{ m: 1 }}>
@@ -358,19 +362,21 @@ const FinancialInformationDialog = (props) => {
 
                             }
 
-                        </div>
-
-
-                    </div>
-                    <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                            <div className="btn-wrapper">
+                                <button type="submit" className="manulife-btn btn-orange text-decoration-none"
+                                style={{fontWeight:'700', fontSize:'18px'}}>
                                     Submit
                                 </button>
 
-                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none">
+                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none"
+                                style={{fontWeight:'700', fontSize:'18px'}}>
                                     Cancel
                                 </button>
                             </div>
+
+                        </div>
+                        
+                    </div>
                 </form>
             </Dialog>)
 }

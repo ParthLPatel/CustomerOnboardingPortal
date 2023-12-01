@@ -1,6 +1,6 @@
 .verification-details{
     font-size: 14px;
-    padding: 0 0.2em;
+    /* padding: 0 0.2em; */
     /* border: 1px solid black; */
 }
 
@@ -22,6 +22,21 @@
     background-color: #f1bf96;
     color: white
   }
+
+.eachLabel{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
+.eachLabelValue{
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: left;
+}
 
 /* desktop version */
 @media only screen and (min-width: 500px) {

@@ -1,103 +1,115 @@
 .text {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .info-label {
-    font-weight: 600;
-    padding-bottom: 0.8em;
+  font-weight: 600;
+  margin-bottom: 0.4em;
 }
 
-.subContainer .row {
-    background-color: white;
-    /* font-size: 14px;  */
-    /* padding-top: 20px;
-    padding-bottom: 20px; */
+.subContainer{
+  background-color: white;
+}
+
+.reviewInfoSubContainer{
+width: 80%;
 }
 
 .col-md-6 {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .col-md-3 {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .please-review {
-    padding-bottom: 20px;
-    font-size: 14px;
+  padding-bottom: 20px;
+  font-size: 14px;
 }
 
 .terms {
-    color: #09874E;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 19px;
-    letter-spacing: 0em;
-    text-align: left;
+  color: #09874E;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
 
 
 
 }
 
 .termsLink2, .termsLink1 {
-    text-decoration: underline;
-    color: #09874E;
+  text-decoration: underline;
+  color: #09874E;
 
 }
 
 .form-check {
-    padding-top: 20px;
-    padding-left:0px;
+  padding-top: 20px;
+  padding-left:0px;
 }
 
 .form-check .form-check-input  {
-    margin-left: 0 !important;
-    
-  }
+  margin-left: 0 !important;
+  
+}
 
 .form-check-label{
-    color: black;
-    margin-left:10px;
-    display: inline;
+  color: black;
+  margin-left:10px;
+  display: inline;
 }
 
 .custom-checkbox {
-    margin-left: 0 !important;
-    border-color: green;
-  }
-  .custom-checkbox:checked {
-    background-color: green;
-    border-color: green;
-  }
+  margin-left: 0 !important;
+  border-color: green;
+}
+.custom-checkbox:checked {
+  background-color: green;
+  border-color: green;
+}
 
-  .edit-area{
-    align-items:flex-start;
-    display: flex;
-  }
+.edit-area{
+  display: flex;
+  /* border: 1px solid black; */
+}
+.editContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid black; */
+}
 
-  .mr-3{
-    margin-right: 20px;
-  }
+.mr-3{
+  margin-right: 20px;
+}
 
-  .area{
-    
-    margin-top: 20px;
-  }
+.area{
+  margin-top: 20px;
+}
 
-  .review-page-header{
-    size: 14px;
-    font-weight: 600;
-  }
+.review-page-header{
+  size: 14px;
+  font-weight: 600;
+}
 
+/* .visibility{
+  padding-top:1em;
+} */
 
-
-  /* modbile version */
+/* modbile version */
 @media only screen and (max-width: 625px) {
-    .password-field{
-        margin-top: 20px;
-      }
+  .reviewInfoSubContainer{
+    width: 100%;
+  }
+  .password-field{
+      margin-top: 20px;
+    }
 }

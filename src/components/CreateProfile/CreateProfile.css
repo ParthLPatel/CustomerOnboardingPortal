@@ -16,7 +16,10 @@
     text-align: left;
     color: #000000;
     font-family: 'Roboto', sans-serif;
-    margin-top: 7em !important;
+    /* margin-top: 7em !important; */
+}
+.changeContainer{
+    padding: 2em;
 }
 
 .header_label{
@@ -72,6 +75,13 @@
     height: 107px;
     width: 107px;
 }
+
+
+
+
+
+
+
   
 /* desktop version */
 @media only screen and (min-width: 1025px) {

@@ -45,8 +45,6 @@ const CreateProfileDialog = (props) => {
     const [manualCity, setManualCity] = useState('');
     const [tempFormData,setTempFormData] = useState({});
 
-    const [existingAddress, setExistingAddress] = useState(false);
-
     const handleInputChange = (e, fieldName) => {
         setTempFormData({ ...tempFormData, [fieldName]: e.target.value });
     };
@@ -73,24 +71,22 @@ const CreateProfileDialog = (props) => {
         if (formData.manualCity !== "") {
             setManualCity(formData.manualCity);
         }
-        if(formData.homeAddress!==""){
-            setExistingAddress(true);
-            setInputValue(formData.homeAddress);
-        }
+
         setTempFormData({...formData});
     }, [formData]);
 
     const handleAddressSearch = async (query) => {
-        if(query==="" && existingAddress){
-        }else{
-            setExistingAddress(false);
-            setInputValue(query);
-            if(query!==""){
-                console.log("find");
-                const data = await getAddress(query);
-                // console.log(data.Items);
-                setHomeAddressList([...data.Items]);
-            }
+        setInputValue(query);
+        const data = await getAddress(query);
+        console.log(data.Items);
+        setHomeAddressList(data.Items);
+        console.log(showDropdown);
+        if (data.Items?.length > 0) {
+            setShowDropdown(true);
+        } else {
+            // Handle the case when data or data.Items is null or undefined
+            setHomeAddressList("");
+            setShowDropdown(false);
         }
     };
 
@@ -98,7 +94,7 @@ const CreateProfileDialog = (props) => {
         if (option && option.Text && option.Description) {
             setInputValue(`${option.Text}, ${option.Description}`);
             setShowDropdown(false);
-            setTempFormData({ ...formData, homeAddress: option.Text + ", " + option.Description });
+            updateFormData({ ...formData, homeAddress: option.Text + ", " + option.Description });
         } else {
             // Handle the case where option or its properties are null or undefined
             console.error("Invalid option:", option);
@@ -106,6 +102,7 @@ const CreateProfileDialog = (props) => {
     };
 
     const onSubmit = () => {
+        console.log("submit");
         updateFormData({...tempFormData,manualCity,manualProvince,needsManualAddress});
         onClose();
     }
@@ -118,13 +115,16 @@ const CreateProfileDialog = (props) => {
 
     return (
         <Dialog onClose={handleClose} open={open}>
-            <DialogTitle>Edit Contact Information</DialogTitle>
-            <div>
+            <DialogTitle style={{
+                // borderBottom: '1px solid black',
+                fontWeight: '600',
+                textAlign:'center',
+            }}>Edit Contact Information</DialogTitle>
+            <div >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                
-                    <div className="container">
+                    <div className="" >
 
-                        <div className="row subContainer mt-2" >
+                        <div className="row changeContainer" >
                             <div className="insideContainer">
 
                                 <div className="row grpContainer">
@@ -214,10 +214,13 @@ const CreateProfileDialog = (props) => {
 
                                 {/* {errors.phoneNumber && <span>This field is required</span>} */}
 
+
+
+
+
+
                                 {
                                     (!needsManualAddress) ? (<Autocomplete
-                                        clearOnEscape
-                                        filterOptions={(x) => x}
                                         options={homeAddressList}
                                         getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                         inputValue={inputValue}
@@ -228,7 +231,7 @@ const CreateProfileDialog = (props) => {
                                                 label="Home Address"
                                                 variant="outlined"
                                                 fullWidth
-                                                // onChange={(e) => handleInputChange(e, "homeAddress")}
+                                                onChange={(e) => handleInputChange(e, "homeAddress")}
                                                 color="success"
 
                                             />
@@ -281,7 +284,7 @@ const CreateProfileDialog = (props) => {
                                             <div className="row grpContainer my-2">
                                                 <div className="col-12 col-md-6">
                                                     <FormControl fullWidth>
-                                                        <InputLabel color="success" id="province-label">Province</InputLabel>
+                                                        <InputLabel id="province-label">Province</InputLabel>
                                                         <Select
                                                             labelId="province-label"
                                                             id="manual-province"
@@ -298,7 +301,7 @@ const CreateProfileDialog = (props) => {
                                                 </div>
                                                 <div className="col-12 col-md-6">
                                                     <FormControl fullWidth>
-                                                        <InputLabel id="city-label" color="success">City</InputLabel>
+                                                        <InputLabel id="city-label">City</InputLabel>
                                                         <Select
                                                             labelId="city-label"
                                                             id="manual-city"
@@ -322,11 +325,13 @@ const CreateProfileDialog = (props) => {
 
                             </div>
                             <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none">
+                                <button type="submit" className="manulife-btn btn-orange text-decoration-none"
+                                style={{fontWeight:'700', fontSize:'18px'}}>
                                     Submit
                                 </button>
 
-                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none">
+                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none"
+                                style={{fontWeight:'700', fontSize:'18px'}}>
                                     Cancel
                                 </button>
                             </div>

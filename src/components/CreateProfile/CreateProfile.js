@@ -39,7 +39,6 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
 
     const navigate = useNavigate();
 
-
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
     const [homeAddressList, setHomeAddressList] = useState([]);
@@ -399,37 +398,41 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                             {/* <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
                                 Submit
                             </Link> */}
-                            <button type="submit" className="manulife-btn btn-orange text-decoration-none">
-                                Submit button
+                            <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                                Submit
                             </button>
-                            <Link to="/" className="manulife-btn btn-white text-decoration-none">
+                            <Link to="/" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back
                             </Link>
                         </div>
 
-                        <div style={{display:"flex"}}>
+                        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
-                            src="path/to/your/qr-code-icon.png"
-                            alt="QR Code Icon"
-                            onClick={handleOpenDialog} // Open the dialog on icon click
-                            style={{marginRight:"10px"}}
+                                src="path/to/your/qr-code-icon.png"
+                                alt="QR Code Icon"
+                                style={{ marginRight: "10px"}}
                             />
-                            <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
+                            <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
+                                Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.
+                            </p>
                         </div>
 
                         {/* Dialog for displaying QR code */}
-                        <Dialog open={openDialog} onClose={handleCloseDialog}>
-                            <DialogTitle>Scan QR Code</DialogTitle>
-                            <DialogContent>
-                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
-                            <DialogContentText>
-                                Click the button below to close this pop-up.
-                            </DialogContentText>
+                        <Dialog open={openDialog} onClose={handleCloseDialog} style={{ borderRadius: "10px" }}>
+                            <DialogTitle style={{ textAlign: "center" }}>Scan QR Code</DialogTitle>
+                            <DialogContent style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                                <DialogContentText style={{ textAlign: "center", marginTop: "10px" }}>
+                                    Click the button below to close this pop-up.
+                                </DialogContentText>
                             </DialogContent>
-                            <DialogActions>
-                            <Button onClick={handleCloseDialog}>Close</Button>
+                            <DialogActions style={{ justifyContent: "center" }}>
+                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "#fff", marginBottom:"10px" }}>
+                                    Close
+                                </Button>
                             </DialogActions>
                         </Dialog>
+
                     </div>
                 </div>
             </form>
