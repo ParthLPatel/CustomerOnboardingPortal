@@ -98,9 +98,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
   
         if (formDataParam) {
             const formDataFromQR = JSON.parse(formDataParam);
-            setHoldFormData(formDataFromQR);
-         
-            
+            setHoldFormData(formDataFromQR);     
         }
 
         setNeedsManualAddress(formData.needsManualAddress);

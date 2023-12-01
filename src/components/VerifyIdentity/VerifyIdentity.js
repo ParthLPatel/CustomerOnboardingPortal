@@ -55,6 +55,7 @@ function VerifyIdentity({ formData, updateFormData, setHoldFormData }) {
     if (formDataParam) {
         const formDataFromQR = JSON.parse(formDataParam);
         setHoldFormData(formDataFromQR);
+        console.log(formDataFromQR);
     }
   }, []);
 
@@ -72,9 +73,10 @@ const generateQRCodeData = () => {
     const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
     const dataToEncode = {
         url: `https://main.d3jrvl3sduvqep.amplifyapp.com/verify-identity?formData=${formDataQueryString}`,
-        formData: formData,
+        formData: formData
         
     };
+    console.log(dataToEncode.url);
     return JSON.stringify(dataToEncode);
 };
 

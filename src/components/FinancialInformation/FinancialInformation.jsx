@@ -59,7 +59,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
       const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
       const dataToEncode = {
           url: `https://main.d3jrvl3sduvqep.amplifyapp.com/financial-info?formData=${formDataQueryString}`,
-          formData: formData,
+          formData: formData
       };
       console.log(JSON.stringify(dataToEncode));
       console.log(dataToEncode.url);
@@ -73,7 +73,8 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
       
         if (formDataParam) {
             const formDataFromQR = JSON.parse(formDataParam);
-            setHoldFormData(formDataFromQR);            
+            setHoldFormData(formDataFromQR);
+            console.log(formDataFromQR)            
         }
 
         console.log(financialInfoData);
@@ -400,7 +401,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
                                 </Link>
                             </div>
 
-                            <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                        <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"
