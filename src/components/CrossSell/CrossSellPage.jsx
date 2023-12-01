@@ -202,7 +202,7 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                             </Link>
                         </div>
 
-                        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                        <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"
@@ -229,7 +229,8 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                             </DialogActions>
                         </Dialog>
                     </form>
-                </div></div>
+                </div>
+            </div>
         </div>)
 }
 export default CrossSellPage;
