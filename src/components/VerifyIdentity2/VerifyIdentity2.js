@@ -107,6 +107,7 @@ const generateQRCodeData = () => {
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"
+                                style={{ marginRight: "10px" }}
                             />
                             <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
                                 Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.
