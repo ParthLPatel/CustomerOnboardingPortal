@@ -106,9 +106,9 @@ const FinancialInformationDialog = (props) => {
     const handleClose = (e) => {
         e.preventDefault();
         setTempFinancialInfoData({...formData});
-        setSelectedIndustry(formData.employerIndustry || '');
-            setEmpStatus(formData.employmentStatus || '');
-            setInsName(formData.institutionName || '');
+        // setSelectedIndustry(formData.employerIndustry || '');
+            // setEmpStatus(formData.employmentStatus || '');
+            // setInsName(formData.institutionName || '');
         onClose();
     };
 
