@@ -17,6 +17,7 @@
   /* border: 1px solid black; */
   width: 80%;
   padding: 1em; 
+  order: 2;
 }
 
 
@@ -67,6 +68,12 @@
   justify-content: end;
 } */
 
+
+.exceptTrackerContainer{
+  order: 1;
+  /* border: 1px solid green; */
+}
+
 .signInBtn{
   width: 100%;
   border-radius: 5px;
@@ -78,11 +85,16 @@
   .cardContainer{
     flex-direction: column;
   }
+
+  .cardTracker{
+    order: 1
+  }
+
+  .exceptTrackerContainer{
+    order: 2
+  }
 }
 
-.cardC{
-
-}
 
 /* desktop version */
 @media only screen and (min-width: 900px) {
@@ -126,6 +138,14 @@
     width: 94%;
     border-radius: 5px;
     margin-bottom: 1em;
+  }
+
+  .cardTracker{
+    order: 1
+  }
+
+  .exceptTrackerContainer{
+    order: 2
   }
   
 }
