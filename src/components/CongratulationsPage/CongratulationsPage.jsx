@@ -1,16 +1,15 @@
 import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
+
 import VerticalStepper from '../VerticalStepper/VerticalStepper';
 import cardFront from '../../assets/Visa_Infinite_EN.png'
-
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard'
 
-function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSellData, setHoldFinancialInfoData, financialInfoData, creditCardCrossSell }) {
-  
-
+function CongratulationsPage({ formData, updateFormData }) {
   return (
     <div className="container" >
+
       <div className="progressBarContainer1">
           {/* <p className="progressBarLabel1">Step 6 - Review and submit</p> */}
           <ProgressBar progress={6} /> {/* Pass the progress for this page */}
@@ -21,6 +20,8 @@ function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSell
           {/* Vertical application tracker */}
           <div className='cardTracker my-0'>
             <p className='header_label py-1' style={{textAlign:'left', display: 'inline-block'}}>Tracking Details</p>
+            <p>Your application ID - <b>A001254367</b></p>
+
             <VerticalStepper />
           </div>
 
@@ -32,8 +33,8 @@ function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSell
               <p style={{fontSize: '24px', textAlign:'left', fontWeight:'600', letterSpacing:'0.3px'}}>Welcome to Manulife Bank</p>
               <p className='stepLabel' style={{fontSize:'16px', fontWeight:'500', letterSpacing:'0.2px', textAlign:'left', paddingTop:"0em", paddingBottom:'0em'}}>
                 <span>Congratulations! </span> 
-                Your credit card has been approved.</p>
-                <p>Your application tracking ID - <b>A001254367</b></p>
+                Your digital credit card is ready to use</p>
+                {/* <p>Your application tracking ID - <b>A001254367</b></p> */}
               
           </div>
 
@@ -57,11 +58,11 @@ function CongratulationsPage({ formData, setHoldFormData, setHoldCreditCrossSell
               </ul>
             </div>
           </div>
-
-          </div>
           <div className='signInBtnContainer'>
-                <button className="manulife-btn btn-orange signInBtn" style={{fontWeight:'700', fontSize:'18px'}}>Sign in</button>
+                <button className="manulife-btn btn-orange signInBtn">Sign in</button>
             </div>
+          </div>
+          
 </div>
             
           </div>

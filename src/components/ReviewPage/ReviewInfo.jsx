@@ -23,6 +23,13 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
 import { changePhoneNumberFormat } from "../../utils/Utils.js";
+
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import { IconButton } from '@mui/material';
+import manulife_logo from '../../assets/manulife_logo.svg'
+
+
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
 
     const {
@@ -170,6 +177,32 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
         }
     }
 
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+      };
+    
+    const handleClose = () => {
+    setOpen(false);
+    };
+
+    const termsdata = [
+        { id: 1, 
+          name: 'Annual Interest Rates', 
+          description: "These interest rates are in effect the day your account is opened (whether or not your card is activated). Purchases, fees, and other charges: 20.99% Cash Advances and Balance Transfers: 22.99% If you do not make your minimum payment by the payment due date 2 or more times in any 12-month period, your annual interest rates will increase to standard rates of 25.99% on Purchases, fees, and other charges and 27.99% for Cash Advances and Balance Transfers, including those done under any previous rate. This increase will take effect in the third statement period following the missed payment that caused the rate to increase. The increased rates will remain in effect until you make your minimum payments by the due date for 12 consecutive months"
+        },
+        { id: 2, 
+          name: 'Interest-free Grace Period',
+          description: 'You will benefit from an interest-free grace period of at least 21 days if you pay off your balance in full by the due date. No interest is charged on Purchases and fees appearing on your statement for the 1sttime if you pay your new balance in full by the payment due date. There is no interest-free period on Cash Advances and Balance Transfers' 
+        },
+        { id: 3, 
+          name: 'Minimum Payment', 
+          description: 'Your Minimum Payment will be $10 plus any interest and fees (not including the annual fee), plus any amount by which the new balance exceeds your credit limit, and any amount past due from the prior month. For Quebec residents only, after August 1, 2019 (for accounts opened prior to June 10, 2019).Your Minimum Payment will also include any amount by which the new balance exceeds your credit limit, and any amount past due from the prior month. For Quebec residents only, after August 1, 2019 (for accounts opened after June 10, 2019). Your Minimum Payment will be the greater of: a) 5% of the new balance shown on your statement; or b) $10. Your Minimum Payment also includes any amount by which the new balance exceeds your credit limit, and any amount past due from the prior month. For all clients and in all cases, if the new balance is less than $10, the balance is dueinfull.' 
+        },
+      ];
+
+
 
     return (
         <div>
@@ -289,14 +322,49 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                     <div className="please-review px-md-2">
                         Please review the following:
                     </div>
-                    <div className="terms px-md-2 mb-3">
-                        <p className="termsLink1">Account Agreement</p>
-
+ {/* terms and conditions */}
+ <div className="terms px-md-2 mb-3">
+                        <p className="termsLink1" onClick={handleOpen} style={{cursor: 'pointer'}}>Terms and conditions</p>
                     </div>
-                    <div className="terms px-md-2 mb-3">
-                        <p className="termsLink2">Terms & Conditions & Privacy</p>
 
-                    </div>
+                    {/* Dialog Content */}
+                    <Dialog onClose={handleClose} open={open} maxWidth="md" fullWidth>
+                        <DialogTitle style={{textAlign:'center'}}>
+                            <u>Terms and Conditions</u>
+                            <IconButton
+                                edge="end"
+                                color="inherit"
+                                onClick={handleClose}
+                                aria-label="close"
+                                sx={{ position: 'absolute', right: 8, top: 8 }}
+                            >
+                                <CloseIcon />
+                            </IconButton>
+                        </DialogTitle>
+                        <DialogContent>
+                            <TableContainer component={Paper} >
+                                <Table> 
+                                    <TableHead style={{display:'flex', justifyContent:'space-between', textAlign:'left', margin:'1em 0'}}>
+                                    <TableRow>
+                                        <div className='col-3' style={{display:'flex', justifyContent:'space-between'}}>
+                                            <img src={manulife_logo} alt="Your SVG" className="manulifeLogo" style={{marginRight:'1em'}}/>
+                                            <p><b>Manulife</b> Bank</p>
+                                        </div>
+                                    </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                    {termsdata.map((row) => (
+                                        <TableRow key={row.id}>
+                                        <TableCell style={{width: '30%', border: '2px solid black'}}>{row.name}</TableCell>
+                                        <TableCell style={{width: '70%', border: '2px solid black'}}>{row.description}</TableCell>
+                                        </TableRow>
+                                    ))}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </DialogContent>
+                    </Dialog>
+
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FormGroup>
                             <FormControlLabel control={<Checkbox color="success" />} label="I have read and agree to the Account Agreement and Terms and Conditions"
