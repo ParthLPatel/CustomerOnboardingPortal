@@ -138,7 +138,7 @@ const FinancialInformationDialog = (props) => {
                 // borderBottom: '1px solid black',
                 fontWeight: '600',
                 textAlign:'center',
-            }}>Edit Contact Information</DialogTitle>
+            }}>Edit Financial Information</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="">
 

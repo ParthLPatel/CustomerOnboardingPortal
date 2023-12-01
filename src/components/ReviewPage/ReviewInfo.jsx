@@ -22,6 +22,7 @@ import FormGroup from '@mui/material/FormGroup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
+import { changePhoneNumberFormat } from "../../utils/Utils.js";
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
 
     const {
@@ -49,38 +50,38 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
         const queryParams = new URLSearchParams(window.location.search);
         const formDataParam = queryParams.get('formData');
         const financialDataParam = queryParams.get('financial');
-      
+
         if (formDataParam && financialDataParam) {
             const formDataFromQR = JSON.parse(formDataParam);
             const financialDataFromQR = JSON.parse(financialDataParam);
             setHoldFormData(formDataFromQR);
             setHoldFinancialInfoData(financialDataFromQR);
-            
+
         }
 
     }, []);
 
     const handleOpenDialog = () => {
-      setOpenDialog(true);
+        setOpenDialog(true);
     };
-  
+
     const handleCloseDialog = () => {
-      setOpenDialog(false);
+        setOpenDialog(false);
     };
-  
+
     const generateQRCodeData = () => {
-  
-      const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
-      const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
-      const dataToEncode = {
-          url: `https://main.d3jrvl3sduvqep.amplifyapp.com/review-info?formData=${formDataQueryString}&financial=${financialDataQueryString}`,
-          formData: formData,
-          financialInfoData: financialInfoData
-      };
-      console.log(JSON.stringify(dataToEncode));
-      console.log(dataToEncode.url);
-      return JSON.stringify(dataToEncode);
-  };
+
+        const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+        const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
+        const dataToEncode = {
+            url: `https://main.d3jrvl3sduvqep.amplifyapp.com/review-info?formData=${formDataQueryString}&financial=${financialDataQueryString}`,
+            formData: formData,
+            financialInfoData: financialInfoData
+        };
+        console.log(JSON.stringify(dataToEncode));
+        console.log(dataToEncode.url);
+        return JSON.stringify(dataToEncode);
+    };
 
     const [useEmailAsUsername, setUseEmailAsUsername] = useState(true);
     const handleuChangeUseEmailAsUsernameCheckBoxChange = (e) => {
@@ -197,7 +198,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="info-label">Phone Number</div>
-                                <div>{`${phoneNumber}`}</div>
+                                <div>{changePhoneNumberFormat(phoneNumber)}</div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +216,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             (<div className="area">
                                 <div className="row">                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
-                                    <div>{`${annualIncome}`}</div>
+                                    <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CAD'
+                                    })}`}</div>
                                 </div>
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Employment Status</div>
@@ -234,7 +238,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             (employmentStatus === "Student" ? (<div className="row area ">
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
-                                    <div>{`${annualIncome}`}</div>
+                                    <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CAD'
+                                    })}`}</div>
                                 </div>
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employment Status</div>
@@ -253,7 +260,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Annual Income</div>
-                                        <div>{`${annualIncome}`}</div>
+                                        <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD'
+                                    })}`}</div>
                                     </div>
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Employment Status</div>
@@ -302,7 +312,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                             endAdornment: <InputAdornment position="end">                                    {
                                                 pinVisiable ? (<span className="visibility" onClick={e => handlePinVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePinVisibleChange(true)} > <VisibilityIcon /></span>)
                                             }</InputAdornment>,
-                                          }}
+                                        }}
                                     />
                                     <FormHelperText sx={{ color: "#09874E", marginBottom: '1.4em' }}>*This PIN will be your credit card PIN</FormHelperText>
 
@@ -373,7 +383,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                             endAdornment: <InputAdornment position="end">                                    {
                                                 passwordVisiable ? (<span className="visibility" onClick={e => handlePasswordVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePasswordVisibleChange(true)} > <VisibilityIcon /></span>)
                                             }</InputAdornment>,
-                                          }}
+                                        }}
                                     />
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
                                 </div>
@@ -410,12 +420,12 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             </Link>
                         </div>
 
-                        <div style={{display:"flex"}}>
+                        <div style={{ display: "flex" }}>
                             <QrCodeScannerIcon
-                            src="path/to/your/qr-code-icon.png"
-                            alt="QR Code Icon"
-                            onClick={handleOpenDialog} // Open the dialog on icon click
-                            style={{marginRight:"10px"}}
+                                src="path/to/your/qr-code-icon.png"
+                                alt="QR Code Icon"
+                                onClick={handleOpenDialog} // Open the dialog on icon click
+                                style={{ marginRight: "10px" }}
                             />
                             <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
                         </div>
@@ -424,13 +434,13 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                         <Dialog open={openDialog} onClose={handleCloseDialog}>
                             <DialogTitle>Scan QR Code</DialogTitle>
                             <DialogContent>
-                            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
-                            <DialogContentText>
-                                Click the button below to close this pop-up.
-                            </DialogContentText>
+                                <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                                <DialogContentText>
+                                    Click the button below to close this pop-up.
+                                </DialogContentText>
                             </DialogContent>
                             <DialogActions>
-                            <Button onClick={handleCloseDialog}>Close</Button>
+                                <Button onClick={handleCloseDialog}>Close</Button>
                             </DialogActions>
                         </Dialog>
                     </form>

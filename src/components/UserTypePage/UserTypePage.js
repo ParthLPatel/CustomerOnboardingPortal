@@ -23,7 +23,9 @@ function UserTypePage() {
         // ...
 
         // Hide the "Thank you" message and "Apply Now" button
-        setShowThankYou(false);
+        // setShowThankYou(false);
+
+        window.location.href = 'https://www.manulifebank.ca/personal-banking.html';
     };
 
     return (
@@ -31,17 +33,17 @@ function UserTypePage() {
             <div className="subContainer mx-1 subBox">
                 <div>
                     <div className="section-header">
-                        <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo"/>
+                        <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo" />
                     </div>
                     <div className="usertype-q" style={{ width: "100%", marginTop: '45px' }}>
                         Do you already have an account and bank with us online?
                     </div>
                 </div>
 
-                <Stack direction="column" spacing={2} 
+                {/* <Stack direction="column" spacing={2} 
                 // style={{ width: "100%", marginTop: '45px'}}
                 className="yesNoContainer">
-                    <Button
+                    <a href="https://www.manulifebank.ca/personal-banking.html"><Button
                         variant="outlined"
                         style={{
                             color: "#434559",
@@ -60,7 +62,8 @@ function UserTypePage() {
                         onClick={handleYesClick}
                     >
                         Yes
-                    </Button>
+                    </Button></a>
+                    
                     {!showThankYou ? (
                         <Button
                             variant="outlined"
@@ -123,7 +126,52 @@ function UserTypePage() {
                             </Button>
                         </div>
                     )}
-                </Stack>
+                </Stack> */}
+                <div direction="column" spacing={2}
+                    // style={{ width: "100%", marginTop: '45px'}}
+                    className="yesNoContainer">
+                    <Button
+                        variant="outlined"
+                        style={{
+                            color: "#434559",
+                            borderColor: "#434559",
+                            paddingTop: '10px',
+                            paddingBottom: '10px',
+                            paddingRight: '30px',
+                            paddingLeft: '30px',
+                            justifyContent: 'flex-start',
+                            textAlign: 'left',
+                            fontSize: '20px',
+                            fontWeight: '600',
+                            textTransform: 'none',
+                            width: '100%',
+                        }}
+                        onClick={handleYesClick}
+                    >
+                        Yes
+                    </Button>
+                        <Button
+                            variant="outlined"
+                            style={{
+                                color: "#434559",
+                                borderColor: "#434559",
+                                paddingTop: '10px',
+                                paddingBottom: '10px',
+                                paddingRight: '30px',
+                                paddingLeft: '30px',
+                                justifyContent: 'flex-start',
+                                textAlign: 'left',
+                                fontSize: '20px',
+                                fontWeight: '600',
+                                textTransform: 'none',
+                                width: '100%',
+                                marginTop:"20px"
+                            }}
+                            onClick={handleApplyNowClick}
+                        >
+                            No
+                        </Button>
+                </div>
             </div>
         </div>
     );
