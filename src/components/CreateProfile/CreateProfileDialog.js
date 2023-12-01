@@ -31,7 +31,9 @@ const CreateProfileDialog = (props) => {
     const {
         register,
         handleSubmit,
-        // formState,
+        formState,
+        clearErrors,
+        setError
     } = useForm()
 
     
@@ -44,9 +46,10 @@ const CreateProfileDialog = (props) => {
     const [manualProvince, setManualProvince] = useState('');
     const [manualCity, setManualCity] = useState('');
     const [tempFormData,setTempFormData] = useState({});
-
+    const [existingAddress, setExistingAddress] = useState(false);
     const handleInputChange = (e, fieldName) => {
         setTempFormData({ ...tempFormData, [fieldName]: e.target.value });
+        clearErrors(fieldName);
     };
 
     const handleManualProvinceChange = (e) => {
@@ -71,22 +74,24 @@ const CreateProfileDialog = (props) => {
         if (formData.manualCity !== "") {
             setManualCity(formData.manualCity);
         }
-
+        if (formData.homeAddress !== "") {
+            setExistingAddress(true);
+            setInputValue(formData.homeAddress);
+        }
         setTempFormData({...formData});
     }, [formData]);
 
     const handleAddressSearch = async (query) => {
-        setInputValue(query);
-        const data = await getAddress(query);
-        console.log(data.Items);
-        setHomeAddressList(data.Items);
-        console.log(showDropdown);
-        if (data.Items?.length > 0) {
-            setShowDropdown(true);
+        if (query === "" && existingAddress) {
         } else {
-            // Handle the case when data or data.Items is null or undefined
-            setHomeAddressList("");
-            setShowDropdown(false);
+            setExistingAddress(false);
+            setInputValue(query);
+            if (query !== "") {
+                console.log("find");
+                const data = await getAddress(query);
+                // console.log(data.Items);
+                setHomeAddressList([...data.Items]);
+            }
         }
     };
 
@@ -102,7 +107,25 @@ const CreateProfileDialog = (props) => {
     };
 
     const onSubmit = () => {
-        console.log("submit");
+        const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
+        const numberRegex = /^\d{10,12}$/;
+        const isValidNumber = numberRegex.test(formData.phoneNumber);
+        const isValidEmail = emailRegex.test(formData.emailAddress);
+        if(!isValidEmail){
+            setError("emailAddress", {
+                type: "manual",
+                message: "Please enter a valid email address",
+            });
+            return;
+        }
+
+        if(!isValidNumber){
+            setError("phoneNumber", {
+                type: "manual",
+                message: "Please enter a valid phone number",
+            });
+            return;
+        }
         updateFormData({...tempFormData,manualCity,manualProvince,needsManualAddress});
         onClose();
     }
@@ -221,6 +244,8 @@ const CreateProfileDialog = (props) => {
 
                                 {
                                     (!needsManualAddress) ? (<Autocomplete
+                                        clearOnEscape
+                                        filterOptions={(x) => x}
                                         options={homeAddressList}
                                         getOptionLabel={(option) => `${option.Text}, ${option.Description}`}
                                         inputValue={inputValue}
@@ -231,7 +256,7 @@ const CreateProfileDialog = (props) => {
                                                 label="Home Address"
                                                 variant="outlined"
                                                 fullWidth
-                                                onChange={(e) => handleInputChange(e, "homeAddress")}
+                                                // onChange={(e) => handleInputChange(e, "homeAddress")}
                                                 color="success"
 
                                             />
@@ -327,7 +352,7 @@ const CreateProfileDialog = (props) => {
                             <div className="btn-wrapper">
                                 <button type="submit" className="manulife-btn btn-orange text-decoration-none"
                                 style={{fontWeight:'700', fontSize:'18px'}}>
-                                    Submit
+                                    Continue
                                 </button>
 
                                 <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none"

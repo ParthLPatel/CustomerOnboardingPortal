@@ -399,7 +399,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                                 Submit
                             </Link> */}
                             <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
-                                Submit
+                                Continue
                             </button>
                             <Link to="/" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back

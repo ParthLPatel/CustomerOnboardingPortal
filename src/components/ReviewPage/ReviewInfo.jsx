@@ -22,6 +22,7 @@ import FormGroup from '@mui/material/FormGroup';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import InputAdornment from '@mui/material/InputAdornment';
+import { changePhoneNumberFormat } from "../../utils/Utils.js";
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
 
     const {
@@ -49,38 +50,38 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
         const queryParams = new URLSearchParams(window.location.search);
         const formDataParam = queryParams.get('formData');
         const financialDataParam = queryParams.get('financial');
-      
+
         if (formDataParam && financialDataParam) {
             const formDataFromQR = JSON.parse(formDataParam);
             const financialDataFromQR = JSON.parse(financialDataParam);
             setHoldFormData(formDataFromQR);
             setHoldFinancialInfoData(financialDataFromQR);
-            
+
         }
 
     }, []);
 
     const handleOpenDialog = () => {
-      setOpenDialog(true);
+        setOpenDialog(true);
     };
-  
+
     const handleCloseDialog = () => {
-      setOpenDialog(false);
+        setOpenDialog(false);
     };
-  
+
     const generateQRCodeData = () => {
-  
-      const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
-      const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
-      const dataToEncode = {
-          url: `https://main.d3jrvl3sduvqep.amplifyapp.com/review-info?formData=${formDataQueryString}&financial=${financialDataQueryString}`,
-          formData: formData,
-          financialInfoData: financialInfoData
-      };
-      console.log(JSON.stringify(dataToEncode));
-      console.log(dataToEncode.url);
-      return JSON.stringify(dataToEncode);
-  };
+
+        const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
+        const financialDataQueryString = encodeURIComponent(JSON.stringify(financialInfoData));
+        const dataToEncode = {
+            url: `https://main.d3jrvl3sduvqep.amplifyapp.com/review-info?formData=${formDataQueryString}&financial=${financialDataQueryString}`,
+            formData: formData,
+            financialInfoData: financialInfoData
+        };
+        console.log(JSON.stringify(dataToEncode));
+        console.log(dataToEncode.url);
+        return JSON.stringify(dataToEncode);
+    };
 
     const [useEmailAsUsername, setUseEmailAsUsername] = useState(true);
     const handleuChangeUseEmailAsUsernameCheckBoxChange = (e) => {
@@ -91,6 +92,13 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     }
     const handleInputChange = (e, fieldName) => {
         clearErrors(fieldName);
+        if(fieldName=="confirmCreditCardPIN"){
+            console.log("chang");
+            clearErrors("PINMisMatch");
+        }
+        if(fieldName=="confirmPassword"){
+            clearErrors("passwordMismatch");
+        }
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
 
@@ -129,7 +137,14 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
     const onSubmit = data => {
 
-        // console.log(data);
+        if (data.creditCardPIN !== data.confirmCreditCardPIN) {
+            
+            setError("PINMisMatch", {
+                type: "manual",
+                message: "PIN doesn't match",
+            });
+            return;
+        }
         if (data.password !== data.confirmPassword) {
             setError("passwordMismatch", {
                 type: "manual",
@@ -197,7 +212,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                         <div className="row">
                             <div className="col-md-6">
                                 <div className="info-label">Phone Number</div>
-                                <div>{`${phoneNumber}`}</div>
+                                <div>{changePhoneNumberFormat(phoneNumber)}</div>
                             </div>
                         </div>
                     </div>
@@ -215,7 +230,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             (<div className="area">
                                 <div className="row">                                <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
-                                    <div>{`${annualIncome}`}</div>
+                                    <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CAD'
+                                    })}`}</div>
                                 </div>
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Employment Status</div>
@@ -234,7 +252,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                             (employmentStatus === "Student" ? (<div className="row area ">
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Annual Income</div>
-                                    <div>{`${annualIncome}`}</div>
+                                    <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'CAD'
+                                    })}`}</div>
                                 </div>
                                 <div className="col-md-6 col-xl-3">
                                     <div className="info-label">Employment Status</div>
@@ -253,7 +274,10 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Annual Income</div>
-                                        <div>{`${annualIncome}`}</div>
+                                        <div>{`${annualIncome.toLocaleString('en-US', {
+                                        style: 'currency',
+                                        currency: 'USD'
+                                    })}`}</div>
                                     </div>
                                     <div className="col-md-6 col-xl-3">
                                         <div className="info-label">Employment Status</div>
@@ -302,7 +326,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                             endAdornment: <InputAdornment position="end">                                    {
                                                 pinVisiable ? (<span className="visibility" onClick={e => handlePinVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePinVisibleChange(true)} > <VisibilityIcon /></span>)
                                             }</InputAdornment>,
-                                          }}
+                                        }}
                                     />
                                     <FormHelperText sx={{ color: "#09874E", marginBottom: '1.4em' }}>*This PIN will be your credit card PIN</FormHelperText>
 
@@ -314,13 +338,15 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         color="success"
                                         placeholder="Confirm PIN"
                                         {...register("confirmCreditCardPIN", { required: true })}
+                                        onChange={(e) => handleInputChange(e, "confirmCreditCardPIN")}
                                         label="Confirm PIN"
                                         variant="outlined"
                                         className="form-control"
                                         type={pinVisiable ? "text" : "password"}
 
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.confirmCreditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.PINMisMatch && "PIN doesn't match"}</FormHelperText>
                                 </div>
                                 {/* <div className="col-12 col-md-4 visibility">
                                     {
@@ -338,7 +364,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                     <TextField
                                         color="success"
 
-                                        {...register("username", { required: true })}
+                                        {...register("username")}
                                         value={useEmailAsUsername ? formData.emailAddress : formData.username}
                                         disabled={useEmailAsUsername}
                                         onChange={(e) => handleInputChange(e, "username")}
@@ -347,7 +373,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         className="form-control"
 
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText>
+                                    {/* <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText> */}
                                 </div>
                                 <div className="col-12 col-md-6">
                                     <FormGroup>
@@ -373,9 +399,9 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                             endAdornment: <InputAdornment position="end">                                    {
                                                 passwordVisiable ? (<span className="visibility" onClick={e => handlePasswordVisibleChange(false)}><VisibilityOffIcon /></span>) : (<span className="visibility" onClick={e => handlePasswordVisibleChange(true)} > <VisibilityIcon /></span>)
                                             }</InputAdornment>,
-                                          }}
+                                        }}
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.password && "This field is required"}</FormHelperText>
                                 </div>
                                 <div className="col-12 col-md-6 password-field">
 
@@ -387,8 +413,9 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         variant="outlined"
                                         className="form-control"
                                         type={passwordVisiable ? "text" : "password"}
-                                        onChange={(e) => handleInputChange(e, "passwordMismatch")}
+                                        onChange={(e) => handleInputChange(e, "confirmPassword")}
                                     />
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.confirmPassword && "This field is required"}</FormHelperText>
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.passwordMismatch && "Does not match with the password"}</FormHelperText>
                                 </div>
                             </div>
@@ -396,10 +423,14 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                // <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                //     style={{ fontWeight: '700', fontSize: '18px' }}>
+                                //     Submit application
+                                // </Link>
+                                <button className="manulife-btn btn-orange text-decoration-none"
                                     style={{ fontWeight: '700', fontSize: '18px' }}>
                                     Submit application
-                                </Link>
+                                </button>
                             ) : (
                                 <button className="manulife-btn btn-orange btn-orange-lighter" disabled
                                     style={{ fontWeight: '700', fontSize: '18px' }}>Submit</button>

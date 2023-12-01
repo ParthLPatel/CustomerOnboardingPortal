@@ -1,6 +1,6 @@
 // ParentComponent.js
-import React, { useState } from 'react';
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import React, { useState,useEffect } from 'react';
+import { Routes, Route, BrowserRouter as Router, useLocation } from 'react-router-dom';
 
 import UserTypePage from '../UserTypePage/UserTypePage';
 
@@ -27,6 +27,7 @@ import CongratulationsPage from '../CongratulationsPage/CongratulationsPage';
 import LandingPage from '../LandingPage/LandingPage';
 // import VerticalStepper from '../VerticalStepper/VerticalStepper';
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard';
+import ScrollToTop from './ScrollToTop';
 
 
 const ParentContainer = () => {
@@ -104,42 +105,11 @@ const ParentContainer = () => {
             console.log("works!!!!!");
         }
     };
-
-    // method to update financialInfoData based on QR code data
-    const setHoldFinancialInfoData = (qrCodeData) => {
-        if (qrCodeData) {
-            console.log("QR Code Data:", qrCodeData);
-            // Assuming qrCodeData.formData has the same structure as your formData state
-            setFinancialInfoData((prevData) => {
-                console.log("Previous Data:", prevData);
-                return {
-                    ...prevData,
-                    ...qrCodeData, // Make sure you are accessing the correct property
-                };
-            });
-           
-        }
-    };
-
-    // method to update creditCrossSellInfo based on QR code data
-    const setHoldCreditCrossSellData = (qrCodeData) => {
-        if (qrCodeData) {
-            console.log("QR Code Data:", qrCodeData);
-            // Assuming qrCodeData.formData has the same structure as your formData state
-            setCreditCardCrossSell((prevData) => {
-                console.log("Previous Data:", prevData);
-                return {
-                    ...prevData,
-                    ...qrCodeData, // Make sure you are accessing the correct property
-                };
-            });
-           
-        }
-    };
     
 
     return (
         <Router>
+            <ScrollToTop />
             <Routes>
 
                 <Route
@@ -152,7 +122,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="create-profile"
-                    element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
+                    element={<CreateProfile formData={formData} updateFormData={updateFormData} progress={progress}/>}
                 />
                  <Route
                     path="/verify-phone-number"
@@ -160,7 +130,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="verify-identity"
-                    element={<VerifyIdentity formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
+                    element={<VerifyIdentity formData={formData} updateFormData={updateFormData} progress={progress}/>}
                 />
                 <Route
                     path="/confirm-identity"
@@ -168,19 +138,19 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/financial-info"
-                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} progress={progress} formData={formData} updateFormData={updateFormData} setHoldFormData={setHoldFormData}/>}
+                    element={<FinancialInformation financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} progress={progress}/>}
                 />
                 <Route
                     path="/review-info"
-                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
+                    element={<ReviewInfo formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress}/>}
                 />
                 <Route
                     path="/cross-sell"
-                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell}  progress={progress} formData={formData}  financialInfoData={financialInfoData} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
+                    element={<CrossSellPage creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell}  progress={progress}/>}
                 />
                 <Route
                     path="/congratulations-page"
-                    element={<CongratulationsPage formData={formData}  financialInfoData={financialInfoData} creditCardCrossSell={creditCardCrossSell} updateCreditCardCrossSell={updateCreditCardCrossSell} updateFinancialInfoData={updateFinancialInfoData} updateFormData={updateFormData} progress={progress} setHoldCreditCrossSellData={setHoldCreditCrossSellData} setHoldFinancialInfoData={setHoldFinancialInfoData} setHoldFormData={setHoldFormData}/>}
+                    element={<CongratulationsPage progress={progress}/>}
                 />
                 {/* Add routes for other pages */}
             </Routes>

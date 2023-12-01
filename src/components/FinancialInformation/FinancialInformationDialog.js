@@ -106,9 +106,9 @@ const FinancialInformationDialog = (props) => {
     const handleClose = (e) => {
         e.preventDefault();
         setTempFinancialInfoData({...formData});
-        setSelectedIndustry(formData.employerIndustry || '');
-            setEmpStatus(formData.employmentStatus || '');
-            setInsName(formData.institutionName || '');
+        // setSelectedIndustry(formData.employerIndustry || '');
+            // setEmpStatus(formData.employmentStatus || '');
+            // setInsName(formData.institutionName || '');
         onClose();
     };
 
@@ -138,7 +138,7 @@ const FinancialInformationDialog = (props) => {
                 // borderBottom: '1px solid black',
                 fontWeight: '600',
                 textAlign:'center',
-            }}>Edit Contact Information</DialogTitle>
+            }}>Edit Financial Information</DialogTitle>
         <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="">
 

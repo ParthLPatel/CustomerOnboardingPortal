@@ -9,6 +9,7 @@ import DialogActions from "@mui/material/DialogActions";
 import QRCode from "qrcode.react";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import Button from '@mui/material/Button';
+import ScrollToTop from "../ParentContainer/ScrollToTop";
 
 import './VerifyIdentity2.css';
 
@@ -53,7 +54,7 @@ const generateQRCodeData = () => {
   return (
     <div className='container'>
       <div className="progressBarContainer1">
-          <ProgressBar progress={3} />
+          // <ProgressBar progress={3} />
         </div>
       <div className='subContainer'>
         
