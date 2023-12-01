@@ -125,7 +125,6 @@ function PhoneVerification(props){
             // Check if verification was successful
             if (response.data.status === 'approved') {
                 // Display an alert box for successful verification
-                alert('Verification successful!');
                 navigate("/verify-identity");
             } else {
                 // Handle other verification statuses if needed
@@ -190,29 +189,32 @@ function PhoneVerification(props){
                         Verify
                     </button>
                 </div>  
-                <div style={{display:"flex"}}>
-                    <QrCodeScannerIcon
-                    src="path/to/your/qr-code-icon.png"
-                    alt="QR Code Icon"
-                    onClick={handleOpenDialog} // Open the dialog on icon click
-                    style={{marginRight:"10px"}}
-                    />
-                    <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
-                </div>
+                <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                            <QrCodeScannerIcon
+                                src="path/to/your/qr-code-icon.png"
+                                alt="QR Code Icon"
+                                style={{ marginRight: "10px" }}
+                            />
+                            <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
+                                Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.
+                            </p>
+                        </div>
 
-                {/* Dialog for displaying QR code */}
-                <Dialog open={openDialog} onClose={handleCloseDialog}>
-                    <DialogTitle>Scan QR Code</DialogTitle>
-                    <DialogContent>
-                    <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
-                    <DialogContentText>
-                        Click the button below to close this pop-up.
-                    </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                    <Button onClick={handleCloseDialog}>Close</Button>
-                    </DialogActions>
-                </Dialog>
+                        {/* Dialog for displaying QR code */}
+                        <Dialog open={openDialog} onClose={handleCloseDialog} style={{ borderRadius: "10px" }}>
+                            <DialogTitle style={{ textAlign: "center" }}>Scan QR Code</DialogTitle>
+                            <DialogContent style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                                <DialogContentText style={{ textAlign: "center", marginTop: "10px" }}>
+                                    Click the button below to close this pop-up.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions style={{ justifyContent: "center" }}>
+                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "#fff", marginBottom:"10px" }}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
                 </div>  
              
         </div>

@@ -42,9 +42,9 @@ const generateQRCodeData = () => {
     const formDataQueryString = encodeURIComponent(JSON.stringify(formData));
     const dataToEncode = {
         url: `https://main.d3jrvl3sduvqep.amplifyapp.com/confirm-identity?formData=${formDataQueryString}`,
-        formData: formData,
-        
+        formData: formData
     };
+    console.log(dataToEncode.url);
     return JSON.stringify(dataToEncode);
 };
   const handleCheckboxChange = () => {
@@ -69,7 +69,7 @@ const generateQRCodeData = () => {
           </p>
           <p className='idContainer'>
             <p className='eachLabel my-2'>ID Number</p>
-            <p className='eachLabelValue'>123456</p>
+            <p className='eachLabelValue'>D2789 - 61678  - 98709</p>
           </p>
           <p className='idContainer'>
             <p className='eachLabel my-2'>Expiry Date</p>
@@ -104,29 +104,31 @@ const generateQRCodeData = () => {
           </Link>
         </div>
 
-        <div style={{display:"flex"}}>
-          <QrCodeScannerIcon
-          src="path/to/your/qr-code-icon.png"
-          alt="QR Code Icon"
-          onClick={handleOpenDialog} // Open the dialog on icon click
-          style={{marginRight:"10px"}}
-          />
-          <p className="qrcodetext">Want to continue filling the application on your phone ? click the QR code icon</p>
-      </div>
+        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                            <QrCodeScannerIcon
+                                src="path/to/your/qr-code-icon.png"
+                                alt="QR Code Icon"
+                            />
+                            <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
+                                Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.
+                            </p>
+                        </div>
 
-        {/* Dialog for displaying QR code */}
-        <Dialog open={openDialog} onClose={handleCloseDialog}>
-            <DialogTitle>Scan QR Code</DialogTitle>
-            <DialogContent>
-            <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
-            <DialogContentText>
-                Click the button below to close this pop-up.
-            </DialogContentText>
-            </DialogContent>
-            <DialogActions>
-            <Button onClick={handleCloseDialog}>Close</Button>
-            </DialogActions>
-        </Dialog>
+                        {/* Dialog for displaying QR code */}
+                        <Dialog open={openDialog} onClose={handleCloseDialog} style={{ borderRadius: "10px" }}>
+                            <DialogTitle style={{ textAlign: "center" }}>Scan QR Code</DialogTitle>
+                            <DialogContent style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                                <QRCode value={generateQRCodeData()} renderAs="svg" size={256} />
+                                <DialogContentText style={{ textAlign: "center", marginTop: "10px" }}>
+                                    Click the button below to close this pop-up.
+                                </DialogContentText>
+                            </DialogContent>
+                            <DialogActions style={{ justifyContent: "center" }}>
+                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "#fff", marginBottom:"10px" }}>
+                                    Close
+                                </Button>
+                            </DialogActions>
+                        </Dialog>
       </div>
     </div>
   );

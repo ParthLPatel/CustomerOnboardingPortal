@@ -134,7 +134,7 @@ const ParentContainer = () => {
                 />
                 <Route
                     path="/confirm-identity"
-                    element={<VerifyIdentity2 formData={formData} updateFormData={updateFormData} progress={progress}/>}
+                    element={<VerifyIdentity2 formData={formData} updateFormData={updateFormData} progress={progress} setHoldFormData={setHoldFormData}/>}
                 />
                 <Route
                     path="/financial-info"
