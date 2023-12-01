@@ -111,12 +111,12 @@ function PhoneVerification(props){
         else {
             // Handle other verification statuses if needed  
             const response = await axios.post(
-                `https://verify.twilio.com/v2/Services/VAcc79b879ce82d7e8a17e20022979fdba/VerificationCheck`,
+                `https://verify.twilio.com/v2/Services/VA7d501d60307b225a465179367dbd1ab9/VerificationCheck`,
                 `To=%2B1${encodeURIComponent(phoneNumber)}&Code=${verificationCode}`,
                 {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
-                        'Authorization': 'Basic ' + btoa('AC66165b5e7ef24e7dcd14d2652d01bf9d:047f14a8ce69e82ca4bb852beff520b7')
+                        'Authorization': 'Basic ' + btoa('ACdd0072258826cf46b81112b0663f34c4:c3a9a77fdbcc3f284f077d3bbe662404')
                     }
                 }
             );
