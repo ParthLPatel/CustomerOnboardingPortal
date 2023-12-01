@@ -28,7 +28,7 @@ import LandingPage from '../LandingPage/LandingPage';
 // import VerticalStepper from '../VerticalStepper/VerticalStepper';
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard';
 
-
+import ScrollToTop from './ScrollToTop';
 const ParentContainer = () => {
     const [formData, setFormData] = useState({
 
@@ -140,8 +140,9 @@ const ParentContainer = () => {
 
     return (
         <Router>
+            <ScrollToTop />
             <Routes>
-
+                
                 <Route
                     path="/"
                     element={<LandingPage />}
