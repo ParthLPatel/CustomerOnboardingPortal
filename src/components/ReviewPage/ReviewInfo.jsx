@@ -92,6 +92,13 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     }
     const handleInputChange = (e, fieldName) => {
         clearErrors(fieldName);
+        if(fieldName=="confirmCreditCardPIN"){
+            console.log("chang");
+            clearErrors("PINMisMatch");
+        }
+        if(fieldName=="confirmPassword"){
+            clearErrors("passwordMismatch");
+        }
         updateFormData({ ...formData, [fieldName]: e.target.value });
     };
 
@@ -130,7 +137,14 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
     const onSubmit = data => {
 
-        // console.log(data);
+        if (data.creditCardPIN !== data.confirmCreditCardPIN) {
+            
+            setError("PINMisMatch", {
+                type: "manual",
+                message: "PIN doesn't match",
+            });
+            return;
+        }
         if (data.password !== data.confirmPassword) {
             setError("passwordMismatch", {
                 type: "manual",
@@ -324,13 +338,15 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         color="success"
                                         placeholder="Confirm PIN"
                                         {...register("confirmCreditCardPIN", { required: true })}
+                                        onChange={(e) => handleInputChange(e, "confirmCreditCardPIN")}
                                         label="Confirm PIN"
                                         variant="outlined"
                                         className="form-control"
                                         type={pinVisiable ? "text" : "password"}
 
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.confirmCreditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.PINMisMatch && "PIN doesn't match"}</FormHelperText>
                                 </div>
                                 {/* <div className="col-12 col-md-4 visibility">
                                     {
@@ -348,7 +364,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                     <TextField
                                         color="success"
 
-                                        {...register("username", { required: true })}
+                                        {...register("username")}
                                         value={useEmailAsUsername ? formData.emailAddress : formData.username}
                                         disabled={useEmailAsUsername}
                                         onChange={(e) => handleInputChange(e, "username")}
@@ -357,7 +373,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         className="form-control"
 
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText>
+                                    {/* <FormHelperText sx={{ color: "crimson" }}>{errors.username && "This field is required"}</FormHelperText> */}
                                 </div>
                                 <div className="col-12 col-md-6">
                                     <FormGroup>
@@ -385,7 +401,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                             }</InputAdornment>,
                                         }}
                                     />
-                                    <FormHelperText sx={{ color: "crimson" }}>{errors.creditCardPIN && "This field is required"}</FormHelperText>
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.password && "This field is required"}</FormHelperText>
                                 </div>
                                 <div className="col-12 col-md-6 password-field">
 
@@ -397,8 +413,9 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                         variant="outlined"
                                         className="form-control"
                                         type={passwordVisiable ? "text" : "password"}
-                                        onChange={(e) => handleInputChange(e, "passwordMismatch")}
+                                        onChange={(e) => handleInputChange(e, "confirmPassword")}
                                     />
+                                    <FormHelperText sx={{ color: "crimson" }}>{errors.confirmPassword && "This field is required"}</FormHelperText>
                                     <FormHelperText sx={{ color: "crimson" }}>{errors.passwordMismatch && "Does not match with the password"}</FormHelperText>
                                 </div>
                             </div>
@@ -406,10 +423,14 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                // <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                //     style={{ fontWeight: '700', fontSize: '18px' }}>
+                                //     Submit application
+                                // </Link>
+                                <button className="manulife-btn btn-orange text-decoration-none"
                                     style={{ fontWeight: '700', fontSize: '18px' }}>
                                     Submit application
-                                </Link>
+                                </button>
                             ) : (
                                 <button className="manulife-btn btn-orange btn-orange-lighter" disabled
                                     style={{ fontWeight: '700', fontSize: '18px' }}>Submit</button>
