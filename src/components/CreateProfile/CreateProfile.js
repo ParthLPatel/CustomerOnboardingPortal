@@ -399,14 +399,14 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                                 Submit
                             </Link> */}
                             <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
-                                Submit
+                                Continue
                             </button>
                             <Link to="/" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back
                             </Link>
                         </div>
 
-                        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                        <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"

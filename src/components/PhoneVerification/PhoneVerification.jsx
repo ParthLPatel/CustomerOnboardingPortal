@@ -14,6 +14,8 @@ import Button from "@mui/material/Button";
 import phoneLogo from '../../assets/phoneLogo.png'
 import QRCode from "qrcode.react";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
+
+import {changePhoneNumberFormat} from "../../utils/Utils.js";
 // import { flexbox } from "@mui/system";
 // Example if QrReader is a named export
 
@@ -151,7 +153,7 @@ function PhoneVerification(props){
                     <p className="header_label headerlbl my-2">We just texted you.</p>
                 </div>
 
-                <p className="subHeaderOTP my-3">A passcode was sent to <span className="subHeaderBold">{phoneNumber}</span></p>
+                <p className="subHeaderOTP my-3">A passcode was sent to <span className="subHeaderBold">{changePhoneNumberFormat(phoneNumber)}</span></p>
 
                 {/* Resend OTP button */}
                 <Button variant="contained" 
@@ -187,7 +189,7 @@ function PhoneVerification(props){
                         Verify
                     </button>
                 </div>  
-                <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"

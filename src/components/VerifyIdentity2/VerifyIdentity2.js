@@ -9,6 +9,7 @@ import DialogActions from "@mui/material/DialogActions";
 import QRCode from "qrcode.react";
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import Button from '@mui/material/Button';
+import ScrollToTop from "../ParentContainer/ScrollToTop";
 
 import './VerifyIdentity2.css';
 
@@ -53,7 +54,7 @@ const generateQRCodeData = () => {
   return (
     <div className='container'>
       <div className="progressBarContainer1">
-          <ProgressBar progress={3} />
+          // <ProgressBar progress={3} />
         </div>
       <div className='subContainer'>
         
@@ -103,10 +104,11 @@ const generateQRCodeData = () => {
           </Link>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+        <div className= 'qrcodestyler' style={{ alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"
+                                style={{ marginRight: "10px" }}
                             />
                             <p className="qrcodetext" style={{ margin: 0, fontSize: "14px" }}>
                                 Want to continue filling the application on your phone? <span style={{ textDecoration: "underline" }}>Click here</span>.

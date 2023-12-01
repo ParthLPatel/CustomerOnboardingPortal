@@ -37,6 +37,9 @@
     letter-spacing: 0em;
     text-align: left;
 }
+.qrcodestyler{
+    display: flex;
+}
 
 /* desktop version */
 @media only screen and (min-width: 500px) {
@@ -45,4 +48,15 @@
         font-size: 14px;
         /* font-weight: 600; */
     }
+
+
+}
+
+/* mobile version */
+@media only screen and (max-width: 600px) {
+    .qrcodestyler{
+        display: none;
+    }
+
+    
 }

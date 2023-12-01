@@ -13,19 +13,29 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './VerticalStepper.css'
 const steps = [
   {
-    label: 'Credit card application completed',
-    description: `Your credit card application has been completed`,
+    label: 'Credit card application submitted',
+    description: 'Your credit card application has been completed',
   },
   {
-    label: 'Order Processed',
-    description:
-      'Your order has been processed. We will be sending your credit card application package by mail to your registered address.',
+    label: 'Credit card approved',
+    description: 'Your credit card application has been approved. We have sent you a confirmation email, and soon we will be sending your credit card through the mail.',
   },
   {
-    label: 'Out for delivery',
-    description: `Expected delivery date for your order - Wednesday - 29th December.`,
+    label: 'Credit card shipped',
+    description: 'Your approved credit card has been shipped. You can track the shipment using the provided tracking ID.',
+  },
+  {
+    label: 'Credit card out for delivery',
+    description: 'Your credit card is currently out for delivery. Please ensure someone is available to receive the package.',
+  },
+  {
+    label: 'Credit card delivered',
+    description: 'Congratulations! Your credit card has been successfully delivered to the provided address.',
   },
 ];
+
+// You can use the 'steps' array in your application as needed
+
 
 // Customize the theme with a new primary color
 const theme = createTheme({

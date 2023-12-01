@@ -121,9 +121,9 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                 </div>
 
                 <div className="subContainer">
-                    <p className="header_label" style={{textAlign:"left"}}>Congratulations! Your credit card has been approved!</p>
+                    <p className="header_label" style={{textAlign:"left"}}>Did you know there are other options to help you?</p>
                     <div>
-                        <p className="other-options">Did you know there are other options to help you?</p>
+                        {/* <p className="other-options">Did you know there are other options to help you?</p> */}
                         <p className="do-not-miss">Right now, you can add them to your application bundle. If you want these products later, you have to re-apply</p>
                     </div>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -202,7 +202,7 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                             </Link>
                         </div>
 
-                        <div style={{ display: "flex", alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
+                        <div className="qrcodestyler" style={{alignItems: "center", cursor: "pointer" }} onClick={handleOpenDialog}>
                             <QrCodeScannerIcon
                                 src="path/to/your/qr-code-icon.png"
                                 alt="QR Code Icon"
@@ -229,7 +229,8 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
                             </DialogActions>
                         </Dialog>
                     </form>
-                </div></div>
+                </div>
+            </div>
         </div>)
 }
 export default CrossSellPage;
