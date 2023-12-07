@@ -181,11 +181,11 @@ function PhoneVerification(props){
                 />
                 
                 <div className="btn-wrapper my-4">
-                    <Link to="/create-profile" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                    <Link to="/create-profile" className="ABC-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                         Back
                     </Link>
 
-                    <button onClick={checkVerificationCode} className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                    <button onClick={checkVerificationCode} className="ABC-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                         Verify
                     </button>
                 </div>  

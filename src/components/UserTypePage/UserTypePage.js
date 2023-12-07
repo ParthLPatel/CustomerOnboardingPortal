@@ -3,7 +3,7 @@ import "./UserTypePage.css";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
-import Manulife_green_Logo from "../../assets/Manulife_Logo1.svg";
+import ABC_Logo from "../../assets/CGI_logo.svg.png";
 
 function UserTypePage() {
     const [showThankYou, setShowThankYou] = useState(false);
@@ -25,7 +25,7 @@ function UserTypePage() {
         // Hide the "Thank you" message and "Apply Now" button
         // setShowThankYou(false);
 
-        window.location.href = 'https://www.manulifebank.ca/personal-banking.html';
+        window.location.href = 'https://www.cgi.com/en';
     };
 
     return (
@@ -33,7 +33,7 @@ function UserTypePage() {
             <div className="subContainer mx-1 subBox">
                 <div>
                     <div className="section-header">
-                        <img src={Manulife_green_Logo} alt="Your SVG" className="ManulifeLogo" />
+                        {/* <img src={ABC_Logo} alt="Your SVG" className="ABCLogo" /> */}
                     </div>
                     <div className="usertype-q" style={{ width: "100%", marginTop: '45px' }}>
                         Do you already have an account and bank with us online?

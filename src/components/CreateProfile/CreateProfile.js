@@ -393,13 +393,13 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
 
                         </div>
                         <div className="btn-wrapper">
-                            {/* <Link to="/verify-phone-number" className="manulife-btn btn-orange text-decoration-none">
+                            {/* <Link to="/verify-phone-number" className="ABC-btn btn-orange text-decoration-none">
                                 Submit
                             </Link> */}
-                            <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                            <button type="submit" className="ABC-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Continue
                             </button>
-                            <Link to="/" className="manulife-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                            <Link to="/" className="ABC-btn btn-white text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                 Back
                             </Link>
                         </div>

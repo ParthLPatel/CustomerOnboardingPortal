@@ -6,10 +6,10 @@ function Button() {
     <div>
         <div className="btn-wrapper row">
           <div className="col">
-            <button className="manulife-btn btn-orange form-control">Yes</button>
+            <button className="ABC-btn btn-orange form-control">Yes</button>
           </div>
           <div className="col">
-              <button className="manulife-btn btn-white form-control">No</button>
+              <button className="ABC-btn btn-white form-control">No</button>
           </div>
         </div>
     </div>

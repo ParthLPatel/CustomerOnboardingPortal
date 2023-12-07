@@ -350,12 +350,12 @@ const CreateProfileDialog = (props) => {
 
                             </div>
                             <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none"
+                                <button type="submit" className="ABC-btn btn-orange text-decoration-none"
                                 style={{fontWeight:'700', fontSize:'18px'}}>
                                     Continue
                                 </button>
 
-                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none"
+                                <button  onClick={e=>handleClose(e)} className="ABC-btn btn-white text-decoration-none"
                                 style={{fontWeight:'700', fontSize:'18px'}}>
                                     Cancel
                                 </button>

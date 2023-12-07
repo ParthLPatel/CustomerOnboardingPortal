@@ -90,15 +90,15 @@ const generateQRCodeData = () => {
 
         <div className="btn-wrapper my-4 px-0">
           {isCheckboxChecked ? (
-              <Link to="/financial-info" className="manulife-btn btn-orange text-decoration-none "
+              <Link to="/financial-info" className="ABC-btn btn-orange text-decoration-none "
               style={{fontWeight:'700', fontSize:'18px'}}>
                 Continue
               </Link>
           ) : (
-            <span className="manulife-btn btn-orange btn-orange-lighter"
+            <span className="ABC-btn btn-orange btn-orange-lighter"
             style={{fontWeight:'700', fontSize:'18px'}}>Continue</span>
           )}
-          <Link to="/verify-identity" className="manulife-btn btn-white text-decoration-none"
+          <Link to="/verify-identity" className="ABC-btn btn-white text-decoration-none"
           style={{fontWeight:'700', fontSize:'18px'}}>
             Back
           </Link>

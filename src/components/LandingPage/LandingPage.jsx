@@ -59,7 +59,7 @@ const LandingPage = () => {
               textAlign: 'justify',
             }}
           >
-          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your Manulife MONEY+™ Visa* Card.
+          Skip the bank machine, quickly pay at stores, and breeze through online checkouts with your ABC MONEY+™ Visa* Card.
           Both of our cards provide convenience, security, and valuable rewards on every purchase. Plus, you can use your smartphone,
           smartwatch, or tablet to make purchases with your card through Apple Pay®, Google Pay™, Samsung Pay, Fitbit Pay™, and Garmin Pay™.
         </Typography>
@@ -77,14 +77,14 @@ const LandingPage = () => {
 
         {/* Cards Container */}
         <div className="cards-container">
-          {/* ManulifeMONEY+ Visa Infinite Card */}
+          {/* ABC MONEY+ Visa Infinite Card */}
           <div className="card"
             style={{
               backgroundColor: '#fff',
             }}
           >
             {/* Card Image and Title */}
-            <img src={visaInfiniteImage} alt={"Manulife Visa Platinum Card"} />
+            <img src={visaInfiniteImage} alt={"ABC Visa Platinum Card"} />
             <Typography variant="h5"
               style={
                 {
@@ -95,7 +95,7 @@ const LandingPage = () => {
                   textAlign:'center',
                 }
               }
-            >ManulifeMONEY+ Visa Infinite</Typography>
+            >ABC MONEY+ Visa Infinite</Typography>
 
             {/* Card Content */}
             <Typography
@@ -203,14 +203,14 @@ const LandingPage = () => {
             </Link>
           </div>
 
-          {/* ManulifeMONEY+ Visa Platinum Card */}
+          {/* ABC MONEY+ Visa Platinum Card */}
           <div className="card" 
                style={{
                   backgroundColor: '#fff',
                }}
                >
             {/* Card Image and Title */}
-            <img src={visaPlatinum} alt="Manulife Visa Platinum Card" />
+            <img src={visaPlatinum} alt="ABC Visa Platinum Card" />
             <Typography variant="h5"
               style={
                 {
@@ -222,7 +222,7 @@ const LandingPage = () => {
                   textAlign:'center',
                 }
               }
-            >ManulifeMONEY+ Visa Platinum</Typography>
+            >ABC MONEY+ Visa Platinum</Typography>
 
             {/* Card Content */}
             <Typography

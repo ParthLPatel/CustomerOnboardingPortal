@@ -27,7 +27,7 @@ import { changePhoneNumberFormat } from "../../utils/Utils.js";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
-import manulife_logo from '../../assets/manulife_logo.svg'
+import ABC_logo from '../../assets/CGI_logo.svg.png'
 
 
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
@@ -347,8 +347,8 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
                                     <TableHead style={{display:'flex', justifyContent:'space-between', textAlign:'left', margin:'1em 0'}}>
                                     <TableRow>
                                         <div className='col-3' style={{display:'flex', justifyContent:'space-between'}}>
-                                            <img src={manulife_logo} alt="Your SVG" className="manulifeLogo" style={{marginRight:'1em'}}/>
-                                            <p><b>Manulife</b> Bank</p>
+                                            {/* <img src={ABC_logo} alt="Your SVG" className="ABCLogo" style={{marginRight:'1em'}}/> */}
+                                            <p><b>ABC</b> Bank</p>
                                         </div>
                                     </TableRow>
                                     </TableHead>
@@ -491,19 +491,19 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
                         <div className="btn-wrapper">
                             {isCheckboxChecked ? (
-                                // <Link to="/cross-sell" className="manulife-btn btn-orange text-decoration-none"
+                                // <Link to="/cross-sell" className="ABC-btn btn-orange text-decoration-none"
                                 //     style={{ fontWeight: '700', fontSize: '18px' }}>
                                 //     Submit application
                                 // </Link>
-                                <button className="manulife-btn btn-orange text-decoration-none"
+                                <button className="ABC-btn btn-orange text-decoration-none"
                                     style={{ fontWeight: '700', fontSize: '18px' }}>
                                     Submit application
                                 </button>
                             ) : (
-                                <button className="manulife-btn btn-orange btn-orange-lighter" disabled
+                                <button className="ABC-btn btn-orange btn-orange-lighter" disabled
                                     style={{ fontWeight: '700', fontSize: '18px' }}>Submit</button>
                             )}
-                            <Link to="/financial-info" className="manulife-btn btn-white text-decoration-none"
+                            <Link to="/financial-info" className="ABC-btn btn-white text-decoration-none"
                                 style={{ fontWeight: '700', fontSize: '18px' }}>
                                 Back
                             </Link>
