@@ -209,7 +209,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
                                                     />
                                                     {
                                                         lessIncome < 50000 ? (<div className="less-income">
-                                                            <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
+                                                            <span>Annual income less than $50,000? We recommend the <b>ABC MONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
                                                         </div>) : (<></>)
                                                     }
 
@@ -394,9 +394,9 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
                             }
 
                             <div className="btn-wrapper" style={{ padding: "0em", marginLeft: "0.4em" }}>
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
+                                <button type="submit" className="ABC-btn btn-orange text-decoration-none" style={{fontWeight:'700', fontSize:'18px'}}>
                                     Continue</button>
-                                <Link to="/confirm-identity" className="manulife-btn btn-white text-decoration-none" onClick={onCancel} style={{fontWeight:'700', fontSize:'18px'}}>
+                                <Link to="/confirm-identity" className="ABC-btn btn-white text-decoration-none" onClick={onCancel} style={{fontWeight:'700', fontSize:'18px'}}>
                                     Back
                                 </Link>
                             </div>

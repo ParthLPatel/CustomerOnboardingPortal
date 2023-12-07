@@ -3,7 +3,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
 
 import VerticalStepper from '../VerticalStepper/VerticalStepper';
-import cardFront from '../../assets/Visa_Infinite_EN.png'
+import cardFront from '../../assets/images1.png'
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard'
 
 function CongratulationsPage({ formData, updateFormData }) {
@@ -30,7 +30,7 @@ function CongratulationsPage({ formData, updateFormData }) {
           <div>
           {/* card header */}
           <div className='card-header'>
-              <p style={{fontSize: '24px', textAlign:'left', fontWeight:'600', letterSpacing:'0.3px'}}>Welcome to Manulife Bank</p>
+              <p style={{fontSize: '24px', textAlign:'left', fontWeight:'600', letterSpacing:'0.3px'}}>Welcome to ABC Bank</p>
               <p className='stepLabel' style={{fontSize:'16px', fontWeight:'500', letterSpacing:'0.2px', textAlign:'left', paddingTop:"0em", paddingBottom:'0em'}}>
                 <span>Congratulations! </span> 
                 Your digital credit card is ready to use</p>
@@ -48,7 +48,7 @@ function CongratulationsPage({ formData, updateFormData }) {
             
             {/* card-featiures section */}
             <div className='cardDesc'>
-              <p className='stepLabel' style={{fontSize:'18px'}}>Manulife Visa Infinite Credit Card</p>
+              <p className='stepLabel' style={{fontSize:'18px'}}>ABC Visa Infinite Credit Card</p>
               <ul className='stepLabel px-3' style={{letterSpacing:'0.4px', fontWeight:500}}>
                 <li>Earn 2 points per $1 spent on gas, groceries and utilities</li>
                 <li>1 point per dollar on all other purchases</li>
@@ -59,7 +59,7 @@ function CongratulationsPage({ formData, updateFormData }) {
             </div>
           </div>
           <div className='signInBtnContainer'>
-                <button className="manulife-btn btn-orange signInBtn">Sign in</button>
+                <button className="ABC-btn btn-orange signInBtn">Sign in</button>
             </div>
           </div>
           

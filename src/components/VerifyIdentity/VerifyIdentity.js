@@ -266,11 +266,11 @@ const generateQRCodeData = () => {
           </div>
     
             <div className="btn-wrapper my-4">
-                <Link to="/confirm-identity" className="manulife-btn btn-orange text-decoration-none"
+                <Link to="/confirm-identity" className="ABC-btn btn-orange text-decoration-none"
                   style={{fontWeight:'700', fontSize:'18px'}}>
                     Continue
                 </Link>
-                <Link to="/verify-phone-number" className="manulife-btn btn-white text-decoration-none"
+                <Link to="/verify-phone-number" className="ABC-btn btn-white text-decoration-none"
                   style={{fontWeight:'700', fontSize:'18px'}}>
                     Back
                 </Link>

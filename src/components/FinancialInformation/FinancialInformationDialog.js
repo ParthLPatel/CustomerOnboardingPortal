@@ -178,7 +178,7 @@ const FinancialInformationDialog = (props) => {
                                                     />
                                                     {
                                                         lessIncome < 50000 ? (<div className="less-income">
-                                                            <span>Annual income less than $50,000? We recommend the <b>ManulifeMONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
+                                                            <span>Annual income less than $50,000? We recommend the <b>ABC MONEY+ Visa Platinum</b>, click <b><Link>HERE</Link></b> to apply!</span>
                                                         </div>) : (<></>)
                                                     }
 
@@ -363,12 +363,12 @@ const FinancialInformationDialog = (props) => {
                             }
 
                             <div className="btn-wrapper">
-                                <button type="submit" className="manulife-btn btn-orange text-decoration-none"
+                                <button type="submit" className="ABC-btn btn-orange text-decoration-none"
                                 style={{fontWeight:'700', fontSize:'18px'}}>
                                     Submit
                                 </button>
 
-                                <button  onClick={e=>handleClose(e)} className="manulife-btn btn-white text-decoration-none"
+                                <button  onClick={e=>handleClose(e)} className="ABC-btn btn-white text-decoration-none"
                                 style={{fontWeight:'700', fontSize:'18px'}}>
                                     Cancel
                                 </button>
