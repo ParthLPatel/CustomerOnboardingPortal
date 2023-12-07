@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Typography } from '@mui/material';
-import visaInfiniteImage from '../../assets/Visa_Infinite_EN.png';
-import visaPlatinum from '../../assets/Visa_Platinum_EN.png';
+import visaInfiniteImage from '../../assets/images1.png';
+import visaPlatinum from '../../assets/pngimg.png';
 import banner from '../../assets/unsplashbanner1.jpg';
 import { Link } from 'react-router-dom';
 import ArrowCircleRightRoundedIcon from '@mui/icons-material/ArrowCircleRightRounded';

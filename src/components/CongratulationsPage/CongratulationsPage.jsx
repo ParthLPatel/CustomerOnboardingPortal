@@ -3,7 +3,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import './CongratulationsPage.css';
 
 import VerticalStepper from '../VerticalStepper/VerticalStepper';
-import cardFront from '../../assets/Visa_Infinite_EN.png'
+import cardFront from '../../assets/images1.png'
 // import FlipCard from '../CommonComponents/FlipCard/FlipCard'
 
 function CongratulationsPage({ formData, updateFormData }) {

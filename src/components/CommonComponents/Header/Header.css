@@ -2,7 +2,7 @@
     position: sticky;
     top: 0;
     left: 0;
-    background-color: #434559;
+    background: linear-gradient(to right, #e31937, #a82465, #5236ab);
     z-index: 1000; /* Adjust the z-index as needed */
 
   }

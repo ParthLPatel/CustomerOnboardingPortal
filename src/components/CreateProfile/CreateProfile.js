@@ -425,7 +425,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                                 </DialogContentText>
                             </DialogContent>
                             <DialogActions style={{ justifyContent: "center" }}>
-                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "#fff", marginBottom:"10px" }}>
+                                <Button onClick={handleCloseDialog} variant="contained" color="primary" style={{ backgroundColor: "#ED6453", color: "linear-gradient(to right, #e31937, #a82465, #5236ab);", marginBottom:"10px" }}>
                                     Close
                                 </Button>
                             </DialogActions>

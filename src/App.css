@@ -26,15 +26,18 @@ margin: 1em 0;
 }
 
 .btn-orange{
-background: #ED6453;
+background: linear-gradient(to right, #e31937, #a82465, #5236ab);;
 }
 
-.btn-white{
-background-color: white;
-color: #ED6453;
-border: #ED6453 solid 3px;
-box-shadow: 0px 1px 2px 0px #0000001A;
-}
+.btn-white {
+    background-color: white;
+    color: #ed6453;
+    border: 3px solid transparent;
+    border-image: linear-gradient(to right, #ff7e5f, #feb47b); /* Adjust colors as needed */
+    border-image-slice: 1;
+    box-shadow: 0px 1px 2px 0px #0000001a;
+  }
+  
 
 
 /* desktop version */
