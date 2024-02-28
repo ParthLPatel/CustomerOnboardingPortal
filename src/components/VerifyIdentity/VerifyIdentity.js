@@ -57,7 +57,7 @@ function VerifyIdentity({ formData, updateFormData, setHoldFormData }) {
         setHoldFormData(formDataFromQR);
         console.log(formDataFromQR);
     }
-  }, []);
+  }, [setHoldFormData]);
 
 
   const handleOpenDialog = () => {

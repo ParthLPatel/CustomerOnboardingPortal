@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import "./UserTypePage.css";
 import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
-import ABC_Logo from "../../assets/CGI_logo.svg.png";
+// import Stack from '@mui/material/Stack';
+// import ABC_Logo from "../../assets/CGI_logo.svg.png";
 
 function UserTypePage() {
-    const [showThankYou, setShowThankYou] = useState(false);
+    // const [showThankYou, setShowThankYou] = useState(false);
     const navigate = useNavigate();
 
-    const handleNoClick = () => {
-        setShowThankYou(true);
-    };
+    // const handleNoClick = () => {
+    //     setShowThankYou(true);
+    // };
 
     const handleApplyNowClick = () => {
         // Navigate to the next page or perform other actions

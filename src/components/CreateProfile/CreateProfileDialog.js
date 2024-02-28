@@ -31,7 +31,7 @@ const CreateProfileDialog = (props) => {
     const {
         register,
         handleSubmit,
-        formState,
+        // formState,
         clearErrors,
         setError
     } = useForm()
@@ -39,6 +39,7 @@ const CreateProfileDialog = (props) => {
     
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
+    console.log(showDropdown);
     const [homeAddressList, setHomeAddressList] = useState([]);
 
     const [needsManualAddress, setNeedsManualAddress] = useState(false);

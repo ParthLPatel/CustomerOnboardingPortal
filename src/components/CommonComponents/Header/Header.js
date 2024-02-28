@@ -1,8 +1,6 @@
 import React from 'react';
 import './Header.css';
 
-import ABC_logo from "../../../assets/CGI_logo.svg.png";
-
 function Header() {
   return (
     <div className='header-container'>

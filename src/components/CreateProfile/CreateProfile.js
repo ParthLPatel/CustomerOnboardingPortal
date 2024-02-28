@@ -41,6 +41,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
 
     const [inputValue, setInputValue] = useState('');
     const [showDropdown, setShowDropdown] = useState(false);
+    console.log(showDropdown);
     const [homeAddressList, setHomeAddressList] = useState([]);
 
     const [needsManualAddress, setNeedsManualAddress] = useState(false);
@@ -116,7 +117,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
             setManualCity(formData.manualCity);
         }
 
-    }, [manualProvince, formData]);
+    }, [manualProvince, formData, setHoldFormData]);
 
     const handleAddressSearch = async (query) => {
         if (query === "" && existingAddress) {

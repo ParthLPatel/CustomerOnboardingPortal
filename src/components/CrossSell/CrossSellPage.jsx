@@ -76,7 +76,7 @@ const CrossSellPage = ({ creditCardCrossSell, formData, financialInfoData, setHo
         setNewChecking(creditCardCrossSell?.newChecking);
         setNewSaving(creditCardCrossSell?.newSaving);
         setValue("SIN",creditCardCrossSell?.SIN || "")
-    }, [creditCardCrossSell?.SIN, creditCardCrossSell?.accountIntent, creditCardCrossSell?.newChecking, creditCardCrossSell?.newSaving, setValue]);
+    }, [creditCardCrossSell?.SIN, creditCardCrossSell?.accountIntent, creditCardCrossSell?.newChecking, creditCardCrossSell?.newSaving, setValue, setHoldFinancialInfoData, setHoldFormData]);
 
     const changeNewChanging = () => {
         setNewChecking(!newChecking);

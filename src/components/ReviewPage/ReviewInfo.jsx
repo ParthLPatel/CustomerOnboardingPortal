@@ -27,7 +27,7 @@ import { changePhoneNumberFormat } from "../../utils/Utils.js";
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton } from '@mui/material';
-import ABC_logo from '../../assets/CGI_logo.svg.png'
+// import ABC_logo from '../../assets/CGI_logo.svg.png'
 
 
 const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinancialInfoData, setHoldFormData, setHoldFinancialInfoData }) => {
@@ -45,7 +45,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     const { firstName, lastName, birthDate, emailAddress, phoneNumber } = formData;
     //const { annualIncome, otherHouseholdIncome, employmentStatus, employerName, employerIndustry, institutionName, graduationDate } = financialInfoData;
     const annualIncome = financialInfoData?.annualIncome || '';
-    const otherHouseholdIncome = financialInfoData?.otherHouseholdIncome || '';
+    // const otherHouseholdIncome = financialInfoData?.otherHouseholdIncome || '';
     const employmentStatus = financialInfoData?.employmentStatus || '';
     const employerName = financialInfoData?.employerName || '';
     const employerIndustry = financialInfoData?.employerIndustry || '';
@@ -66,7 +66,7 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
 
         }
 
-    }, []);
+    }, [setHoldFinancialInfoData, setHoldFormData]);
 
     const handleOpenDialog = () => {
         setOpenDialog(true);
@@ -99,11 +99,11 @@ const ReviewInfo = ({ formData, financialInfoData, updateFormData, updateFinanci
     }
     const handleInputChange = (e, fieldName) => {
         clearErrors(fieldName);
-        if(fieldName=="confirmCreditCardPIN"){
+        if(fieldName==="confirmCreditCardPIN"){
             console.log("chang");
             clearErrors("PINMisMatch");
         }
-        if(fieldName=="confirmPassword"){
+        if(fieldName==="confirmPassword"){
             clearErrors("passwordMismatch");
         }
         updateFormData({ ...formData, [fieldName]: e.target.value });

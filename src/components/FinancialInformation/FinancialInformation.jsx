@@ -91,7 +91,7 @@ const FinancialInformation = ({ financialInfoData, updateFinancialInfoData, form
             setEmpStatus(financialInfoData.employmentStatus || '');
             setInsName(financialInfoData.institutionName || '');
         }
-    }, [financialInfoData, setValue]);
+    }, [financialInfoData, setValue, setHoldFormData]);
 
 
     const employmentStatusList = ["Full-time employee", "Student", "Retired", "Unemployed"];
