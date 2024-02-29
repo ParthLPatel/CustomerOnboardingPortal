@@ -252,19 +252,20 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                       shrink: true
                     }}
                     className='form-control'
+                    required // This will make the field required
                     error={
-                      touched &&
-                      (formState.errors.birthDate ||
-                        !isDateValid(formData.birthDate))
+                      !!formState.errors.birthDate ||
+                      (touched && !formData.birthDate)
                     }
                     inputProps={{ max: maxDate, style: inputStyle }}
                   />
                   <FormHelperText sx={{ color: 'crimson' }}>
+                    {formState.errors.birthDate && 'This field is required'}
                     {touched &&
-                      formState.errors.birthDate &&
-                      'This field is required'}
+                      !formData.birthDate &&
+                      'Please select a valid date of birth'}
                     {touched &&
-                      !formState.errors.birthDate &&
+                      !!formData.birthDate &&
                       !isDateValid(formData.birthDate) &&
                       'You must be at least 18 years old'}
                   </FormHelperText>
@@ -342,6 +343,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                         label='Home Address'
                         variant='outlined'
                         fullWidth
+                        required
                         color='success'
                       />
                     )}
