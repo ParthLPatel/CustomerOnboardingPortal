@@ -28,6 +28,8 @@ import QRCode from 'qrcode.react';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { getCities, getProvinces } from './cityMapping';
 import { subYears, isValid } from 'date-fns';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 
 function CreateProfile({ formData, updateFormData, setHoldFormData }) {
   const { register, handleSubmit, formState, clearErrors, setError } =
@@ -288,20 +290,43 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                   </FormHelperText>
                 </div>
               </div>
-
               <div className='row grpContainer'>
                 <div className='col mb-4'>
-                  <TextField
-                    color='success'
-                    placeholder='Phone Number'
-                    {...register('phoneNumber', {
-                      required: true,
-                      pattern: /^[0-9]{10}$/ // Allow only 10 digits
-                    })}
+                  <label
+                    htmlFor='phoneNumber'
+                    style={{
+                      fontSize: '16px',
+                      marginBottom: '8px',
+                      display: 'block'
+                    }}
+                  >
+                    Phone Number
+                  </label>
+                  <PhoneInput
+                    country={'us'}
+                    containerStyle={{
+                      width: '100%',
+                      height: '50%',
+                      border: '1px solid #ccc',
+                      borderRadius: '4px',
+                      padding: '10px',
+                      paddingLeft: 0
+                    }}
+                    inputStyle={{
+                      width: '100%',
+                      height: '100%',
+                      fontSize: '16px',
+                      border: 'none',
+                      outline: 'none'
+                    }}
+                    inputProps={{
+                      id: 'phoneNumber',
+                      required: true
+                    }}
                     value={formData.phoneNumber}
-                    onChange={(e) => {
+                    onChange={(value) => {
                       // Remove non-numeric characters and limit to 10 digits
-                      const numericValue = e.target.value
+                      const numericValue = value
                         .replace(/[^0-9]/g, '')
                         .slice(0, 10);
                       handleInputChange(
@@ -309,13 +334,8 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                         'phoneNumber'
                       );
                     }}
-                    label='Phone Number'
-                    variant='outlined'
-                    className='form-control'
-                    inputProps={{
-                      inputMode: 'numeric',
-                      pattern: '[0-9]*' // Fallback pattern for browsers that do not support inputMode
-                    }}
+                    onBlur={() => setTouched(true)}
+                    placeholder='Enter Phone Number'
                   />
                   <FormHelperText sx={{ color: 'crimson' }}>
                     {formState.errors.phoneNumber &&
@@ -323,7 +343,6 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                   </FormHelperText>
                 </div>
               </div>
-
               {!needsManualAddress ? (
                 <>
                   <Autocomplete
