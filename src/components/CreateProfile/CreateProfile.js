@@ -35,9 +35,10 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
 
   const navigate = useNavigate();
 
-    const [inputValue, setInputValue] = useState('');
-    const [showDropdown, setShowDropdown] = useState(false);
-    const [homeAddressList, setHomeAddressList] = useState([]);
+  const [inputValue, setInputValue] = useState('');
+  const [showDropdown, setShowDropdown] = useState(false);
+  console.log(showDropdown);
+  const [homeAddressList, setHomeAddressList] = useState([]);
 
   const [needsManualAddress, setNeedsManualAddress] = useState(false);
   const [cityList, setCityList] = useState([]);
@@ -106,11 +107,10 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
       setInputValue(formData.homeAddress);
     }
 
-        if (formData.manualCity !== "") {
-            setManualCity(formData.manualCity);
-        }
-
-    }, [manualProvince, formData]);
+    if (formData.manualCity !== '') {
+      setManualCity(formData.manualCity);
+    }
+  }, [manualProvince, formData, setHoldFormData]);
 
   const handleAddressSearch = async (query) => {
     if (query === '' && existingAddress) {
