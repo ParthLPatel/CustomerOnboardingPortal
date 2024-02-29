@@ -177,6 +177,13 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
     color: isValid(new Date(formData.birthDate)) ? 'black' : 'gray'
   };
 
+  //   Phone validation
+  const validatePhoneNumber = (phoneNumber) => {
+    // Use a regular expression for phone number validation
+    const phoneNumberRegex = /^\d{10,12}$/;
+    return phoneNumberRegex.test(phoneNumber);
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -286,16 +293,32 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                   <TextField
                     color='success'
                     placeholder='Phone Number'
-                    {...register('phoneNumber', { required: true })}
+                    {...register('phoneNumber', {
+                      required: true,
+                      pattern: /^[0-9]{10}$/ // Allow only 10 digits
+                    })}
                     value={formData.phoneNumber}
-                    onChange={(e) => handleInputChange(e, 'phoneNumber')}
+                    onChange={(e) => {
+                      // Remove non-numeric characters and limit to 10 digits
+                      const numericValue = e.target.value
+                        .replace(/[^0-9]/g, '')
+                        .slice(0, 10);
+                      handleInputChange(
+                        { target: { value: numericValue } },
+                        'phoneNumber'
+                      );
+                    }}
                     label='Phone Number'
                     variant='outlined'
                     className='form-control'
+                    inputProps={{
+                      inputMode: 'numeric',
+                      pattern: '[0-9]*' // Fallback pattern for browsers that do not support inputMode
+                    }}
                   />
                   <FormHelperText sx={{ color: 'crimson' }}>
                     {formState.errors.phoneNumber &&
-                      'Please enter a valid phone number'}
+                      'Please enter a valid phone number with exactly 10 digits'}
                   </FormHelperText>
                 </div>
               </div>
