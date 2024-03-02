@@ -28,7 +28,6 @@ import QRCode from 'qrcode.react';
 import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import { getCities, getProvinces } from './cityMapping';
 import { subYears, isValid } from 'date-fns';
-import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 
 function CreateProfile({ formData, updateFormData, setHoldFormData }) {
@@ -144,7 +143,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
 
   const onSubmit = () => {
     const emailRegex = /^[\w.-]+@[a-zA-Z\d.-]+\.[a-zA-Z]{2,}$/;
-    const numberRegex = /^\d{10,12}$/;
+    const numberRegex = /^\d{10}$/; // Updated regex to match exactly 10 digits
     const isValidNumber = numberRegex.test(formData.phoneNumber);
     const isValidEmail = emailRegex.test(formData.emailAddress);
     if (!isValidEmail) {
@@ -154,16 +153,17 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
       });
       return;
     }
-
+  
     if (!isValidNumber) {
       setError('phoneNumber', {
         type: 'manual',
-        message: 'Please enter a valid phone number'
+        message: 'Please enter a valid phone number with exactly 10 digits' // Updated error message
       });
       return;
     }
     navigate('/verify-phone-number');
   };
+  
 
   //   Date validation
   const minAgeDate = subYears(new Date(), 18);
@@ -287,54 +287,22 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
               </div>
               <div className='row grpContainer'>
                 <div className='col mb-4'>
-                  <label
-                    htmlFor='phoneNumber'
-                    style={{
-                      fontSize: '16px',
-                      marginBottom: '8px',
-                      display: 'block'
-                    }}
-                  >
-                    Phone Number
-                  </label>
-                  <PhoneInput
-                    country={'us'}
-                    containerStyle={{
-                      width: '100%',
-                      height: '50%',
-                      border: '1px solid #ccc',
-                      borderRadius: '4px',
-                      padding: '10px',
-                      paddingLeft: 0
-                    }}
-                    inputStyle={{
-                      width: '100%',
-                      height: '100%',
-                      fontSize: '16px',
-                      border: 'none',
-                      outline: 'none'
-                    }}
-                    inputProps={{
-                      id: 'phoneNumber',
-                      required: true
-                    }}
-                    value={formData.phoneNumber}
-                    onChange={(value) => {
-                      // Remove non-numeric characters and limit to 10 digits
-                      const numericValue = value
-                        .replace(/[^0-9]/g, '')
-                        .slice(0, 10);
-                      handleInputChange(
-                        { target: { value: numericValue } },
-                        'phoneNumber'
-                      );
-                    }}
-                    onBlur={() => setTouched(true)}
-                    placeholder='Enter Phone Number'
-                  />
+                <TextField
+                  color='success'
+                  placeholder='Enter Phone Number'
+                  {...register('phoneNumber', { required: true })}
+                  value={formData.phoneNumber}
+                  onChange={(e) => handleInputChange(e, 'phoneNumber')}
+                  label='Phone Number'
+                  variant='outlined'
+                  className='form-control'
+                  InputProps={{
+                    style: { borderColor: '#09874E' } 
+                  }}
+                />
                   <FormHelperText sx={{ color: 'crimson' }}>
                     {formState.errors.phoneNumber &&
-                      'Please enter a valid phone number with exactly 10 digits'}
+                      'Please enter a valid 10-digit phone number'}
                   </FormHelperText>
                 </div>
               </div>
@@ -486,6 +454,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
                 type='submit'
                 className='ABC-btn btn-orange text-decoration-none'
                 style={{ fontWeight: '700', fontSize: '18px' }}
+                // disabled={!isValidNumber || !isValidEmail || !isDateValid(formData.birthDate)}
               >
                 Continue
               </button>
