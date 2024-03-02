@@ -179,12 +179,7 @@ function CreateProfile({ formData, updateFormData, setHoldFormData }) {
     color: isValid(new Date(formData.birthDate)) ? 'black' : 'gray'
   };
 
-  //   Phone validation
-  const validatePhoneNumber = (phoneNumber) => {
-    // Use a regular expression for phone number validation
-    const phoneNumberRegex = /^\d{10,12}$/;
-    return phoneNumberRegex.test(phoneNumber);
-  };
+  
 
   return (
     <div>
